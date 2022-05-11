@@ -16,5 +16,13 @@ public class UserController : ControllerBase
         return Ok();
         // return CreatedAtAction("Done adding user", userDto);
     }
-
+    [HttpGet("{limit}")]
+    public ActionResult Get(int limit)
+    {
+        using (blogyContext db = new())
+        {
+            var users = db.Users.Take(limit).ToList();
+            return Ok(users.AsDto());
+        }
+    }
 }

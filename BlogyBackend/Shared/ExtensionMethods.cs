@@ -13,11 +13,12 @@ public static class ExtensionMethods
             Email = user.Email,
             Phone = user.Phone,
             Password = user.Password,
-            ProfilePicture = user.ProfilePicture
+            ProfilePicture = user.ProfilePicture?.ToBase64()
         };
     }
     public static User AsNormal(this UserDto userDto)
     {
+
         return new User
         {
             Username = userDto.Username,
@@ -25,7 +26,25 @@ public static class ExtensionMethods
             Email = userDto.Email,
             Phone = userDto.Phone,
             Password = userDto.Password,
-            ProfilePicture = userDto.ProfilePicture
+            ProfilePicture = userDto.ProfilePicture?.ToBytes()
         };
+    }
+    public static List<UserDto> AsDto(this ICollection<User> users)
+    {
+        List<UserDto> userDtos = new();
+        foreach (User user in users)
+        {
+            userDtos.Add(user.AsDto());
+        }
+        return userDtos;
+    }
+    public static List<User> AsNormal(this ICollection<UserDto> userDtos)
+    {
+        List<User> users = new();
+        foreach (UserDto userDto in userDtos)
+        {
+            users.Add(userDto.AsNormal());
+        }
+        return users;
     }
 }
