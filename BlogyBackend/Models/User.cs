@@ -62,5 +62,12 @@ namespace BlogyBackend.Models
                 db.SaveChanges();
             }
         }
+        public User Get(string username)
+        {
+            using (blogyContext db = new())
+            {
+                return db.Users?.FirstOrDefault(u => u.Username == username)!;
+            }
+        }
     }
 }

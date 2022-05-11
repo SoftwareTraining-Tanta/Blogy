@@ -29,4 +29,22 @@ public static class ExtensionMethods
             ProfilePicture = userDto.ProfilePicture?.ToBytes()
         };
     }
+    public static List<UserDto> AsDto(this ICollection<User> users)
+    {
+        List<UserDto> userDtos = new();
+        foreach (User user in users)
+        {
+            userDtos.Add(user.AsDto());
+        }
+        return userDtos;
+    }
+    public static List<User> AsNormal(this ICollection<UserDto> userDtos)
+    {
+        List<User> users = new();
+        foreach (UserDto userDto in userDtos)
+        {
+            users.Add(userDto.AsNormal());
+        }
+        return users;
+    }
 }
