@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
-class UsersController : ControllerBase
+public class UserController : ControllerBase
 {
     [HttpPost]
     public ActionResult Add(UserDto userDto)
@@ -13,7 +13,8 @@ class UsersController : ControllerBase
 
         User _user = new();
         _user.Add(userDto.AsNormal());
-        return CreatedAtAction("Done adding user", userDto);
+        return Ok();
+        // return CreatedAtAction("Done adding user", userDto);
     }
 
 }

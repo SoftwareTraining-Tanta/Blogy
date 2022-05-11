@@ -35,7 +35,7 @@ namespace BlogyBackend.Models
         [StringLength(256)]
         public string Password { get; set; } = null!;
         [Column("profilePicture")]
-        public byte[]? ProfilePicture { get; set; }
+        public string? ProfilePicture { get; set; }
 
         [InverseProperty(nameof(Comment.UsernameNavigation))]
         public virtual ICollection<Comment> Comments { get; set; }
@@ -58,7 +58,7 @@ namespace BlogyBackend.Models
             using (blogyContext db = new())
             {
                 User? user = db.Users?.FirstOrDefault(u => u.Username == username);
-                user!.Password=newPassword;
+                user!.Password = newPassword;
                 db.SaveChanges();
             }
         }
