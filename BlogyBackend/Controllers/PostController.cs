@@ -4,7 +4,7 @@ using BlogyBackend.Shared;
 using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
-[Route("api/users")]
+[Route("api/posts")]
 public class PostController : ControllerBase
 {
     [HttpPost]
