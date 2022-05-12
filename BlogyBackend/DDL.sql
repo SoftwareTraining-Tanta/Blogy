@@ -47,3 +47,14 @@ create table if not exists comments(
     foreign key (username) references users(username),
     foreign key (postId) references posts(id)
 );
+
+create table if not exists tempUsers(
+    username varchar(30) ,
+    name varchar(50) not null,
+    email varchar(70) unique,
+    phone varchar(13) unique,
+    password varchar(256) not null,
+    profilePicture longblob ,
+    verificationCode varchar(6) not null,
+    primary key (username)
+);
