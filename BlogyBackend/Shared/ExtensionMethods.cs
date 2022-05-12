@@ -89,4 +89,29 @@ public static class ExtensionMethods
         }
         return posts;
     }
+    public static TempUser AsTempUser(this User user, string verificationCode)
+    {
+        return new TempUser
+        {
+            Username = user.Username,
+            Name = user.Name,
+            Email = user.Email,
+            Phone = user.Phone,
+            Password = user.Password,
+            ProfilePicture = user.ProfilePicture,
+            VerificationCode = verificationCode
+        };
+    }
+    public static User AsNormalUser(this TempUser tempUser)
+    {
+        return new User
+        {
+            Username = tempUser.Username,
+            Name = tempUser.Name,
+            Email = tempUser.Email,
+            Phone = tempUser.Phone,
+            Password = tempUser.Password,
+            ProfilePicture = tempUser.ProfilePicture
+        };
+    }
 }

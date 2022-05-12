@@ -19,6 +19,7 @@ namespace BlogyBackend.Models
         public virtual DbSet<Plan> Plans { get; set; } = null!;
         public virtual DbSet<Post> Posts { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<TempUser> TempUsers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -85,6 +86,11 @@ namespace BlogyBackend.Models
                             j.IndexerProperty<int>("PostId").HasColumnName("postId");
                         });
             });
+            modelBuilder.Entity<TempUser>(entity =>
+           {
+               entity.HasKey(e => e.Username)
+                   .HasName("PRIMARY");
+           });
 
             OnModelCreatingPartial(modelBuilder);
         }

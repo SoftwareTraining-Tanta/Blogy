@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogyBackend.Interfaces;
+using BlogyBackend.Shared;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogyBackend.Models
@@ -9,7 +10,7 @@ namespace BlogyBackend.Models
     [Table("users")]
     [Index(nameof(Email), Name = "email", IsUnique = true)]
     [Index(nameof(Phone), Name = "phone", IsUnique = true)]
-    public partial class User
+    public partial class User : IPerson
     {
         public User()
         {
@@ -62,11 +63,56 @@ namespace BlogyBackend.Models
                 db.SaveChanges();
             }
         }
-        public User Get(string username)
+        public IPerson Get(string username)
         {
             using (blogyContext db = new())
             {
                 return db.Users?.FirstOrDefault(u => u.Username == username)!;
+            }
+        }
+        public bool Exists(string username)
+        {
+            using (blogyContext db = new())
+            {
+                return db.Users?.Any(u => u.Username == username) ?? false;
+            }
+        }
+        public string Register(User user)
+        {
+            string verficationCode = new Random().Next(0, 99999).ToString();
+
+            TempUser tempUser = user.AsTempUser(verficationCode);
+            Smtp.SendMessage(
+                toEmail: tempUser.Email!,
+                subject: "Blogy Verification",
+                body: $"Your verification code is {verficationCode}"
+                );
+            tempUser.Add(tempUser);
+            return verficationCode;
+        }
+        public void Verify(string username, string verificationCode)
+        {
+            TempUser _tempUser = new TempUser();
+            try
+            {
+                using (blogyContext db = new())
+                {
+                    TempUser? tempUser = _tempUser.Get(username);
+                    if (tempUser.VerificationCode == verificationCode)
+                    {
+                        User user = tempUser.AsNormalUser();
+                        db.Users.Add(user);
+                        db.TempUsers.Remove(tempUser);
+                        db.SaveChanges();
+                    }
+                    else
+                        throw new Exception("Verification code is not correct");
+
+                }
+            }
+            catch
+            {
+                throw new Exception("Verification failed , Please check your verification code or user may be already verified");
             }
         }
     }

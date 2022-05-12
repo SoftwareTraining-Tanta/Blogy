@@ -1,7 +1,7 @@
 
 using System.Net.Mail;
 using System.Text;
-namespace Shopy.Web.Shared;
+namespace BlogyBackend.Shared;
 public class Smtp
 {
     public const string From = "shopy.technical@gmail.com";

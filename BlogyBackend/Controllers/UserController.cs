@@ -25,4 +25,34 @@ public class UserController : ControllerBase
             return Ok(users.AsDto());
         }
     }
+    [HttpPost("register")]
+    public ActionResult Register(UserDto userDto)
+    {
+        try
+        {
+
+            User _user = new();
+            string verficationCode = _user.Register(userDto.AsNormal());
+            return Ok(verficationCode);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
+    }
+    [HttpPost("verify/{username}/{verificationCode}")]
+    public ActionResult Verify(string username, string verificationCode)
+    {
+        try
+        {
+            User _user = new();
+            _user.Verify(username, verificationCode);
+            return Ok("User verified successfully");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }
