@@ -106,7 +106,7 @@ namespace BlogyBackend.Models
                 throw new Exception(MyExceptions.EmailAlreadyUsed);
             if (User.CheckEmail(user.Username, user.Email!))
                 throw new Exception(MyExceptions.EmailAlreadyUsed);
-                
+
             TempUser tempUser = user.AsTempUser(verficationCode);
             Smtp.SendMessage(
                 toEmail: tempUser.Email!,
