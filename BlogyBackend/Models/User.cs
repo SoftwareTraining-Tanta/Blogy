@@ -98,13 +98,13 @@ namespace BlogyBackend.Models
                 throw new Exception(MyExceptions.UsernameAlreadyExists);
             if (TempUser.Exists(user.Username))
                 throw new Exception(MyExceptions.UsernameAlreadyExistsButNotVerified);
-            if (TempUser.CheckNumber(user.Username, user.Phone!))
+            if (TempUser.CheckNumber(user.Phone!, user.Phone!))
                 throw new Exception(MyExceptions.PhoneNumberAlreadyUsed);
-            if (User.CheckNumber(user.Username, user.Phone!))
+            if (User.CheckNumber(user.Phone!, user.Phone!))
                 throw new Exception(MyExceptions.PhoneNumberAlreadyUsed);
-            if (TempUser.CheckEmail(user.Username, user.Email!))
+            if (TempUser.CheckEmail(user.Email!, user.Email!))
                 throw new Exception(MyExceptions.EmailAlreadyUsed);
-            if (User.CheckEmail(user.Username, user.Email!))
+            if (User.CheckEmail(user.Email!, user.Email!))
                 throw new Exception(MyExceptions.EmailAlreadyUsed);
 
             TempUser tempUser = user.AsTempUser(verficationCode);
