@@ -21,8 +21,8 @@ namespace BlogyBackend.Models
         [Column("content")]
         [StringLength(3000)]
         public string Content { get; set; } = null!;
-        [Column("dateTime", TypeName = "datetime")]
-        public DateTime DateTime { get; set; }
+        [Column("dateTime")]
+        public string DateTime { get; set; } = null!;
         [Column("username")]
         [StringLength(30)]
         public string Username { get; set; } = null!;
