@@ -33,11 +33,11 @@ public class UserController : ControllerBase
 
             User _user = new();
             string verficationCode = _user.Register(userDto.AsNormal());
-            return Ok(verficationCode);
+            return Ok("valid");
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest("invalid");
         }
 
     }
