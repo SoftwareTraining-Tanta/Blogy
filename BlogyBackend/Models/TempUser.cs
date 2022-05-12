@@ -66,18 +66,18 @@ namespace BlogyBackend.Models
                 return db.TempUsers?.Any(x => x.Username == username) ?? false;
             }
         }
-        public static bool CheckNumber(string username, string phoneNumber)
+        public static bool CheckNumber(string phoneNumber)
         {
             using (blogyContext db = new())
             {
-                return db.TempUsers?.Any(u => u.Username == username && u.Phone == phoneNumber) ?? false;
+                return db.TempUsers?.Any(u => u.Phone == phoneNumber) ?? false;
             }
         }
-        public static bool CheckEmail(string username, string email)
+        public static bool CheckEmail(string email)
         {
             using (blogyContext db = new())
             {
-                return db.TempUsers?.Any(u => u.Username == username && u.Email == email) ?? false;
+                return db.TempUsers?.Any(u => u.Email == email) ?? false;
             }
         }
     }
