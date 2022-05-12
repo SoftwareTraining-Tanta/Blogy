@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Claims;
 using BlogyBackend.Interfaces;
 using BlogyBackend.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
 
 namespace BlogyBackend.Models
 {
@@ -63,7 +65,7 @@ namespace BlogyBackend.Models
                 db.SaveChanges();
             }
         }
-        public IPerson Get(string username)
+        public User Get(string username)
         {
             using (blogyContext db = new())
             {
@@ -146,6 +148,11 @@ namespace BlogyBackend.Models
             {
                 throw new Exception("Verification failed , Please check your verification code or user may be already verified");
             }
+        }
+
+        IPerson IPerson.Get(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }

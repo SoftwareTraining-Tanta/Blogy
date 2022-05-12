@@ -9,6 +9,9 @@ public class Startup
         services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         services.AddSwaggerGen();
+        services.AddAuthentication().AddCookie("login",options=>{
+            options.Cookie.Name="login";
+        });
         services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins,
@@ -43,6 +46,8 @@ public class Startup
         app.UseDefaultFiles();
         app.UseStaticFiles();
         app.UseHttpsRedirection();
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
