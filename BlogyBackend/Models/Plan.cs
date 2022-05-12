@@ -23,5 +23,14 @@ namespace BlogyBackend.Models
         [ForeignKey(nameof(Username))]
         [InverseProperty(nameof(User.Plans))]
         public virtual User UsernameNavigation { get; set; } = null!;
+
+        public void Add(Plan plan)
+        {
+            using (blogyContext db = new())
+            {
+                db.Plans.Add(plan);
+                db.SaveChanges();
+            }
+        }
     }
 }

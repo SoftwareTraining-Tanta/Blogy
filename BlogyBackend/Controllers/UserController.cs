@@ -31,21 +31,21 @@ public class UserController : ControllerBase
         try
         {
             User _user = new();
-            _user.Register(userDto.AsNormal());
-            return Ok("user created successfully");
+            string verficationCode = _user.Register(userDto.AsNormal());
+            return Ok(verficationCode);
         }
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
         }
     }
-    [HttpPost("verify/{username}/{verificationCode}")]
-    public ActionResult Verify(string username, string verificationCode)
+    [HttpPost("verify/{username}/{verificationCode}/{planType}")]
+    public ActionResult Verify(string username, string verificationCode, string planType)
     {
         try
         {
             User _user = new();
-            _user.Verify(username, verificationCode);
+            _user.Verify(username, verificationCode, planType);
             return Ok("User verified successfully");
         }
         catch (Exception ex)
