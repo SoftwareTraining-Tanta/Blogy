@@ -1,6 +1,7 @@
 
 
-Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
-{
-    webBuilder.UseStartup<Startup>();
-}).Build().Run();
+// Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
+// {
+//     webBuilder.UseStartup<Startup>();
+// }).Build().Run();
+

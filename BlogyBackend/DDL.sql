@@ -24,7 +24,7 @@ create table if not exists posts(
     id int auto_increment,
     title varchar(50) not null,
     content varchar(3000) not null,
-    dateTime datetime not null,
+    dateTime varchar(26) not null,
     username varchar(30) not null,
     image blob,
     primary key (id)
