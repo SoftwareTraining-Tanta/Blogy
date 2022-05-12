@@ -114,23 +114,31 @@ namespace BlogyBackend.Models
                 body: $"Your verification code is {verficationCode}"
                 );
             tempUser.Add(tempUser);
-            return "user created successfully";
+            return verficationCode;
 
         }
-        public void Verify(string username, string verificationCode)
+        public void Verify(string username, string verificationCode, string planType)
         {
+            if (planType != "Basic" && planType != "Premium") throw new Exception(MyExceptions.InvalidPlanType);
             TempUser _tempUser = new TempUser();
+            TempUser? tempUser = _tempUser.Get(username);
+            if (tempUser.VerificationCode != verificationCode)
+                throw new Exception("Verification code is not correct");
             try
             {
                 using (blogyContext db = new())
                 {
-                    TempUser? tempUser = _tempUser.Get(username);
-                    if (tempUser.VerificationCode != verificationCode)
-                        throw new Exception("Verification code is not correct");
 
                     User user = tempUser.AsNormalUser();
                     db.Users.Add(user);
                     db.TempUsers.Remove(tempUser);
+                    db.SaveChanges();
+                    Plan plan = new Plan()
+                    {
+                        Username = user.Username,
+                        Type = planType
+                    };
+                    plan.Add(plan);
                     db.SaveChanges();
                 }
             }
