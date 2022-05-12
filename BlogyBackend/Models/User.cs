@@ -70,16 +70,42 @@ namespace BlogyBackend.Models
                 return db.Users?.FirstOrDefault(u => u.Username == username)!;
             }
         }
-        public bool Exists(string username)
+        public static bool Exists(string username)
         {
             using (blogyContext db = new())
             {
                 return db.Users?.Any(u => u.Username == username) ?? false;
             }
         }
+        public static bool CheckNumber(string username, string phoneNumber)
+        {
+            using (blogyContext db = new())
+            {
+                return db.Users?.Any(u => u.Username == username && u.Phone == phoneNumber) ?? false;
+            }
+        }
+        public static bool CheckEmail(string username, string email)
+        {
+            using (blogyContext db = new())
+            {
+                return db.Users?.Any(u => u.Username == username && u.Email == email) ?? false;
+            }
+        }
         public string Register(User user)
         {
-            string verficationCode = new Random().Next(0, 99999).ToString();
+            string verficationCode = new Random().Next(0, 999999).ToString();
+            if (User.Exists(user.Username))
+                throw new Exception(MyExceptions.UsernameAlreadyExists);
+            if (TempUser.Exists(user.Username))
+                throw new Exception(MyExceptions.UsernameAlreadyExistsButNotVerified);
+            if (TempUser.CheckNumber(user.Username, user.Phone!))
+                throw new Exception(MyExceptions.PhoneNumberAlreadyUsed);
+            if (User.CheckNumber(user.Username, user.Phone!))
+                throw new Exception(MyExceptions.PhoneNumberAlreadyUsed);
+            if (TempUser.CheckEmail(user.Username, user.Email!))
+                throw new Exception(MyExceptions.EmailAlreadyUsed);
+            if (User.CheckEmail(user.Username, user.Email!))
+                throw new Exception(MyExceptions.EmailAlreadyUsed);
 
             TempUser tempUser = user.AsTempUser(verficationCode);
             Smtp.SendMessage(
@@ -98,16 +124,13 @@ namespace BlogyBackend.Models
                 using (blogyContext db = new())
                 {
                     TempUser? tempUser = _tempUser.Get(username);
-                    if (tempUser.VerificationCode == verificationCode)
-                    {
-                        User user = tempUser.AsNormalUser();
-                        db.Users.Add(user);
-                        db.TempUsers.Remove(tempUser);
-                        db.SaveChanges();
-                    }
-                    else
+                    if (tempUser.VerificationCode != verificationCode)
                         throw new Exception("Verification code is not correct");
 
+                    User user = tempUser.AsNormalUser();
+                    db.Users.Add(user);
+                    db.TempUsers.Remove(tempUser);
+                    db.SaveChanges();
                 }
             }
             catch

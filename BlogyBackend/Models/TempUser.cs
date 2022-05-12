@@ -59,5 +59,26 @@ namespace BlogyBackend.Models
         {
             throw new NotImplementedException();
         }
+        public static bool Exists(string username)
+        {
+            using (blogyContext db = new())
+            {
+                return db.TempUsers?.Any(x => x.Username == username) ?? false;
+            }
+        }
+        public static bool CheckNumber(string username, string phoneNumber)
+        {
+            using (blogyContext db = new())
+            {
+                return db.TempUsers?.Any(u => u.Username == username && u.Phone == phoneNumber) ?? false;
+            }
+        }
+        public static bool CheckEmail(string username, string email)
+        {
+            using (blogyContext db = new())
+            {
+                return db.TempUsers?.Any(u => u.Username == username && u.Email == email) ?? false;
+            }
+        }
     }
 }
