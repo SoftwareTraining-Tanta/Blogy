@@ -1,5 +1,6 @@
+using BlogyBackend.Interfaces;
 namespace BlogyBackend.Models;
-public partial class Admin
+public partial class Admin : IPerson
 {
     public Admin()
     {
@@ -23,4 +24,14 @@ public partial class Admin
     public virtual ICollection<Comment> Comments { get; set; }
     public virtual ICollection<Plan> Plans { get; set; }
     public virtual ICollection<Post> Posts { get; set; }
+
+    public void Add(User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IPerson Get(string username)
+    {
+        throw new NotImplementedException();
+    }
 }

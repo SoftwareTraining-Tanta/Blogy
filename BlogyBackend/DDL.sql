@@ -26,7 +26,7 @@ create table if not exists posts(
     content varchar(3000) not null,
     dateTime varchar(26) not null,
     username varchar(30) not null,
-    image blob,
+    image longblob,
     primary key (id)
 );
 
