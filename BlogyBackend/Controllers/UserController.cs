@@ -30,16 +30,14 @@ public class UserController : ControllerBase
     {
         try
         {
-
             User _user = new();
-            string verficationCode = _user.Register(userDto.AsNormal());
-            return Ok("valid");
+            _user.Register(userDto.AsNormal());
+            return Ok("user created successfully");
         }
         catch (Exception ex)
         {
-            return BadRequest("invalid");
+            return BadRequest(ex.Message);
         }
-
     }
     [HttpPost("verify/{username}/{verificationCode}")]
     public ActionResult Verify(string username, string verificationCode)
