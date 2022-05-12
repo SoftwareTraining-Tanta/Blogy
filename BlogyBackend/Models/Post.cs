@@ -22,6 +22,7 @@ namespace BlogyBackend.Models
         [StringLength(3000)]
         public string Content { get; set; } = null!;
         [Column("dateTime")]
+        [StringLength(26)]
         public string DateTime { get; set; } = null!;
         [Column("username")]
         [StringLength(30)]
