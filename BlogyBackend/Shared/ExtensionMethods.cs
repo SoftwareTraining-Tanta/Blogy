@@ -47,4 +47,46 @@ public static class ExtensionMethods
         }
         return users;
     }
+    public static PostDto AsDto(this Post post)
+    {
+        return new PostDto
+        {
+            Id = post.Id,
+            Title = post.Title,
+            Content = post.Content,
+            DateTime = post.DateTime,
+            Username = post.Username,
+            Image = post.Image?.ToBase64()
+        };
+    }
+    public static Post AsNormal(this PostDto postDto)
+    {
+        return new Post
+        {
+            Id = postDto.Id,
+            Title = postDto.Title!,
+            Content = postDto.Content!,
+            DateTime = postDto.DateTime,
+            Username = postDto.Username!,
+            Image = postDto.Image?.ToBytes()
+        };
+    }
+    public static List<PostDto> AsDto(this ICollection<Post> posts)
+    {
+        List<PostDto> postDtos = new();
+        foreach (Post post in posts)
+        {
+            postDtos.Add(post.AsDto());
+        }
+        return postDtos;
+    }
+    public static List<Post> AsNormal(this ICollection<PostDto> postDtos)
+    {
+        List<Post> posts = new();
+        foreach (PostDto postDto in postDtos)
+        {
+            posts.Add(postDto.AsNormal());
+        }
+        return posts;
+    }
 }
