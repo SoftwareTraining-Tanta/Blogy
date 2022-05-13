@@ -3,6 +3,7 @@ using BlogyBackend.Dtos;
 using BlogyBackend.Models;
 using BlogyBackend.Shared;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
@@ -66,18 +67,23 @@ public class UserController : ControllerBase
                 throw new Exception("Username or password is incorrect");
             if (username == "admin" && password == "2510203121")
             {
-                var claims = new List<Claim>{
+                var claimsUser = new List<Claim>{
                         new Claim(ClaimTypes.Name,username),
                         new Claim(ClaimTypes.Role,username),
                         new Claim(ClaimTypes.Email,user.Email!)
                     };
-                var identity = new ClaimsIdentity(claims, "login");
+                var identity = new ClaimsIdentity(claimsUser, Constants.login);
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync("login", principal);
+                await HttpContext.SignInAsync(Constants.login, principal);
                 return Ok("admin");
             }
             if (user.Password != password)
                 throw new Exception("Username or password is incorrect");
+            var claims = new List<Claim>{
+                        new Claim(ClaimTypes.Name,username),
+                        new Claim(ClaimTypes.Role,"user")
+            };
+            // TODO :don't forget to add identity principal sign in
             return Ok("user");
         }
         catch (Exception ex)

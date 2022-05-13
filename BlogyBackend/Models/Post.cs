@@ -49,7 +49,7 @@ namespace BlogyBackend.Models
         {
             using (blogyContext db = new())
             {
-                Post? post = db.Posts?.FirstOrDefault(p => p.Id == id);
+                Post? post = db.Posts.FirstOrDefault(p => p.Id == id);
                 post!.Content = newContent;
                 db.SaveChanges();
             }
@@ -72,7 +72,8 @@ namespace BlogyBackend.Models
         {
             using (blogyContext db = new())
             {
-                db.Posts.Remove(db.Posts?.FirstOrDefault(p => p.Id == id)!);
+                db.Posts.Remove(db.Posts?.Where(p => p.Id == id).FirstOrDefault()!);
+                db.SaveChanges();
             }
         }
     }

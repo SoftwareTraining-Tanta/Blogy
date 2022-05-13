@@ -130,7 +130,6 @@ namespace BlogyBackend.Models
             {
                 using (blogyContext db = new())
                 {
-
                     User user = tempUser.AsNormalUser();
                     db.Users.Add(user);
                     db.TempUsers.Remove(tempUser);

@@ -1,4 +1,6 @@
 using System.Text.Json.Serialization;
+using BlogyBackend.Shared;
+
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -9,8 +11,9 @@ public class Startup
         services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         services.AddSwaggerGen();
-        services.AddAuthentication().AddCookie("login",options=>{
-            options.Cookie.Name="login";
+        services.AddAuthentication().AddCookie(Constants.login, options =>
+        {
+            options.Cookie.Name = Constants.login;
         });
         services.AddCors(options =>
 {

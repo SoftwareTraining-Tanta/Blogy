@@ -1,6 +1,7 @@
 using BlogyBackend.Interfaces;
 namespace BlogyBackend.Models;
-public partial class Admin : IPerson
+//TODO inherite from user class
+public partial class Admin : User, IPerson
 {
     public Admin()
     {
@@ -10,28 +11,4 @@ public partial class Admin : IPerson
     }
 
 
-    public string Username { get; set; } = null!;
-
-    public string Name { get; set; } = null!;
-
-    public string? Email { get; set; }
-
-    public string? Phone { get; set; }
-
-    public string Password { get; set; } = null!;
-    public byte[]? ProfilePicture { get; set; }
-
-    public virtual ICollection<Comment> Comments { get; set; }
-    public virtual ICollection<Plan> Plans { get; set; }
-    public virtual ICollection<Post> Posts { get; set; }
-
-    public void Add(User user)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IPerson Get(string username)
-    {
-        throw new NotImplementedException();
-    }
 }
