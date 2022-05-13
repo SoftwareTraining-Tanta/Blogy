@@ -21,7 +21,7 @@ function Verification() {
     useEffect(()=>{
         if (msgResponse == 'User verified successfully') {
             window.location.href = '/'
-        } else {
+        } else if (msgResponse == 'Verification code is not correct') {
             alert("Verification Code isn't correct")
         }
     },[msgResponse])

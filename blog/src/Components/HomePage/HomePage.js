@@ -37,7 +37,7 @@ function HomePage() {
         }).
             then(response => response.json()).
             then(json => console.log(json.status));
-        window.location.href = '/homepage'
+        window.location.href = '/'
     }
 
     // Loading Animation
