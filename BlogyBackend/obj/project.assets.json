@@ -1429,31 +1429,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\younis\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\EL HARAMAIN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
+      "projectUniqueName": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
       "projectName": "BlogyBackend",
-      "projectPath": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
-      "packagesPath": "C:\\Users\\younis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\obj\\",
+      "projectPath": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
+      "packagesPath": "C:\\Users\\EL HARAMAIN\\.nuget\\packages\\",
+      "outputPath": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\younis\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\EL HARAMAIN\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1526,7 +1519,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

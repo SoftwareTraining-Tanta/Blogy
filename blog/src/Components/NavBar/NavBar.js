@@ -24,6 +24,9 @@ function NavBar() {
                             </li>
 
                             <li className="nav-item">
+                                <NavLink className="nav-link text-light fs-4" to="/profilepage">Profile</NavLink>
+                            </li>
+                            <li className="nav-item">
                                 <NavLink className="nav-link text-light fs-4" to="/signin">Login</NavLink>
                             </li>
 

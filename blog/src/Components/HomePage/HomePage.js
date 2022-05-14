@@ -36,7 +36,7 @@ function HomePage() {
             body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String }),
         }).
             then(response => response.json()).
-            then(json => console.log(json.status));
+            then(json => console.log(json));
         window.location.href = '/'
     }
 

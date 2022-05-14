@@ -7,6 +7,7 @@ import NavBar from './Components/NavBar/NavBar';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
 import Verification from './Components/Verification/Verification';
+import ProfilePage from './Components/ProfilePage/ProfilePage';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact  path='/' element={< HomePage />} />
+          <Route exact  path='/profilepage' element={< ProfilePage />} />
           <Route exact  path='/signin' element={< SignIn />} />
           <Route exact  path='/signup' element={< SignUp />} />
           <Route exact  path='/verify' element={< Verification />} />
