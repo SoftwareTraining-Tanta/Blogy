@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
-[Authorize(Policy = Roles.Premium)]
-[Authorize(Policy = Roles.Basic)]
 public class UserController : ControllerBase
 {
     [HttpPost]
@@ -66,6 +64,7 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("putcomment")]
+
     public ActionResult PutComment(CommentDto commentDto)
     {
 
