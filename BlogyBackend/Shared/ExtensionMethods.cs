@@ -156,6 +156,8 @@ public static class ExtensionMethods
             Content = comment.Content,
             Username = comment.Username!,
             PostId = comment.PostId,
+            AdminUsername = comment.AdminUsername,
+            IsAdmin = comment.IsAdmin
 
         };
     }
