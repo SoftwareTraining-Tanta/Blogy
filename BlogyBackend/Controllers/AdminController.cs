@@ -12,7 +12,7 @@ namespace BlogyBackend.Controllers;
 
 [ApiController]
 [Route("api/admins")]
-[Authorize(Roles.adminstrator)]
+// [Authorize(Roles.adminstrator)]
 public class AdminController : ControllerBase
 {
     [HttpPost]

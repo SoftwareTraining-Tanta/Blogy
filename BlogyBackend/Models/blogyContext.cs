@@ -94,10 +94,10 @@ namespace BlogyBackend.Models
                    .HasName("PRIMARY");
            });
             modelBuilder.Entity<Admin>(entity =>
-            {
-                entity.HasKey(e => e.Username)
-                    .HasName("PRIMARY");
-            });
+              {
+                  entity.HasKey(e => e.Username)
+                      .HasName("PRIMARY");
+              });
 
             OnModelCreatingPartial(modelBuilder);
         }
