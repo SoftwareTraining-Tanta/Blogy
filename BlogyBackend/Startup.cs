@@ -17,10 +17,10 @@ public class Startup
         services.AddAuthorization(options =>
         {
 
-            options.AddPolicy(Roles.adminstrator,
+            options.AddPolicy(Roles.Admin,
                 authBuilder =>
                 {
-                    authBuilder.RequireClaim(ClaimTypes.Role, Roles.adminstrator);
+                    authBuilder.RequireClaim(ClaimTypes.Role, Roles.Admin);
                 });
             options.AddPolicy(Roles.Premium,
             authBuilder =>

@@ -72,15 +72,7 @@ public class UserController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-    [HttpPost("putcomment")]
-    public ActionResult PutComment(CommentDto commentDto)
-    {
 
-        User _user = new();
-        if(commentDto.IsAdmin)
-        _user.PutComment(commentDto);
-        return Ok("Done");
-    }
 
     [HttpPost("verify/{username}/{verificationCode}/{planType}")]
     [AllowAnonymous]

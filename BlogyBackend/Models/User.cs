@@ -83,11 +83,6 @@ namespace BlogyBackend.Models
                 return users;
             }
         }
-        public void PutComment(CommentDto commentDto)
-        {
-            Comment _comment = new();
-            _comment.Add(commentDto.AsNormal());
-        }
         public static bool Exists(string username)
         {
             using (blogyContext db = new())
