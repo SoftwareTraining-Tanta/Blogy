@@ -173,4 +173,13 @@ public static class ExtensionMethods
             IsAdmin = commentDto.IsAdmin
         };
     }
+    public static Plan AsNormal(this PlanDto planDto)
+    {
+        return new Plan
+        {
+            Id = planDto.Id,
+            Type = planDto.Type,
+            Username = planDto.Username
+        };
+    }
 }

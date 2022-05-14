@@ -16,7 +16,14 @@ public class UserController : ControllerBase
     {
 
         User _user = new();
+        Plan _plan = new();
         _user.Add(userDto.AsNormal());
+        PlanDto planDto = new()
+        {
+            Type = userDto.PlanType,
+            Username = userDto.Username
+        };
+        _plan.Add(planDto.AsNormal());
         return Ok();
     }
 
