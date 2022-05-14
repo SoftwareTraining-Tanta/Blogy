@@ -156,6 +156,7 @@ public static class ExtensionMethods
             Content = comment.Content,
             Username = comment.Username!,
             PostId = comment.PostId,
+
         };
     }
     public static Comment AsNormal(this CommentDto commentDto)
@@ -165,7 +166,9 @@ public static class ExtensionMethods
             Id = commentDto.Id,
             Content = commentDto.Content!,
             Username = commentDto.Username!,
-            PostId = commentDto.PostId
+            PostId = commentDto.PostId,
+            AdminUsername = commentDto.AdminUsername,
+            IsAdmin = commentDto.IsAdmin
         };
     }
 }

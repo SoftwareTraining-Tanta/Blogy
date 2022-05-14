@@ -5,4 +5,6 @@ public class CommentDto
     public string Content { get; set; } = null!;
     public string Username { get; set; } = null!;
     public int PostId { get; set; }
+    public string? AdminUsername { get; set; }
+    public bool IsAdmin { get; set; }
 }
