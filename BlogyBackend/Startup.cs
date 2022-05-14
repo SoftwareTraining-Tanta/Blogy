@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using BlogyBackend.Shared;
+using System.Security.Claims;
 
 public class Startup
 {
@@ -12,12 +14,34 @@ public class Startup
         services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         services.AddSwaggerGen();
-        services.AddAuthentication().AddCookie(Constants.user, options =>
+        services.AddAuthorization(options =>
         {
-            options.Cookie.Name = Constants.user;
-        }).AddCookie("AdminAuthentication", options =>
+
+            options.AddPolicy(Roles.adminstrator,
+                authBuilder =>
+                {
+                    authBuilder.RequireClaim(ClaimTypes.Role, Roles.adminstrator);
+                });
+            options.AddPolicy(Roles.Premium,
+            authBuilder =>
+            {
+                authBuilder.RequireClaim(ClaimTypes.Role, Roles.Premium);
+            });
+            options.AddPolicy(Roles.Basic,
+             authBuilder =>
+            {
+                authBuilder.RequireClaim(ClaimTypes.Role, Roles.Basic);
+            });
+        });
+
+        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, Authentications.user, options =>
         {
-            options.Cookie.Name = "AdminAuthentication";
+            options.Cookie.Name = Authentications.user;
+        })
+        .AddCookie(Authentications.AdminAuthentication, options =>
+        {
+            options.Cookie.Name = Authentications.AdminAuthentication;
         });
         services.AddCors(options =>
 {

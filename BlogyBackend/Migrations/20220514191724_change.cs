@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlogyBackend.Migrations
 {
-    public partial class addedadmin : Migration
+    public partial class change : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -111,8 +111,9 @@ namespace BlogyBackend.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     dateTime = table.Column<string>(type: "varchar(26)", maxLength: 26, nullable: false, collation: "utf8mb4_0900_ai_ci")
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    username = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false, collation: "utf8mb4_0900_ai_ci")
+                    username = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true, collation: "utf8mb4_0900_ai_ci")
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    isAdmin = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     image = table.Column<byte[]>(type: "blob", nullable: true),
                     AdminUsername = table.Column<string>(type: "varchar(255)", nullable: true, collation: "utf8mb4_0900_ai_ci")
                         .Annotation("MySql:CharSet", "utf8mb4")
@@ -170,6 +171,7 @@ namespace BlogyBackend.Migrations
                     username = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false, collation: "utf8mb4_0900_ai_ci")
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     postId = table.Column<int>(type: "int", nullable: false),
+                    isAdmin = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     AdminUsername = table.Column<string>(type: "varchar(255)", nullable: true, collation: "utf8mb4_0900_ai_ci")
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },

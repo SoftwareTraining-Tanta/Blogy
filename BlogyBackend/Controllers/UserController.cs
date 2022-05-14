@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
-// [Authorize(Roles = "Basic")]
-// [Authorize(Roles = "Premium")]
+[Authorize(Policy = Roles.Premium)]
+[Authorize(Policy = Roles.Basic)]
 public class UserController : ControllerBase
 {
     [HttpPost]
+    [AllowAnonymous]
     public ActionResult Add(UserDto userDto)
     {
 
@@ -50,6 +51,7 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("register")]
+    [AllowAnonymous]
     public ActionResult Register(UserDto userDto)
     {
         try
@@ -73,6 +75,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("verify/{username}/{verificationCode}/{planType}")]
+    [AllowAnonymous]
     public ActionResult Verify(string username, string verificationCode, string planType)
     {
         try
@@ -87,6 +90,7 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("login/{username}/{password}")]
+    [AllowAnonymous]
     public async Task<ActionResult> Login(string username, string password)
     {
         try
@@ -103,14 +107,20 @@ public class UserController : ControllerBase
                         new Claim(ClaimTypes.Role,planType),
                         new Claim(ClaimTypes.Email,user.Email!)
                         };
-            var identity = new ClaimsIdentity(claimsUser, Constants.user);
+            var identity = new ClaimsIdentity(claimsUser, Authentications.user);
             ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(Constants.user, principal);
+            await HttpContext.SignInAsync(principal);
             return Ok("user");
         }
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
         }
+    }
+    [HttpPost("logout")]
+    public async Task<ActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync();
+        return Ok("Logged out successfully");
     }
 }

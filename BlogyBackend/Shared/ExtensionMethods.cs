@@ -56,7 +56,7 @@ public static class ExtensionMethods
             Title = post.Title,
             Content = post.Content,
             DateTime = post.DateTime,
-            Username = post.Username,
+            Username = post.Username!,
             Image = post.Image?.ToBase64()
         };
     }
@@ -150,7 +150,7 @@ public static class ExtensionMethods
         {
             Id = comment.Id,
             Content = comment.Content,
-            Username = comment.Username,
+            Username = comment.Username!,
             PostId = comment.PostId,
         };
     }

@@ -23,7 +23,7 @@ namespace BlogyBackend.Models
         [ForeignKey(nameof(Username))]
         [InverseProperty(nameof(User.Plans))]
         public virtual User UsernameNavigation { get; set; } = null!;
-        public int adminId {get;set;}
+        public string? AdminUsername {get; set;}
         public Admin? admin {get;set;}
         public void Add(Plan plan)
         {

@@ -1,18 +1,23 @@
 {
 	"folders": [
 		{
+			"name": "BlogyBackend",
 			"path": "."
 		},
 		{
+			"name": "Models",
 			"path": "Models"
 		},
 		{
+			"name": "Controllers",
 			"path": "Controllers"
 		},
 		{
+			"name": "Dtos",
 			"path": "Dtos"
 		},
 		{
+			"name": "Shared",
 			"path": "Shared"
 		}
 	],
