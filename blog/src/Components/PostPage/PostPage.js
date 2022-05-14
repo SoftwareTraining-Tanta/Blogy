@@ -13,7 +13,7 @@ function PostPage() {
 
     // Fetch Data One Post
     useEffect(() => {
-        fetch(`https://localhost:5002/api/posts/${post.id}`)
+        fetch(`https://localhost:5000/api/posts/${post.id}`)
             .then(response => response.json())
             .then(json => setData(json))
     }, [])

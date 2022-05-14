@@ -12,7 +12,7 @@ function SignIn() {
         x.preventDefault()
         sessionStorage.setItem('username',userName)
         // console.log(userName, password)
-        fetch(`https://localhost:5002/api/users/login/${userName}/${password}`, {
+        fetch(`https://localhost:5000/api/users/login/${userName}/${password}`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' }
         }).then(response => response.text())
