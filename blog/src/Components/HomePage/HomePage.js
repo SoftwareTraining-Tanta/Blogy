@@ -33,15 +33,11 @@ function HomePage() {
         fetch("https://localhost:5000/api/posts", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-<<<<<<< HEAD
-            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String, "adminUsername": "string","isAdmin": false }),
-=======
-            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String,isAdmin:false }),
->>>>>>> 03eb94d71aa7d4448e0c14696d73c13fbef23c2d
+            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String }),
         }).
-            then(response => response.json()).
+            then(response => response.text()).
             then(json => console.log(json));
-        window.location.href = '/'
+        // window.location.href = '/'
     }
 
     // Loading Animation
@@ -65,7 +61,7 @@ function HomePage() {
                         <input className='mb-3' type='text' onChange={(x) => { setTitlePost(x.target.value) }} />
 
                         <label className='mb-1'>Content:</label>
-                        <textarea className='mb-3' style={{ height: '100px' }} type='text' onChange={(x) => { setContentPost(x.target.value) }} />
+                        <textarea className='mb-3' style={{height:'100px'}} type='text' onChange={(x) => { setContentPost(x.target.value) }} />
 
                         <label className='mb-1'>Choose a picture:</label>
                         <input className='mb-3' type='file' onChange={convertImageToBase64} />
@@ -77,6 +73,18 @@ function HomePage() {
                 {data.length ? <hr /> : null}
 
                 <div className="row d-flex">
+                    {/* Search*/}
+                    {data.length ?
+                        <div className="col-lg-4">
+                            <div className="card mb-4">
+                                <div className="card-header">Search</div>
+                                <div className="card-body">
+                                    <div className="input-group">
+                                        <input className="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" onChange={(x) => setTextSearch(x.target.value)} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> : null}
 
                     {/* Posts*/}
                     <div className="col-lg-8 d-flex flex-column-reverse">
@@ -104,19 +112,6 @@ function HomePage() {
                             )
                         }) : loadingAnimation}
                     </div>
-
-                    {/* Search*/}
-                    {data.length ?
-                        <div className="col-lg-4">
-                            <div className="card mb-4">
-                                <div className="card-header">Search</div>
-                                <div className="card-body">
-                                    <div className="input-group">
-                                        <input className="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" onChange={(x) => setTextSearch(x.target.value)} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div> : null}
 
                 </div>
 
