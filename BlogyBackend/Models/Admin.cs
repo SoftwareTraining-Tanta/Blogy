@@ -29,7 +29,6 @@ public partial class Admin
     public string? Phone { get; set; }
 
     public string Password { get; set; } = null!;
-    [Column("profilePicture", TypeName = "longblob")]
     public byte[]? ProfilePicture { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; }
@@ -109,6 +108,21 @@ public partial class Admin
 
 
         return "Updated Successfully.";
+    }
+
+
+    public static int  getOnlineUsers(){
+
+            using(blogyContext db= new())
+{
+
+
+
+
+    List<User> users= db.Users.Select(x=>x).Where(x=>x.IsSigned).ToList();
+    return users.Count();
+}
+
     }
     public string Register(Admin admin)
     {
