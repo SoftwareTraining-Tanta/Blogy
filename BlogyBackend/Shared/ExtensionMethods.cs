@@ -57,7 +57,9 @@ public static class ExtensionMethods
             Content = post.Content,
             DateTime = post.DateTime,
             Username = post.Username!,
-            Image = post.Image?.ToBase64()
+            Image = post.Image?.ToBase64(),
+            AdminUsername = post.AdminUsername,
+            IsAdmin = post.IsAdmin
         };
     }
     public static Post AsNormal(this PostDto postDto)
@@ -69,7 +71,9 @@ public static class ExtensionMethods
             Content = postDto.Content!,
             DateTime = postDto.DateTime,
             Username = postDto.Username!,
-            Image = postDto.Image?.ToBytes()
+            Image = postDto.Image?.ToBytes(),
+            AdminUsername = postDto.AdminUsername,
+            IsAdmin = postDto.IsAdmin
         };
     }
     public static List<PostDto> AsDto(this ICollection<Post> posts)
