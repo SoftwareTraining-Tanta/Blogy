@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route exact  path='/' element={< HomePage />} />
           <Route exact  path='/profilepage' element={< ProfilePage />} />
+          <Route exact  path='/profilepage/:username' element={< ProfilePage />} />
           <Route exact  path='/signin' element={< SignIn />} />
           <Route exact  path='/signup' element={< SignUp />} />
           <Route exact  path='/verify' element={< Verification />} />

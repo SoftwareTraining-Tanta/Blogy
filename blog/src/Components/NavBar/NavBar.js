@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 function NavBar() {
+    const username = sessionStorage.getItem('username')
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-primary bg-gradient mb-5">
@@ -24,7 +25,7 @@ function NavBar() {
                             </li>
 
                             <li className="nav-item">
-                                <NavLink className="nav-link text-light fs-4" to="/profilepage">Profile</NavLink>
+                                <NavLink className="nav-link text-light fs-4" to={`/profilepage/${username}`}>Profile</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link text-light fs-4" to="/signin">Login</NavLink>
