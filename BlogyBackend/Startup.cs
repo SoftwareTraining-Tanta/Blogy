@@ -3,6 +3,7 @@ using BlogyBackend.Shared;
 
 public class Startup
 {
+
     public void ConfigureServices(IServiceCollection services)
     {
         var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -14,6 +15,9 @@ public class Startup
         services.AddAuthentication().AddCookie(Constants.login, options =>
         {
             options.Cookie.Name = Constants.login;
+        }).AddCookie("AdminAuthentication", options =>
+        {
+            options.Cookie.Name = "AdminAuthentication";
         });
         services.AddCors(options =>
 {

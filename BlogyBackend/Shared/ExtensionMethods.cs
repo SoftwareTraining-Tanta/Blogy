@@ -4,6 +4,7 @@ namespace BlogyBackend.Shared;
 
 public static class ExtensionMethods
 {
+
     public static UserDto AsDto(this User user)
     {
         return new UserDto
@@ -102,6 +103,7 @@ public static class ExtensionMethods
             VerificationCode = verificationCode
         };
     }
+
     public static User AsNormalUser(this TempUser tempUser)
     {
         return new User
@@ -112,6 +114,34 @@ public static class ExtensionMethods
             Phone = tempUser.Phone,
             Password = tempUser.Password,
             ProfilePicture = tempUser.ProfilePicture
+        };
+    }
+    //Admin methods
+     public static AdminDto AsDto(this Admin admin)
+    {
+
+        return new AdminDto
+        {
+            Username = admin.Username,
+            Name = admin.Name,
+            Email = admin.Email,
+            Phone = admin.Phone,
+            Password = admin.Password,
+            ProfilePicture = admin.ProfilePicture?.ToBase64()
+        };
+    }
+
+     public static Admin AsNormal(this AdminDto userDto)
+    {
+
+        return new Admin
+        {
+            Username = userDto.Username,
+            Name = userDto.Name,
+            Email = userDto.Email,
+            Phone = userDto.Phone,
+            Password = userDto.Password,
+            ProfilePicture = userDto.ProfilePicture?.ToBytes()
         };
     }
 }

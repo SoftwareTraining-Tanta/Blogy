@@ -15,12 +15,14 @@ namespace BlogyBackend.Models
         {
         }
 
+
         public virtual DbSet<Comment> Comments { get; set; } = null!;
         public virtual DbSet<Plan> Plans { get; set; } = null!;
         public virtual DbSet<Post> Posts { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<TempUser> TempUsers { get; set; } = null!;
 
+        public virtual DbSet<Admin> Admins { get; set; } = null!;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -91,6 +93,11 @@ namespace BlogyBackend.Models
                entity.HasKey(e => e.Username)
                    .HasName("PRIMARY");
            });
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.HasKey(e => e.Username)
+                    .HasName("PRIMARY");
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }
