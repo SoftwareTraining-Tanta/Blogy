@@ -38,7 +38,7 @@ namespace BlogyBackend.Models
         [Column("password")]
         [StringLength(256)]
         public string Password { get; set; } = null!;
-        [Column("profilePicture")]
+        [Column("profilePicture", TypeName = "longblob")]
         public byte[]? ProfilePicture { get; set; }
         [Column("isSigned")]
         public bool IsSigned { get; set; }

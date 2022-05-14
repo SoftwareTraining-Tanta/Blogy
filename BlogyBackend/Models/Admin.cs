@@ -29,6 +29,7 @@ public partial class Admin
     public string? Phone { get; set; }
 
     public string Password { get; set; } = null!;
+    [Column("profilePicture", TypeName = "longblob")]
     public byte[]? ProfilePicture { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; }
