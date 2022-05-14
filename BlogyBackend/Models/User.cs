@@ -130,7 +130,6 @@ namespace BlogyBackend.Models
             {
                 using (blogyContext db = new())
                 {
-
                     User user = tempUser.AsNormalUser();
                     db.Users.Add(user);
                     db.TempUsers.Remove(tempUser);
@@ -149,6 +148,7 @@ namespace BlogyBackend.Models
                 throw new Exception("Verification failed , Please check your verification code or user may be already verified");
             }
         }
+
 
         IPerson IPerson.Get(string username)
         {

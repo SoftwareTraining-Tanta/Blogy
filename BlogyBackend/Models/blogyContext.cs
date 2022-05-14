@@ -15,12 +15,14 @@ namespace BlogyBackend.Models
         {
         }
 
+
         public virtual DbSet<Comment> Comments { get; set; } = null!;
         public virtual DbSet<Plan> Plans { get; set; } = null!;
         public virtual DbSet<Post> Posts { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<TempUser> TempUsers { get; set; } = null!;
 
+        public virtual DbSet<Admin> Admins { get; set; } = null!;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -29,7 +31,7 @@ namespace BlogyBackend.Models
             .Build();
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql(configuration.GetConnectionString("myDb1"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
+                optionsBuilder.UseMySql(configuration.GetConnectionString("myDb3"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
             }
         }
 
@@ -91,6 +93,11 @@ namespace BlogyBackend.Models
                entity.HasKey(e => e.Username)
                    .HasName("PRIMARY");
            });
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.HasKey(e => e.Username)
+                    .HasName("PRIMARY");
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }
