@@ -12,9 +12,9 @@ public class Startup
         services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         services.AddSwaggerGen();
-        services.AddAuthentication().AddCookie(Constants.login, options =>
+        services.AddAuthentication().AddCookie(Constants.user, options =>
         {
-            options.Cookie.Name = Constants.login;
+            options.Cookie.Name = Constants.user;
         }).AddCookie("AdminAuthentication", options =>
         {
             options.Cookie.Name = "AdminAuthentication";

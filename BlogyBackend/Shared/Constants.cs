@@ -1,5 +1,5 @@
 namespace BlogyBackend.Shared;
 public static class Constants
 {
-    public const string login = "login";
+    public const string user = "user";
 }

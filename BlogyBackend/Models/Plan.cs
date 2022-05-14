@@ -32,5 +32,12 @@ namespace BlogyBackend.Models
                 db.SaveChanges();
             }
         }
+        public static Plan Get(string username)
+        {
+            using (blogyContext db = new())
+            {
+                return db.Plans?.FirstOrDefault(p => p.Username == username)!;
+            }
+        }
     }
 }

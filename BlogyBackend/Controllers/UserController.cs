@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
+// [Authorize(Roles = "Basic")]
+// [Authorize(Roles = "Premium")]
 public class UserController : ControllerBase
 {
     [HttpPost]
@@ -19,13 +21,28 @@ public class UserController : ControllerBase
         return Ok();
         // return CreatedAtAction("Done adding user", userDto);
     }
-    [HttpGet("{limit}")]
+    [HttpGet("limit/{limit}")]
     public ActionResult Get(int limit)
     {
         using (blogyContext db = new())
         {
             var users = db.Users.Take(limit).ToList();
             return Ok(users.AsDto());
+        }
+    }
+    [HttpGet("{username}")]
+    public ActionResult Get(string username)
+    {
+        User _user = new();
+        User user = _user.Get(username);
+        try
+        {
+            user.Password = null!;
+            return Ok(user.AsDto());
+        }
+        catch
+        {
+            return NotFound("user not found");
         }
     }
     [HttpPost("register")]
@@ -63,27 +80,19 @@ public class UserController : ControllerBase
         {
             User _user = new();
             User? user = _user.Get(username);
+            string planType = Plan.Get(user.Username).Type;
             if (user == null)
                 throw new Exception("Username or password is incorrect");
-            if (username == "admin" && password == "2510203121")
-            {
-                var claimsUser = new List<Claim>{
-                        new Claim(ClaimTypes.Name,username),
-                        new Claim(ClaimTypes.Role,username),
-                        new Claim(ClaimTypes.Email,user.Email!)
-                    };
-                var identity = new ClaimsIdentity(claimsUser, Constants.login);
-                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync(Constants.login, principal);
-                return Ok("admin");
-            }
             if (user.Password != password)
                 throw new Exception("Username or password is incorrect");
-            var claims = new List<Claim>{
+            var claimsUser = new List<Claim>{
                         new Claim(ClaimTypes.Name,username),
-                        new Claim(ClaimTypes.Role,"user")
-            };
-            // TODO :don't forget to add identity principal sign in
+                        new Claim(ClaimTypes.Role,planType),
+                        new Claim(ClaimTypes.Email,user.Email!)
+                        };
+            var identity = new ClaimsIdentity(claimsUser, Constants.user);
+            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(Constants.user, principal);
             return Ok("user");
         }
         catch (Exception ex)
