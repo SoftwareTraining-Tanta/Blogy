@@ -38,12 +38,14 @@ public class AdminController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("login")]
+    [HttpGet("login")]
     public async Task<ActionResult<AdminDto>> Login([FromQuery] string username, [FromQuery] string password)
     {
         try
         {
             AdminDto? admin = Admin.Get(username);
+
+
             if (admin == null)
                 throw new Exception("Username or password is incorrect");
             if (Admin.Credentials(username, password))
@@ -56,11 +58,10 @@ public class AdminController : ControllerBase
                 var identity = new ClaimsIdentity(claims, "AdminAuthentication");
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(principal);
-                return Ok(admin);
             }
             if (admin.Password != password)
                 throw new Exception("Username or password is incorrect");
-            return Ok("admin");
+            return Ok(admin);
         }
         catch (Exception ex)
         {
