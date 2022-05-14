@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
+// [Authorize(Roles = Roles.Premium)]
+[Authorize(Roles = Roles.Basic)]
 public class UserController : ControllerBase
 {
     [HttpPost]
@@ -16,12 +18,19 @@ public class UserController : ControllerBase
     {
 
         User _user = new();
+        Plan _plan = new();
         _user.Add(userDto.AsNormal());
+        PlanDto planDto = new()
+        {
+            Type = userDto.PlanType,
+            Username = userDto.Username
+        };
+        _plan.Add(planDto.AsNormal());
         return Ok();
     }
 
     [HttpGet("limit/{limit}")]
-    public ActionResult Get(int limit)
+    public ActionResult<List<User>> Get(int limit)
     {
         User _user = new();
         List<User> users = _user.GetLimit(limit);
@@ -96,11 +105,11 @@ public class UserController : ControllerBase
         {
             User _user = new();
             User? user = _user.Get(username);
-            string planType = Plan.Get(user.Username).Type;
             if (user == null)
                 throw new Exception("Username or password is incorrect");
             if (user.Password != password)
                 throw new Exception("Username or password is incorrect");
+            string planType = Plan.Get(user.Username).Type;
             var claimsUser = new List<Claim>{
                         new Claim(ClaimTypes.Name,username),
                         new Claim(ClaimTypes.Role,planType),
@@ -109,6 +118,13 @@ public class UserController : ControllerBase
             var identity = new ClaimsIdentity(claimsUser, Authentications.user);
             ClaimsPrincipal principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(principal);
+            var roles = ((ClaimsIdentity)User.Identity!).Claims
+                .Where(c => c.Type == ClaimTypes.Role)
+                .Select(c => c.Value);
+            foreach (var role in roles)
+            {
+                Console.WriteLine(role.ToString());
+            }
             return Ok("user");
         }
         catch (Exception ex)
