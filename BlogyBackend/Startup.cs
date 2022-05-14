@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 public class Startup
 {
+    
     public void ConfigureServices(IServiceCollection services)
     {
         var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -11,6 +12,9 @@ public class Startup
         services.AddSwaggerGen();
         services.AddAuthentication().AddCookie("login",options=>{
             options.Cookie.Name="login";
+        });
+        services.AddAuthentication().AddCookie("AdminAuthentication",options=>{
+            options.Cookie.Name="AdminAuthentication";
         });
         services.AddCors(options =>
 {
