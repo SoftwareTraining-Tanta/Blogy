@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogyBackend.Migrations
 {
     [DbContext(typeof(blogyContext))]
-    [Migration("20220514113720_added admin")]
-    partial class addedadmin
+    [Migration("20220514191940_change1")]
+    partial class change1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,12 +68,15 @@ namespace BlogyBackend.Migrations
                         .HasColumnType("varchar(1000)")
                         .HasColumnName("content");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("isAdmin");
+
                     b.Property<int>("PostId")
                         .HasColumnType("int")
                         .HasColumnName("postId");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)")
                         .HasColumnName("username");
@@ -147,6 +150,10 @@ namespace BlogyBackend.Migrations
                         .HasColumnType("blob")
                         .HasColumnName("image");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("isAdmin");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -154,7 +161,6 @@ namespace BlogyBackend.Migrations
                         .HasColumnName("title");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)")
                         .HasColumnName("username");
@@ -300,7 +306,7 @@ namespace BlogyBackend.Migrations
 
             modelBuilder.Entity("BlogyBackend.Models.Comment", b =>
                 {
-                    b.HasOne("Admin", null)
+                    b.HasOne("Admin", "admin")
                         .WithMany("Comments")
                         .HasForeignKey("AdminUsername");
 
@@ -313,17 +319,18 @@ namespace BlogyBackend.Migrations
                     b.HasOne("BlogyBackend.Models.User", "UsernameNavigation")
                         .WithMany("Comments")
                         .HasForeignKey("Username")
-                        .IsRequired()
                         .HasConstraintName("comments_ibfk_1");
 
                     b.Navigation("Post");
 
                     b.Navigation("UsernameNavigation");
+
+                    b.Navigation("admin");
                 });
 
             modelBuilder.Entity("BlogyBackend.Models.Plan", b =>
                 {
-                    b.HasOne("Admin", null)
+                    b.HasOne("Admin", "admin")
                         .WithMany("Plans")
                         .HasForeignKey("AdminUsername");
 
@@ -334,13 +341,17 @@ namespace BlogyBackend.Migrations
                         .HasConstraintName("plans_ibfk_1");
 
                     b.Navigation("UsernameNavigation");
+
+                    b.Navigation("admin");
                 });
 
             modelBuilder.Entity("BlogyBackend.Models.Post", b =>
                 {
-                    b.HasOne("Admin", null)
+                    b.HasOne("Admin", "admin")
                         .WithMany("Posts")
                         .HasForeignKey("AdminUsername");
+
+                    b.Navigation("admin");
                 });
 
             modelBuilder.Entity("PinPost", b =>

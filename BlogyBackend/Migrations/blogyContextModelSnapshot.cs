@@ -66,12 +66,15 @@ namespace BlogyBackend.Migrations
                         .HasColumnType("varchar(1000)")
                         .HasColumnName("content");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("isAdmin");
+
                     b.Property<int>("PostId")
                         .HasColumnType("int")
                         .HasColumnName("postId");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)")
                         .HasColumnName("username");
@@ -145,6 +148,10 @@ namespace BlogyBackend.Migrations
                         .HasColumnType("blob")
                         .HasColumnName("image");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("isAdmin");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -152,7 +159,6 @@ namespace BlogyBackend.Migrations
                         .HasColumnName("title");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)")
                         .HasColumnName("username");
@@ -311,7 +317,6 @@ namespace BlogyBackend.Migrations
                     b.HasOne("BlogyBackend.Models.User", "UsernameNavigation")
                         .WithMany("Comments")
                         .HasForeignKey("Username")
-                        .IsRequired()
                         .HasConstraintName("comments_ibfk_1");
 
                     b.Navigation("Post");

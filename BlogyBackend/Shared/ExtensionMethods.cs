@@ -56,8 +56,10 @@ public static class ExtensionMethods
             Title = post.Title,
             Content = post.Content,
             DateTime = post.DateTime,
-            Username = post.Username,
-            Image = post.Image?.ToBase64()
+            Username = post.Username!,
+            Image = post.Image?.ToBase64(),
+            AdminUsername = post.AdminUsername,
+            IsAdmin = post.IsAdmin
         };
     }
     public static Post AsNormal(this PostDto postDto)
@@ -69,7 +71,9 @@ public static class ExtensionMethods
             Content = postDto.Content!,
             DateTime = postDto.DateTime,
             Username = postDto.Username!,
-            Image = postDto.Image?.ToBytes()
+            Image = postDto.Image?.ToBytes(),
+            AdminUsername = postDto.AdminUsername,
+            IsAdmin = postDto.IsAdmin
         };
     }
     public static List<PostDto> AsDto(this ICollection<Post> posts)
@@ -117,7 +121,7 @@ public static class ExtensionMethods
         };
     }
     //Admin methods
-     public static AdminDto AsDto(this Admin admin)
+    public static AdminDto AsDto(this Admin admin)
     {
 
         return new AdminDto
@@ -131,7 +135,7 @@ public static class ExtensionMethods
         };
     }
 
-     public static Admin AsNormal(this AdminDto userDto)
+    public static Admin AsNormal(this AdminDto userDto)
     {
 
         return new Admin
@@ -142,6 +146,31 @@ public static class ExtensionMethods
             Phone = userDto.Phone,
             Password = userDto.Password,
             ProfilePicture = userDto.ProfilePicture?.ToBytes()
+        };
+    }
+    public static CommentDto AsDto(this Comment comment)
+    {
+        return new CommentDto
+        {
+            Id = comment.Id,
+            Content = comment.Content,
+            Username = comment.Username!,
+            PostId = comment.PostId,
+            AdminUsername = comment.AdminUsername,
+            IsAdmin = comment.IsAdmin
+
+        };
+    }
+    public static Comment AsNormal(this CommentDto commentDto)
+    {
+        return new Comment
+        {
+            Id = commentDto.Id,
+            Content = commentDto.Content!,
+            Username = commentDto.Username!,
+            PostId = commentDto.PostId,
+            AdminUsername = commentDto.AdminUsername,
+            IsAdmin = commentDto.IsAdmin
         };
     }
 }

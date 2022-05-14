@@ -8,33 +8,38 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
-// [Authorize(Roles = "Basic")]
-// [Authorize(Roles = "Premium")]
+[Authorize(Policy = Roles.Premium)]
+[Authorize(Policy = Roles.Basic)]
 public class UserController : ControllerBase
 {
     [HttpPost]
+    [AllowAnonymous]
     public ActionResult Add(UserDto userDto)
     {
 
         User _user = new();
         _user.Add(userDto.AsNormal());
         return Ok();
-        // return CreatedAtAction("Done adding user", userDto);
     }
+
     [HttpGet("limit/{limit}")]
     public ActionResult Get(int limit)
     {
-        using (blogyContext db = new())
-        {
-            var users = db.Users.Take(limit).ToList();
-            return Ok(users.AsDto());
-        }
+        User _user = new();
+        List<User> users = _user.GetLimit(limit);
+        return Ok(users);
     }
+
     [HttpGet("{username}")]
     public ActionResult Get(string username)
     {
         User _user = new();
         User user = _user.Get(username);
+        string planType = Plan.Get(username).Type;
+        UserDto userDto = user.AsDto() with
+        {
+            PlanType = planType
+        };
         try
         {
             user.Password = null!;
@@ -46,6 +51,7 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("register")]
+    [AllowAnonymous]
     public ActionResult Register(UserDto userDto)
     {
         try
@@ -59,7 +65,17 @@ public class UserController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+    [HttpPost("putcomment")]
+    public ActionResult PutComment(CommentDto commentDto)
+    {
+
+        User _user = new();
+        _user.PutComment(commentDto);
+        return Ok("Done");
+    }
+
     [HttpPost("verify/{username}/{verificationCode}/{planType}")]
+    [AllowAnonymous]
     public ActionResult Verify(string username, string verificationCode, string planType)
     {
         try
@@ -74,6 +90,7 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("login/{username}/{password}")]
+    [AllowAnonymous]
     public async Task<ActionResult> Login(string username, string password)
     {
         try
@@ -90,14 +107,20 @@ public class UserController : ControllerBase
                         new Claim(ClaimTypes.Role,planType),
                         new Claim(ClaimTypes.Email,user.Email!)
                         };
-            var identity = new ClaimsIdentity(claimsUser, Constants.user);
+            var identity = new ClaimsIdentity(claimsUser, Authentications.user);
             ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(Constants.user, principal);
+            await HttpContext.SignInAsync(principal);
             return Ok("user");
         }
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
         }
+    }
+    [HttpPost("logout")]
+    public async Task<ActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync();
+        return Ok("Logged out successfully");
     }
 }

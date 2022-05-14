@@ -26,7 +26,9 @@ namespace BlogyBackend.Models
         public string DateTime { get; set; } = null!;
         [Column("username")]
         [StringLength(30)]
-        public string Username { get; set; } = null!;
+        public string? Username { get; set; } 
+        [Column("isAdmin")]
+        public bool IsAdmin { get; set; }
         [Column("image", TypeName = "blob")]
         public byte[]? Image { get; set; }
 
@@ -36,8 +38,8 @@ namespace BlogyBackend.Models
         [ForeignKey("PostId")]
         [InverseProperty(nameof(User.Posts))]
         public virtual ICollection<User> Usernames { get; set; }
-        public string? AdminUsername {get; set;}
-        public Admin? admin {get;set;}
+        public string? AdminUsername { get; set; }
+        public Admin? admin { get; set; }
         public void Add(Post post)
         {
             using (blogyContext db = new())

@@ -12,17 +12,17 @@ namespace BlogyBackend.Controllers;
 
 [ApiController]
 [Route("api/admins")]
-[Authorize("adminstrator")]
+[Authorize(Roles.adminstrator)]
 public class AdminController : ControllerBase
 {
     [HttpPost]
+    [AllowAnonymous]
     public async Task<ActionResult> Add(AdminDto adminDto)
     {
 
         Admin admin = new();
         await Task.Run(() => (admin.Register(adminDto.AsNormal())));
         return Ok();
-        // return CreatedAtAction("Done adding user", userDto);
     }
     [HttpGet]
     public async Task<AdminDto?> Get([FromQuery] string username)
@@ -52,10 +52,10 @@ public class AdminController : ControllerBase
             {
                 var claims = new List<Claim>{
                         new Claim(ClaimTypes.Name,username),
-                        new Claim(ClaimTypes.Role,"adminstrator"),
+                        new Claim(ClaimTypes.Role,Roles.adminstrator),
                         new Claim(ClaimTypes.Email,admin.Email!)
                     };
-                var identity = new ClaimsIdentity(claims, "AdminAuthentication");
+                var identity = new ClaimsIdentity(claims, Authentications.AdminAuthentication);
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(principal);
             }
@@ -74,5 +74,20 @@ public class AdminController : ControllerBase
 
         await HttpContext.SignOutAsync();
         return "SignedOut";
+    }
+    [HttpPost("register")]
+    [AllowAnonymous]
+    public ActionResult<AdminDto> Register([FromBody] AdminDto adminDto)
+    {
+        try
+        {
+            Admin admin = new();
+            admin.Register(adminDto.AsNormal());
+            return Ok("Done");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
+        }
     }
 }

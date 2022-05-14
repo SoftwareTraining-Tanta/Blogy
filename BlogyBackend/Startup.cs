@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using BlogyBackend.Shared;
+using System.Security.Claims;
 
 public class Startup
 {
@@ -16,21 +17,31 @@ public class Startup
         services.AddAuthorization(options =>
         {
 
-        options.AddPolicy("adminstrator",
+            options.AddPolicy(Roles.adminstrator,
+                authBuilder =>
+                {
+                    authBuilder.RequireClaim(ClaimTypes.Role, Roles.adminstrator);
+                });
+            options.AddPolicy(Roles.Premium,
             authBuilder =>
             {
-                authBuilder.RequireRole("adminstrator");
+                authBuilder.RequireClaim(ClaimTypes.Role, Roles.Premium);
             });
+            options.AddPolicy(Roles.Basic,
+             authBuilder =>
+            {
+                authBuilder.RequireClaim(ClaimTypes.Role, Roles.Basic);
+            });
+        });
 
-        });        
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie(Constants.user, options =>
+        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, Authentications.user, options =>
         {
-            options.Cookie.Name = Constants.user;
+            options.Cookie.Name = Authentications.user;
         })
-        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,"AdminAuthentication", options =>
+        .AddCookie(Authentications.AdminAuthentication, options =>
         {
-            options.Cookie.Name = "AdminAuthentication";
+            options.Cookie.Name = Authentications.AdminAuthentication;
         });
         services.AddCors(options =>
 {

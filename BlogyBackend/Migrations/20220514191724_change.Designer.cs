@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogyBackend.Migrations
 {
     [DbContext(typeof(blogyContext))]
-    [Migration("20220514182535_adminForigns")]
-    partial class adminForigns
+    [Migration("20220514191724_change")]
+    partial class change
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,6 +67,10 @@ namespace BlogyBackend.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("varchar(1000)")
                         .HasColumnName("content");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("isAdmin");
 
                     b.Property<int>("PostId")
                         .HasColumnType("int")
@@ -147,6 +151,10 @@ namespace BlogyBackend.Migrations
                         .HasColumnType("blob")
                         .HasColumnName("image");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("isAdmin");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -154,7 +162,6 @@ namespace BlogyBackend.Migrations
                         .HasColumnName("title");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)")
                         .HasColumnName("username");
