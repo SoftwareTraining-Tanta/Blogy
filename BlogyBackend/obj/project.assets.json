@@ -1429,24 +1429,31 @@
     ]
   },
   "packageFolders": {
-    "/home/mab/.nuget/packages/": {}
+    "C:\\Users\\younis\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mab/Desktop/Blogy/BlogyBackend/BlogyBackend.csproj",
+      "projectUniqueName": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
       "projectName": "BlogyBackend",
-      "projectPath": "/home/mab/Desktop/Blogy/BlogyBackend/BlogyBackend.csproj",
-      "packagesPath": "/home/mab/.nuget/packages/",
-      "outputPath": "/home/mab/Desktop/Blogy/BlogyBackend/obj/",
+      "projectPath": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
+      "packagesPath": "C:\\Users\\younis\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/mab/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\younis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1519,16 +1526,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /home/mab/Desktop/Blogy/BlogyBackend/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

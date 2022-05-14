@@ -29,5 +29,8 @@ namespace BlogyBackend.Models
         [ForeignKey(nameof(Username))]
         [InverseProperty(nameof(User.Comments))]
         public virtual User UsernameNavigation { get; set; } = null!;
+        public int adminId {get;set;}
+        public Admin admin {get;set;}
+        
     }
 }
