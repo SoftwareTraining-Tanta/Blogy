@@ -71,6 +71,7 @@ namespace BlogyBackend.Models
                 return db.Posts?.Take(limit).ToList()!;
             }
         }
+        
         public void Delete(int id)
         {
             using (blogyContext db = new())

@@ -3,6 +3,7 @@ using System;
 using BlogyBackend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogyBackend.Migrations
 {
     [DbContext(typeof(blogyContext))]
-    partial class blogyContextModelSnapshot : ModelSnapshot
+    [Migration("20220514225426_added is signed")]
+    partial class addedissigned
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
