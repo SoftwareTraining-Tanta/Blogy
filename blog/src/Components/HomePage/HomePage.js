@@ -11,7 +11,7 @@ function HomePage() {
 
     // Fetch Data All Posts
     useEffect(() => {
-        fetch("https://localhost:5000/api/posts/limit/2000")
+        fetch("https://localhost:5002/api/posts/limit/2000")
             .then(response => response.json())
             .then(json => setData(json))
     }, [])
@@ -30,10 +30,10 @@ function HomePage() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        fetch("https://localhost:5000/api/posts", {
+        fetch("https://localhost:5002/api/posts", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String }),
+            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String, "adminUsername": "string","isAdmin": false }),
         }).
             then(response => response.json()).
             then(json => console.log(json));

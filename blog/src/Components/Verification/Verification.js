@@ -10,7 +10,7 @@ function Verification() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        fetch(`https://localhost:5000/api/users/verify/${username}/${verifyCode}/${plan}`, {
+        fetch(`https://localhost:5002/api/users/verify/${username}/${verifyCode}/${plan}`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' }
         }).then(response => response.text())

@@ -28,7 +28,7 @@ function SignUp() {
         x.preventDefault()
         sessionStorage.setItem('username',userName)
         if (plan) {
-            fetch("https://localhost:5000/api/users/register", {
+            fetch("https://localhost:5002/api/users/register", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: userName, name: name, email: email, phone: phone, password: password, profilePicture: base64String }),
