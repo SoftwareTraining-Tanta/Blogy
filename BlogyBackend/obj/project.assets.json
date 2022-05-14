@@ -1429,16 +1429,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\EL HARAMAIN\\.nuget\\packages\\": {}
-=======
-    "/home/mab/.nuget/packages/": {}
->>>>>>> ac0b5e919114a1b356f8f065207a5e377ec463c7
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
       "projectName": "BlogyBackend",
       "projectPath": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
@@ -1447,16 +1442,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\EL HARAMAIN\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "/home/mab/Desktop/Blogy/BlogyBackend/BlogyBackend.csproj",
-      "projectName": "BlogyBackend",
-      "projectPath": "/home/mab/Desktop/Blogy/BlogyBackend/BlogyBackend.csproj",
-      "packagesPath": "/home/mab/.nuget/packages/",
-      "outputPath": "/home/mab/Desktop/Blogy/BlogyBackend/obj/",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "/home/mab/.nuget/NuGet/NuGet.Config"
->>>>>>> ac0b5e919114a1b356f8f065207a5e377ec463c7
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1534,12 +1519,16 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
->>>>>>> ac0b5e919114a1b356f8f065207a5e377ec463c7
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file E:\\my_future\\Projects\\Blogy\\BlogyBackend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
