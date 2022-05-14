@@ -90,4 +90,10 @@ public class AdminController : ControllerBase
             return BadRequest(ex);
         }
     }
+    [HttpGet("OnlineUsers")]
+    public ActionResult<int> OnlineUsers(){
+
+        return Admin.getOnlineUsers();
+    }
+
 }
