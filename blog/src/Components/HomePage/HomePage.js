@@ -33,7 +33,11 @@ function HomePage() {
         fetch("https://localhost:5000/api/posts", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
+<<<<<<< HEAD
             body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String, "adminUsername": "string","isAdmin": false }),
+=======
+            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String,isAdmin:false }),
+>>>>>>> 03eb94d71aa7d4448e0c14696d73c13fbef23c2d
         }).
             then(response => response.json()).
             then(json => console.log(json));

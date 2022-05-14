@@ -26,10 +26,10 @@ namespace BlogyBackend.Models
         public string DateTime { get; set; } = null!;
         [Column("username")]
         [StringLength(30)]
-        public string? Username { get; set; } 
+        public string? Username { get; set; }
         [Column("isAdmin")]
         public bool IsAdmin { get; set; }
-        [Column("image", TypeName = "blob")]
+        [Column("image", TypeName = "longblob")]
         public byte[]? Image { get; set; }
 
         [InverseProperty(nameof(Comment.Post))]
@@ -71,6 +71,7 @@ namespace BlogyBackend.Models
                 return db.Posts?.Take(limit).ToList()!;
             }
         }
+
         public void Delete(int id)
         {
             using (blogyContext db = new())

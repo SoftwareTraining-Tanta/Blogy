@@ -38,8 +38,10 @@ namespace BlogyBackend.Models
         [Column("password")]
         [StringLength(256)]
         public string Password { get; set; } = null!;
-        [Column("profilePicture")]
+        [Column("profilePicture", TypeName = "longblob")]
         public byte[]? ProfilePicture { get; set; }
+        [Column("isSigned")]
+        public bool IsSigned { get; set; }
 
         [InverseProperty(nameof(Comment.UsernameNavigation))]
         public virtual ICollection<Comment> Comments { get; set; }
@@ -107,6 +109,15 @@ namespace BlogyBackend.Models
                 return db.Users?.Any(u => u.Email == email) ?? false;
             }
         }
+        public void UpdateIsSigned(string username)
+        {
+            using (blogyContext db = new())
+            {
+                User? user = db.Users?.FirstOrDefault(u => u.Username == username);
+                user!.IsSigned = !user.IsSigned;
+                db.SaveChanges();
+            }
+        }
 
         public string Register(User user)
         {
@@ -132,7 +143,6 @@ namespace BlogyBackend.Models
                 );
             tempUser.Add(tempUser);
             return verficationCode;
-
         }
         public void Verify(string username, string verificationCode, string planType)
         {

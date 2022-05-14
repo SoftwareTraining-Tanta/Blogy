@@ -73,11 +73,11 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("putcomment")]
-
     public ActionResult PutComment(CommentDto commentDto)
     {
 
         User _user = new();
+        if(commentDto.IsAdmin)
         _user.PutComment(commentDto);
         return Ok("Done");
     }
@@ -117,6 +117,7 @@ public class UserController : ControllerBase
                         };
             var identity = new ClaimsIdentity(claimsUser, Authentications.user);
             ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+            _user.UpdateIsSigned(user.Username);
             await HttpContext.SignInAsync(principal);
             var roles = ((ClaimsIdentity)User.Identity!).Claims
                 .Where(c => c.Type == ClaimTypes.Role)
@@ -135,6 +136,8 @@ public class UserController : ControllerBase
     [HttpPost("logout")]
     public async Task<ActionResult> Logout()
     {
+        User _user = new();
+        _user.UpdateIsSigned(User.Identity!.Name!);
         await HttpContext.SignOutAsync();
         return Ok("Logged out successfully");
     }
