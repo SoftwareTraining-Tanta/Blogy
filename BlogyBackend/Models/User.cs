@@ -6,6 +6,7 @@ using BlogyBackend.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
+using BlogyBackend.Dtos;
 
 namespace BlogyBackend.Models
 {
@@ -72,6 +73,19 @@ namespace BlogyBackend.Models
                 return db.Users?.FirstOrDefault(u => u.Username == username)!;
             }
         }
+        public List<User> GetLimit(int limit)
+        {
+            using (blogyContext db = new())
+            {
+                List<User> users = db.Users.Take(limit).ToList();
+                return users;
+            }
+        }
+        public void PutComment(CommentDto commentDto)
+        {
+            Comment _comment = new();
+            _comment.Add(commentDto.AsNormal());
+        }
         public static bool Exists(string username)
         {
             using (blogyContext db = new())
@@ -93,6 +107,7 @@ namespace BlogyBackend.Models
                 return db.Users?.Any(u => u.Email == email) ?? false;
             }
         }
+
         public string Register(User user)
         {
             string verficationCode = new Random().Next(0, 999999).ToString();

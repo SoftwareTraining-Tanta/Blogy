@@ -30,7 +30,15 @@ namespace BlogyBackend.Models
         [InverseProperty(nameof(User.Comments))]
         public virtual User UsernameNavigation { get; set; } = null!;
         public int adminId {get;set;}
-        public Admin admin {get;set;}
+        public Admin? admin {get;set;}
+
+        public void Add(Comment comment){
+            using (blogyContext db = new())
+            {
+                db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+        }
         
     }
 }

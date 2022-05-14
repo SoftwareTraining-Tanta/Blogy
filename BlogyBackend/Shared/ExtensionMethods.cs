@@ -117,7 +117,7 @@ public static class ExtensionMethods
         };
     }
     //Admin methods
-     public static AdminDto AsDto(this Admin admin)
+    public static AdminDto AsDto(this Admin admin)
     {
 
         return new AdminDto
@@ -131,7 +131,7 @@ public static class ExtensionMethods
         };
     }
 
-     public static Admin AsNormal(this AdminDto userDto)
+    public static Admin AsNormal(this AdminDto userDto)
     {
 
         return new Admin
@@ -142,6 +142,26 @@ public static class ExtensionMethods
             Phone = userDto.Phone,
             Password = userDto.Password,
             ProfilePicture = userDto.ProfilePicture?.ToBytes()
+        };
+    }
+    public static CommentDto AsDto(this Comment comment)
+    {
+        return new CommentDto
+        {
+            Id = comment.Id,
+            Content = comment.Content,
+            Username = comment.Username,
+            PostId = comment.PostId,
+        };
+    }
+    public static Comment AsNormal(this CommentDto commentDto)
+    {
+        return new Comment
+        {
+            Id = commentDto.Id,
+            Content = commentDto.Content!,
+            Username = commentDto.Username!,
+            PostId = commentDto.PostId
         };
     }
 }

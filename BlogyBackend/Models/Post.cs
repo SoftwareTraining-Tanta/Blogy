@@ -36,8 +36,8 @@ namespace BlogyBackend.Models
         [ForeignKey("PostId")]
         [InverseProperty(nameof(User.Posts))]
         public virtual ICollection<User> Usernames { get; set; }
-        public int adminId {get;set;}
-        public Admin admin {get;set;}
+        public int adminId { get; set; }
+        public Admin? admin { get; set; }
         public void Add(Post post)
         {
             using (blogyContext db = new())

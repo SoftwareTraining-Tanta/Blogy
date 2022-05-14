@@ -31,7 +31,7 @@ namespace BlogyBackend.Models
             .Build();
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql(configuration.GetConnectionString("myDb3"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
+                optionsBuilder.UseMySql(configuration.GetConnectionString("myDb1"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
             }
         }
 

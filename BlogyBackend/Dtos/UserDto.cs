@@ -7,4 +7,5 @@ public record UserDto
     public string? Phone { get; set; }
     public string Password { get; set; } = null!;
     public string? ProfilePicture { get; set; }
+    public string PlanType { get; set; } = null!;
 }

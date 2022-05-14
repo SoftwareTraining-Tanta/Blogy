@@ -19,22 +19,26 @@ public class UserController : ControllerBase
         User _user = new();
         _user.Add(userDto.AsNormal());
         return Ok();
-        // return CreatedAtAction("Done adding user", userDto);
     }
+
     [HttpGet("limit/{limit}")]
     public ActionResult Get(int limit)
     {
-        using (blogyContext db = new())
-        {
-            var users = db.Users.Take(limit).ToList();
-            return Ok(users.AsDto());
-        }
+        User _user = new();
+        List<User> users = _user.GetLimit(limit);
+        return Ok(users);
     }
+
     [HttpGet("{username}")]
     public ActionResult Get(string username)
     {
         User _user = new();
         User user = _user.Get(username);
+        string planType = Plan.Get(username).Type;
+        UserDto userDto = user.AsDto() with
+        {
+            PlanType = planType
+        };
         try
         {
             user.Password = null!;
@@ -59,6 +63,15 @@ public class UserController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+    [HttpPost("putcomment")]
+    public ActionResult PutComment(CommentDto commentDto)
+    {
+
+        User _user = new();
+        _user.PutComment(commentDto);
+        return Ok("Done");
+    }
+
     [HttpPost("verify/{username}/{verificationCode}/{planType}")]
     public ActionResult Verify(string username, string verificationCode, string planType)
     {

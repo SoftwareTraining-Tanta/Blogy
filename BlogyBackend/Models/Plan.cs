@@ -24,7 +24,7 @@ namespace BlogyBackend.Models
         [InverseProperty(nameof(User.Plans))]
         public virtual User UsernameNavigation { get; set; } = null!;
         public int adminId {get;set;}
-        public Admin admin {get;set;}
+        public Admin? admin {get;set;}
         public void Add(Plan plan)
         {
             using (blogyContext db = new())
