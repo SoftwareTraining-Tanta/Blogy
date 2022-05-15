@@ -50,7 +50,7 @@ public class UserController : ControllerBase
         try
         {
             user.Password = null!;
-            return Ok(user.AsDto());
+            return Ok(userDto);
         }
         catch
         {
