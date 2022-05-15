@@ -1,4 +1,2 @@
-fetch("https://localhost:5000/api/users/10").
-then(response => response.json()).
-then(json=>{console.log(json.name)});
-var date = new Date(Date.parse(myCSharpString));
+ fetch("https://localhost:5002/api/users/login/bbb/string",{method:"POST"})
+ .then(Response=>{fetch("https://localhost:5002/api/users/bbb",{method:"GET"})})

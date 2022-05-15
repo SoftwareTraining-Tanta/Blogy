@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/posts")]
-[Authorize(Roles = $"{Roles.Premium},{Roles.Admin}")]
+// [Authorize(Roles = $"{Roles.Premium},{Roles.Admin}")]
 public class PostController : ControllerBase
 {
     [HttpPost]
@@ -38,7 +38,7 @@ public class PostController : ControllerBase
         return NotFound("User not authorized");
     }
     [HttpGet("limit/{limit}")]
-    [AllowAnonymous]
+    // [AllowAnonymous]
     public ActionResult Get(int limit)
     {
         using (blogyContext db = new())
@@ -61,7 +61,7 @@ public class PostController : ControllerBase
         return Ok();
     }
     [HttpDelete("{id}")]
-    [Authorize(Roles = Roles.Admin)]
+    // [Authorize(Roles = Roles.Admin)]
     public ActionResult Delete(int id)
     {
         Post _post = new();

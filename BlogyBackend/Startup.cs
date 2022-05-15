@@ -53,7 +53,6 @@ public class Startup
                                                   .AllowAnyMethod();
                           });
 });
-
     }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {

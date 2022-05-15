@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
-// [Authorize(Roles = Roles.Premium)]
-[Authorize(Roles = $"{Roles.Basic},{Roles.Premium}")]
+[Authorize(Roles = $"{Roles.Admin},{Roles.Basic},{Roles.Premium}")]
 public class UserController : ControllerBase
 {
     [HttpPost]
@@ -30,6 +29,8 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("limit/{limit}")]
+    [Authorize(Roles = $"{Roles.Admin},{Roles.Premium},{Roles.Basic}")]
+
     public ActionResult<List<User>> Get(int limit)
     {
         User _user = new();
@@ -127,7 +128,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpPost("Delete/{username}")]
+    [HttpDelete("Delete/{username}")]
     [Authorize(Roles = Roles.Admin)]
     public ActionResult Delete(string username)
     {
