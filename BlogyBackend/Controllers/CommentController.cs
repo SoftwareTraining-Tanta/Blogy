@@ -5,7 +5,7 @@ using BlogyBackend.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 [Route("api/comments")]
-[Authorize]
+// [Authorize]
 public class CommentController : ControllerBase
 {
     [HttpPost("putcomment")]
