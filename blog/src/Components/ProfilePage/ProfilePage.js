@@ -1,55 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import './profilePage.css';
 
 function ProfilePage() {
-
     // Statues
     const [data, setData] = useState({})
 
     // Params to catch id of post in url 
-    let username = useParams()
+    let user = useParams()
 
-    // Fetch Data One Post
+
+    // Fetch Data for user
     useEffect(() => {
-        fetch(`https://localhost:5000/api/users/${username.username}`)
+        fetch(`https://localhost:5000/api/users/${user.username}`)
             .then(response => response.json())
-            .then(json => setData(json))
+            .then(json => console.log(json))
     }, [])
 
     return (
         <>
-            <div class="back">
-                <div class="card">
-                    <div class="left">
-                        <img src={'data:image/png;base64,' + data.profilePicture} height="200px" width="200px" alt="Photo" />
-                    </div>
-                    <div class="right">
-                        <div class="card-card">
-                            <div>
-                                <h3 class="left-text">{data.username}</h3>
-                            </div>
-                        </div>
-                        <div class="card-card">
-                            <div class="left-text">
-                                <h5>Name</h5>
-                                <br />
-                                <h5>E-mail</h5>
-                                <br />
-                                <h5>Phone</h5>
-                                <br />
-                                <h5>Plan</h5>
-                            </div>
-                            <div class="left-text">
-                                <h5>{data.name}</h5>
-                                <br />
-                                <h5>{data.email}</h5>
-                                <br />
-                                <h5>{data.phone}</h5>
-                                <br />
-                                <h5>{data.planType}</h5>
-                            </div>
-                        </div>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-8">
+
+                        {/* Post */}
+                        <article>
+                            <header class="mb-4">
+                                <h1 class="fw-bolder mb-1">{data.username}</h1>
+                                <div class="text-muted fst-italic mb-2">{data.name}</div>
+                            </header>
+                            <figure class="mb-4"><img class="img-fluid rounded" src={'data:image/png;base64,' + data.profilePicture} alt="..." /></figure>
+                            <section class="mb-5">
+                                <p class="fs-5 mb-4">{data.email}</p>
+                            </section>
+                        </article>
                     </div>
                 </div>
             </div>

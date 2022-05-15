@@ -10,6 +10,7 @@ function SignIn() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
+        sessionStorage.setItem('username',userName)
         // console.log(userName, password)
         fetch(`https://localhost:5000/api/users/login/${userName}/${password}`, {
             method: "POST",
