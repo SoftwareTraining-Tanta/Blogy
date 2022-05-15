@@ -9,6 +9,7 @@ function HomePage() {
     const [textSearch, setTextSearch] = useState('')
     const [base64String, setBase64String] = useState()
     const username = sessionStorage.getItem('username')
+    const admin = sessionStorage.getItem('admin')
 
     // Fetch Data All Posts
     useEffect(() => {
@@ -34,7 +35,7 @@ function HomePage() {
         fetch("https://localhost:5000/api/posts", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: username, image: base64String, adminUsername: null ,isAdmin: false })
+            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: username, image: base64String, adminUsername: null, isAdmin: false })
         }).
             then(response => response.text()).
             then(json => console.log(json));
@@ -47,6 +48,14 @@ function HomePage() {
             <span style={{ fontSize: '25px', marginRight: '10px' }}>Loading</span>
             <div className="spinner-border" role="status"></div>
         </div>
+
+    const updateReach = (id) => {
+        fetch(`https://localhost:5000/api/posts/updateReachCount/${id}`, {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' }
+        }).then(response => response.text())
+            .then(json => console.log(json));
+    }
 
     return (
         <>
@@ -90,9 +99,9 @@ function HomePage() {
                                         <div className="card-body">
                                             <div>{i.username}</div>
                                             <div className="small text-muted">{i.dateTime}</div>
-                                            <h2 className="card-title">{username ? i.title : i.title.slice(0, 5) + `...`}</h2>
-                                            <p className="card-text">{username ? i.content : i.content.slice(0, 10) + `...`}</p>
-                                            <NavLink className="btn btn-primary" to={username ? `/postpage/${i.id}` : `/signin`}>Read more →</NavLink>
+                                            <h2 className="card-title">{username || admin ? i.title : i.title.slice(0, 5) + `...`}</h2>
+                                            <p className="card-text">{username || admin ? i.content : i.content.slice(0, 10) + `...`}</p>
+                                            <NavLink className="btn btn-primary" onClick={updateReach(i.id)} to={username ? `/postpage/${i.id}` : `/signin`}>Read more →</NavLink>
                                         </div>
                                     </div>
                                     <div className="col-lg-4"></div>

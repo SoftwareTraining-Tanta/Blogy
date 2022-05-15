@@ -51,6 +51,7 @@ function PostPage() {
                             <header class="mb-4">
                                 <h1 class="fw-bolder mb-1">{data.title}</h1>
                                 <div class="text-muted fst-italic mb-2">{data.dateTime}</div>
+                                <div class="text-muted fst-bold mb-2">{data.reachCount}</div>
                             </header>
                             <figure class="mb-4"><img class="img-fluid rounded" src={'data:image/png;base64,' + data.image} alt="..." /></figure>
                             <section class="mb-5">
