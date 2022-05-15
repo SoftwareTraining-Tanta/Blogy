@@ -111,16 +111,21 @@ public partial class Admin
     }
 
 
-    public static int  getOnlineUsers(){
+    public static List<User>  getOnlineUsers(int limit){
 
             using(blogyContext db= new())
 {
+    List<User> users= db.Users.Take(limit).Where(x=>x.IsSigned).ToList();
+    return users;
+}
 
+    }
+        public static List<User>  SignedUpUsers(int limit){
 
-
-
-    List<User> users= db.Users.Select(x=>x).Where(x=>x.IsSigned).ToList();
-    return users.Count();
+            using(blogyContext db= new())
+{
+    List<User> users= db.Users.Take(limit).ToList();
+    return users;
 }
 
     }

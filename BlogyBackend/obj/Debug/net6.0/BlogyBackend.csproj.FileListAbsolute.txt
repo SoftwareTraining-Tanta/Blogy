@@ -123,6 +123,18 @@
 /home/mab/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.genruntimeconfig.cache
 /home/mab/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/ref/BlogyBackend.dll
 <<<<<<< HEAD
+=======
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.csproj.AssemblyReference.cache
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.AssemblyInfoInputs.cache
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.AssemblyInfo.cs
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.csproj.CoreCompileInputs.cache
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.dll
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\refint\BlogyBackend.dll
+C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.pdb
+>>>>>>> 4fcc4b7d156ae276342f85de3b414d831acfc8ac
 C:\Users\younis\Desktop\Blogy\BlogyBackend\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\younis\Desktop\Blogy\BlogyBackend\bin\Debug\net6.0\appsettings.json
 C:\Users\younis\Desktop\Blogy\BlogyBackend\bin\Debug\net6.0\BlogyBackend.exe
@@ -169,20 +181,10 @@ C:\Users\younis\Desktop\Blogy\BlogyBackend\bin\Debug\net6.0\ru\Microsoft.CodeAna
 C:\Users\younis\Desktop\Blogy\BlogyBackend\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\younis\Desktop\Blogy\BlogyBackend\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\younis\Desktop\Blogy\BlogyBackend\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.csproj.AssemblyReference.cache
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.AssemblyInfoInputs.cache
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.AssemblyInfo.cs
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.csproj.CoreCompileInputs.cache
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\staticwebassets.development.json
 C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\scopedcss\bundle\BlogyBackend.styles.css
 C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.csproj.CopyComplete
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.dll
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\refint\BlogyBackend.dll
-C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.pdb
 C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.genruntimeconfig.cache
 C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\ref\BlogyBackend.dll
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.dll
@@ -247,7 +249,6 @@ E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\scopedcss\bundle\Blogy
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.csproj.CopyComplete
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.genruntimeconfig.cache
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\ref\BlogyBackend.dll
-=======
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/appsettings.Development.json
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/appsettings.json
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/BlogyBackend.exe

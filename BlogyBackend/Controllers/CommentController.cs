@@ -9,9 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 public class CommentController : ControllerBase
 {
     [HttpPost("putcomment")]
-    public ActionResult PutComment(CommentDto commentDto)
+    public ActionResult PutComment([FromBody] CommentDto commentDto)
     {
-
         User _user = new();
         Post _post = new();
         Post commentPost = _post.Get(commentDto.PostId);

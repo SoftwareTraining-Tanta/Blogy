@@ -9,7 +9,7 @@ namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
 // [Authorize(Roles = Roles.Premium)]
-[Authorize(Roles = Roles.Basic)]
+[Authorize(Roles = $"{Roles.Basic},{Roles.Premium}")]
 public class UserController : ControllerBase
 {
     [HttpPost]
@@ -50,7 +50,7 @@ public class UserController : ControllerBase
         try
         {
             user.Password = null!;
-            return Ok(user.AsDto());
+            return Ok(userDto);
         }
         catch
         {
