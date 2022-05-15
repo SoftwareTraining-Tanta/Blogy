@@ -124,6 +124,15 @@ namespace BlogyBackend.Models
                 db.SaveChanges();
             }
         }
+        public void Delete(string username)
+        {
+            using (blogyContext db = new())
+            {
+                User? user = db.Users?.FirstOrDefault(u => u.Username == username);
+                db.Users?.Remove(user!);
+                db.SaveChanges();
+            }
+        }
 
         public string Register(User user)
         {

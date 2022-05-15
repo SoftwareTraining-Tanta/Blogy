@@ -19,8 +19,6 @@ public class PostController : ControllerBase
         User _user = new();
         User user = _user.Get(postDto.Username!);
         Post _post = new();
-        if (user.PostCount >= 2)
-            throw new Exception("User has reached the limit of posts");
         foreach (string role in roles)
         {
             if (role == Roles.Premium && user.PostCount >= 2)
@@ -40,6 +38,7 @@ public class PostController : ControllerBase
         return NotFound("User not authorized");
     }
     [HttpGet("limit/{limit}")]
+    [AllowAnonymous]
     public ActionResult Get(int limit)
     {
         using (blogyContext db = new())
@@ -62,6 +61,7 @@ public class PostController : ControllerBase
         return Ok();
     }
     [HttpDelete("{id}")]
+    [Authorize(Roles = Roles.Admin)]
     public ActionResult Delete(int id)
     {
         Post _post = new();
