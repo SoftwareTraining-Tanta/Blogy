@@ -120,6 +120,15 @@ public partial class Admin
 }
 
     }
+        public static List<User>  SignedUpUsers(int limit){
+
+            using(blogyContext db= new())
+{
+    List<User> users= db.Users.Take(limit).ToList();
+    return users;
+}
+
+    }
     public string Register(Admin admin)
     {
         if (Admin.Exists(admin.Username))

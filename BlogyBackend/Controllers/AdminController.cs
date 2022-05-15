@@ -95,5 +95,10 @@ public class AdminController : ControllerBase
 
         return Admin.getOnlineUsers(limit);
     }
+    [HttpGet("SignedUpUsers/{limit}")]
+    public ActionResult<List<User>> SignedUpUsers(int limit){
+
+        return Admin.SignedUpUsers(limit);
+    }
 
 }
