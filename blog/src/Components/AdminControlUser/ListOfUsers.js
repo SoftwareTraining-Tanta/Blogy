@@ -18,6 +18,7 @@ function ListOfUsers() {
         }).
             then(response => response.text()).
             then(json => console.log(json));
+        window.location.href = '/adminusers'    
     }
 
     return (

@@ -1,8 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Dashboard from '../DashBoard/Dashboard'
 
 
 function AdminPage() {
+
+    const [numSignedUpUsers, setNumSignedUpUsers] = useState()
+    const [numPosts, setNumPosts] = useState([])
+    const [mostInteractedPost, setMostInteractedPost] = useState({})
+
+    useEffect(() => {
+        fetch("https://localhost:5000/api/admins/SignedUpUsers")
+            .then(response => response.text())
+            .then(json => setNumSignedUpUsers(json))
+    }, [])
+
+    useEffect(() => {
+        fetch("https://localhost:5000/api/posts/limit/2000")
+            .then(response => response.json())
+            .then(json => setNumPosts(json))
+    }, [])
+
+    useEffect(() => {
+        fetch("https://localhost:5000/api/admins/MostInteractedPost")
+            .then(response => response.json())
+            .then(json => setMostInteractedPost(json))
+    }, [])
 
 
     return (
@@ -15,14 +37,14 @@ function AdminPage() {
 
                         <div class="card my-card">
                             <div class="card-body">
-                                <span class="number"> 123 </span>
+                                <span class="number"> {numSignedUpUsers} </span>
                                 <span class="title"> Registerd users </span>
                             </div>
                         </div>
 
                         <div class="card my-card">
                             <div class="card-body">
-                                <span class="number"> 512 </span>
+                                <span class="number"> {numPosts.length} </span>
                                 <span class="title"> Posts </span>
                             </div>
                         </div>
@@ -32,19 +54,10 @@ function AdminPage() {
                                 Top post
                             </div>
                             <div class="card-body">
-                                <a href="#"><span class="content"> Top post title is written here </span></a>
+                                <a href="#"><span class="content"> {mostInteractedPost.title} </span></a>
                             </div>
                         </div>
-
-                        <div class="card my-card">
-                            <div class="card-title">
-                                Most active user
-                            </div>
-                            <div class="card-body">
-                                <a href="#"><span class="content"> MoHarby12 </span></a>
-                            </div>
-                        </div>
-
+                        
                     </div>
 
                     {/* <div class="block">

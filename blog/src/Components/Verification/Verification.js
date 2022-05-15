@@ -4,7 +4,7 @@ function Verification() {
     // Statues
     const username = sessionStorage.getItem('username')
     const [verifyCode, setVerifyCode] = useState()
-    const plan  = sessionStorage.getItem('Plan')
+    const plan  = sessionStorage.getItem('plan')
     const[msgResponse, setMsgResponse] = useState()
 
     // Handle Sumbit Button

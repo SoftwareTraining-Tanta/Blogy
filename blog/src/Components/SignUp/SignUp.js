@@ -9,7 +9,8 @@ function SignUp() {
     const [phone, setPhone] = useState()
     const [password, setPassword] = useState()
     const [base64String, setBase64String] = useState()
-    const plan = sessionStorage.getItem('Plan')
+    const [plan, setPlan] = useState()
+    const planChoose = sessionStorage.setItem('plan', plan)
     const [msgResponse, setMsgResponse] = useState('')
 
     // Convert Image to Base64
@@ -26,15 +27,15 @@ function SignUp() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        sessionStorage.setItem('username',userName)
+        sessionStorage.setItem('username', userName)
         if (plan == 'Basic' || plan == 'Premium') {
             fetch("https://localhost:5000/api/users/register", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: userName, name: name, email: email, phone: phone, password: password, profilePicture: base64String, planType: plan })
             })
-            .then(response => response.text())
-            .then(msg => setMsgResponse(msg))
+                .then(response => response.text())
+                .then(msg => setMsgResponse(msg))
 
         } else {
             alert('Select Plan')
@@ -42,13 +43,13 @@ function SignUp() {
     }
 
     // Show Messages Error IF There IS
-    useEffect(()=>{
+    useEffect(() => {
         if (msgResponse.length == 6) {
             window.location.href = '/verify'
-        } else if(msgResponse != '') {
+        } else if (msgResponse != '') {
             alert(msgResponse)
         }
-    },[msgResponse])
+    }, [msgResponse])
 
     return (
         <>
@@ -86,15 +87,11 @@ function SignUp() {
                     <input type="file" class="form-control" id="picture" required onChange={convertImageToBase64} />
                 </div>
 
-                <div class="mb-3 form-check">
-                    <label style={{ marginLeft: '-20px' }}>Choose a plan:</label>
-                    <br />
-                    <input class="form-check-input ms-2" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={() => { sessionStorage.setItem('Plan','Basic') }} />
-                    <label class="form-check-label " for="flexRadioDefault1">Basic</label>
-                    <br />
-                    <input class="form-check-input ms-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={() => { sessionStorage.setItem('Plan','Premium') }} />
-                    <label class="form-check-label" for="flexRadioDefault2">Premium</label>
-                </div>
+                <select onClick={(x)=>{setPlan(x.target.value)}} class="form-select mb-3" aria-label="Default select example">
+                    <option selected value=''>Open this select menu</option>
+                    <option value='Basic'>Basic</option>
+                    <option value='Preimum'>Preimum</option>
+                </select>
 
                 <div className='d-flex justify-content-between'>
                     <NavLink className="text-decoration-none fw-bold" to='/signin'>Sign in</NavLink>
