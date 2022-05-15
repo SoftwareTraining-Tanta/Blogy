@@ -20,7 +20,7 @@ function PinPosts() {
 
     // Loading Animation
     const loadingAnimation =
-        <div style={{ position: 'absolute', left: '50%', top: '100%', transform: 'translate(-50%, -50%)' }}>
+        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
             <span style={{ fontSize: '25px', marginRight: '10px' }}>Loading</span>
             <div className="spinner-border" role="status"></div>
         </div>

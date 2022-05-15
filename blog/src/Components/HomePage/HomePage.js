@@ -42,6 +42,7 @@ function HomePage() {
             then(response => response.text()).
             then(json => console.log(json));
         window.location.href = '/'
+//
     }
 
     // Loading Animation
