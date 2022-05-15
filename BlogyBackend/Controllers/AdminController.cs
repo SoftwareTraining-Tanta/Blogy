@@ -12,11 +12,10 @@ namespace BlogyBackend.Controllers;
 
 [ApiController]
 [Route("api/admins")]
-// [Authorize(Roles.Admin)]
+
 public class AdminController : ControllerBase
 {
     [HttpPost]
-    // [AllowAnonymous]
     public async Task<ActionResult> Add(AdminDto adminDto)
     {
 
@@ -27,8 +26,14 @@ public class AdminController : ControllerBase
     [HttpGet]
     public async Task<AdminDto?> Get([FromQuery] string username)
     {
-        AdminDto? admin = await Task.Run(() => (Admin.Get(username)));
+        AdminDto? admin=new();
+        Console.Write(User.Identity.Name);
+
+        if(User.Identity.IsAuthenticated){
+         admin = await Task.Run(() => (Admin.Get(username)));
+        }
         return admin;
+
     }
     [HttpPut]
     public async Task<AdminDto?> Update([FromQuery] string username, [FromBody] AdminDto admin)
@@ -37,7 +42,6 @@ public class AdminController : ControllerBase
         return Admin.Get(username);
     }
 
-    // [AllowAnonymous]
     [HttpGet("login")]
     public async Task<ActionResult<AdminDto>> Login([FromQuery] string username, [FromQuery] string password)
     {
@@ -76,7 +80,7 @@ public class AdminController : ControllerBase
         return "SignedOut";
     }
     [HttpPost("register")]
-    // [AllowAnonymous]
+
     public ActionResult<AdminDto> Register([FromBody] AdminDto adminDto)
     {
         try
@@ -90,15 +94,32 @@ public class AdminController : ControllerBase
             return BadRequest(ex);
         }
     }
-    [HttpGet("OnlineUsers/{limit}")]
-    public ActionResult<List<User>> OnlineUsers(int limit){
+    [HttpGet("OnlineUsers/")]
+    public ActionResult<int> OnlineUsers( ){
 
-        return Admin.getOnlineUsers(limit);
+        return Admin.getOnlineUsers();
     }
-    [HttpGet("SignedUpUsers/{limit}")]
-    public ActionResult<List<User>> SignedUpUsers(int limit){
+    [HttpGet("SignedUpUsers/")]
+    public ActionResult<int> SignedUpUsers(){
 
-        return Admin.SignedUpUsers(limit);
+        return Admin.SignedUpUsers();
     }
+        [HttpGet("MostInteractedPost/")]
+    public ActionResult<Post> BestPost(){
+
+        return Admin.PostWithMostInteraction();
+    }
+            [HttpGet("MostReach/")]
+    public ActionResult<int> NUmberOfMostReach(){
+
+        return Admin.NumberOfMostReach();
+    }
+            [HttpGet("MostReachPosts/{limit}/")]
+    public ActionResult<List<Post>> NumberOfMostReach(int limit){
+
+        return Admin.MostReachPosts(limit);
+    }
+
+
 
 }
