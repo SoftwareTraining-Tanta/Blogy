@@ -4,6 +4,7 @@ import Dashboard from '../DashBoard/Dashboard'
 function ListOfUsers() {
 
     const [data, setData] = useState([])
+    const [msgResponse, setMsgResponse] = useState()
 
     useEffect(() => {
         fetch("https://localhost:5000/api/users/limit/2000")
@@ -17,9 +18,14 @@ function ListOfUsers() {
             headers: { 'Content-Type': 'application/json' },
         }).
             then(response => response.text()).
-            then(json => console.log(json));
-        window.location.href = '/adminusers'    
+            then(json => setMsgResponse(json));
     }
+
+    useEffect(()=>{
+        if (msgResponse == 'User deleted successfully') {
+            window.location.href = '/adminusers'
+        }
+    },[msgResponse])
 
     return (
         <>
@@ -37,7 +43,7 @@ function ListOfUsers() {
                                         <div class="card-body">
                                             <h5 class="card-title">{i.username}</h5>
                                             <a href="#" class="btn btn-primary">Send e-mail</a>
-                                            <button onClick={deleteUser(i.username)} class="btn btn-danger">Remove user</button>
+                                            <button onClick={()=>deleteUser(i.username)} class="btn btn-danger">Remove user</button>
                                         </div>
                                     </div>
                                 </div>

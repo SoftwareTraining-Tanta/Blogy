@@ -16,6 +16,7 @@ function Verification() {
         }).then(response => response.text())
           .then(json => setMsgResponse(json));
     }
+    console.log(msgResponse)
 
     // Show Messages Error IF There IS
     useEffect(()=>{

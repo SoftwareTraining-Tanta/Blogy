@@ -28,6 +28,9 @@ function SignUp() {
     const handleSubmit = (x) => {
         x.preventDefault()
         sessionStorage.setItem('username', userName)
+        sessionStorage.setItem('isuser',true)
+        sessionStorage.setItem('admin',null)
+        sessionStorage.setItem('isadmin',null)
         if (plan == 'Basic' || plan == 'Premium') {
             fetch("https://localhost:5000/api/users/register", {
                 method: "POST",

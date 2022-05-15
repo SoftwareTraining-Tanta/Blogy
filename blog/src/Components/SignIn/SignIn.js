@@ -11,6 +11,9 @@ function SignIn() {
     const handleSubmit = (x) => {
         x.preventDefault()
         sessionStorage.setItem('username',userName)
+        sessionStorage.setItem('isuser',true)
+        sessionStorage.setItem('admin',null)
+        sessionStorage.setItem('isadmin',null)
         window.location.href = '/'
         // console.log(userName, password)
         // fetch(`https://localhost:5000/api/users/login/${userName}/${password}`, {

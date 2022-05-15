@@ -39,7 +39,7 @@ function ProfilePage() {
                                 <div className="mt-5 row">
                                     <div className="col-sm-5">
                                         <h3>{data.username}</h3>
-                                        <h5>{isAdmin ? 'Admin' : 'User'}</h5>
+                                        <h5>{isAdmin == 'true' ? 'Admin' : 'User'}</h5>
                                     </div>
                                 </div>
 
@@ -51,7 +51,7 @@ function ProfilePage() {
                                         <br />
                                         <h5>Phone</h5>
                                         <br />
-                                        <h5>{isAdmin ? null : 'Plan'}</h5>
+                                        <h5>{isAdmin == 'true' ? null : 'Plan'}</h5>
                                     </div>
                                     <div className="col-8">
                                         <h5>{data.name}</h5>
@@ -60,7 +60,7 @@ function ProfilePage() {
                                         <br />
                                         <h5>{data.phone}</h5>
                                         <br />
-                                        <h5>{isAdmin ? null : data.planType}</h5>
+                                        <h5>{isAdmin == 'true' ? null : data.planType}</h5>
                                     </div>
                                 </div>
                             </div>

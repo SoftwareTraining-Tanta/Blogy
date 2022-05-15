@@ -8,6 +8,8 @@ function PostPage() {
     const [data, setData] = useState({})
     const [dataComments, setDataComments] = useState([])
     const [commentPost, setCommentPost] = useState()
+    const [msgResponse, setMsgResponse] = useState()
+
     const username = sessionStorage.getItem('username')
 
     // Params to catch id of post in url 
@@ -22,7 +24,7 @@ function PostPage() {
 
     // Fetch Data Of Comments
     useEffect(() => {
-        fetch(`https://localhost:5000/api/comments/limit/20`)
+        fetch(`https://localhost:5000/api/comments/limit/1000/${post.id}`)
             .then(response => response.json())
             .then(json => setDataComments(json))
     }, [])
@@ -35,10 +37,15 @@ function PostPage() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ content: commentPost, username: username, postId: post.id, adminUsername: null, isAdmin: false })
         }).
-            then(response => response.json()).
-            then(json => console.log(json));
-        window.location.href = `/postpage/${post.id}`
+            then(response => response.text()).
+            then(json => setMsgResponse(json));
     }
+
+    useEffect(()=>{
+        if (msgResponse == 'Done') {
+            window.location.href = `/postpage/${post.id}`
+        }
+    },[msgResponse])
 
     return (
         <>

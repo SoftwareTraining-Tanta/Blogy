@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import {AiOutlineHome, AiFillPushpin} from 'react-icons/ai'
+import {CgProfile} from 'react-icons/cg'
 
 function NavBar() {
     const username = sessionStorage.getItem('username')
@@ -22,18 +24,25 @@ function NavBar() {
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                            <li className="nav-item">
+                            <li className="nav-item d-flex align-items-center">
+                                <AiOutlineHome className='text-light fs-5'/>
                                 <NavLink className="nav-link active text-light fs-4" aria-current="page" to="/">Home</NavLink>
                             </li>
 
-                            <li className="nav-item">
-                                <NavLink className="nav-link text-light fs-4" to={`/profilepage/${ isadmin ? admin : username}`}>Profile</NavLink>
+                            <li className="nav-item d-flex align-items-center">
+                                <CgProfile className='text-light fs-5'/>
+                                <NavLink className="nav-link text-light fs-4" to={`/profilepage/${ isadmin == 'true' ? admin : username}`}>Profile</NavLink>
+                            </li>
+
+                            <li className="nav-item d-flex align-items-center">
+                                <AiFillPushpin className='text-light fs-5'/>
+                                <NavLink className="nav-link text-light fs-4" to='/pinposts'>Pin Posts</NavLink>
                             </li>
 
                             <li class="nav-item dropdown d-flex align-self-center">
                                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                                 <ul class="dropdown-menu" style={{textAlign: 'center', top:'51px', left: '-110px'}} aria-labelledby="navbarDropdown">
-                                    <li><NavLink className="dropdown-item text-decoration-none" to={admin ? `/adminhome` : `/signinadmin`}>Admin</NavLink></li>
+                                    <li><NavLink className="dropdown-item text-decoration-none" to={isadmin == 'true' ? `/adminhome` : `/signinadmin`}>Admin</NavLink></li>
                                     <hr />
                                     <li><NavLink className="dropdown-item text-decoration-none" to="/signin">Login</NavLink></li>
                                     <hr />
