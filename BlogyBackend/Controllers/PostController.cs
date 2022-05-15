@@ -21,7 +21,7 @@ public class PostController : ControllerBase
         Post _post = new();
         // foreach (string role in roles)
         // {
-        //     if (role == Roles.Premium && user.PostCount >= 2)
+        //     if (role == Roles.Premium && user.PostCount >= 2&&datetime.now()-user.LastPostDate<=30days)
         //         throw new Exception("User has reached the limit of posts");
         //     if (role == Roles.Premium && user.PostCount < 2)
         //     {
