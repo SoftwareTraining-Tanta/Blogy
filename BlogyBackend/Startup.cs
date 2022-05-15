@@ -77,8 +77,8 @@ public class Startup
         app.UseDefaultFiles();
         app.UseStaticFiles();
         app.UseHttpsRedirection();
-        app.UseAuthentication();
-        app.UseAuthorization();
+        // app.UseAuthentication();
+        // app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
