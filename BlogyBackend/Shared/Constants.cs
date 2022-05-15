@@ -6,7 +6,6 @@ public static class Authentications
 }
 public static class Roles
 {
-
     public const string Admin = "Admin";
     public const string Basic = "Basic";
     public const string Premium = "Premium";

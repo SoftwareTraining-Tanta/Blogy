@@ -13,9 +13,9 @@ public class CommentController : ControllerBase
         User _user = new();
         Post _post = new();
         Post commentPost = _post.Get(commentDto.PostId);
-        var roles = ((ClaimsIdentity)User.Identity!).Claims
-                .Where(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value);
+        // var roles = ((ClaimsIdentity)User.Identity!).Claims
+        //         .Where(c => c.Type == ClaimTypes.Role)
+        //         .Select(c => c.Value);
         // foreach (var role in roles)
         // {
         //     if (role == Roles.Admin || role == Roles.Premium || _post.IsAdmin)
@@ -31,10 +31,10 @@ public class CommentController : ControllerBase
         return Ok("Done");
         // return BadRequest("Error adding comment , User not authorized");
     }
-    [HttpGet("limit/{limit}")]
-    public ActionResult GetLimit(int limit)
+    [HttpGet("limit/{limit}/{postId}")]
+    public ActionResult GetLimit(int limit, int postId)
     {
-        return Ok(Comment.GetLimit(limit));
+        return Ok(Comment.GetLimit(limit, postId));
     }
 
 }

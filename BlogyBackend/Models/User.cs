@@ -129,6 +129,8 @@ namespace BlogyBackend.Models
             using (blogyContext db = new())
             {
                 User? user = db.Users?.FirstOrDefault(u => u.Username == username);
+                Plan? plan = db.Plans?.FirstOrDefault(p => p.Username == username);
+                db.Plans?.Remove(plan!);
                 db.Users?.Remove(user!);
                 db.SaveChanges();
             }
