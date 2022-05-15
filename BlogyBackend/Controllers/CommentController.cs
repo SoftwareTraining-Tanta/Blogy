@@ -36,5 +36,4 @@ public class CommentController : ControllerBase
     {
         return Ok(Comment.GetLimit(limit, postId));
     }
-
 }
