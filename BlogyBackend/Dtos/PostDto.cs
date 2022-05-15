@@ -10,4 +10,5 @@ public class PostDto
     public string? Image { get; set; }
     public string? AdminUsername { get; set; }
     public bool IsAdmin { get; set; }
+    public int ReachCount { get; set; }
 }

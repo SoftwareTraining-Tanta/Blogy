@@ -59,7 +59,8 @@ public static class ExtensionMethods
             Username = post.Username!,
             Image = post.Image?.ToBase64(),
             AdminUsername = post.AdminUsername,
-            IsAdmin = post.IsAdmin
+            IsAdmin = post.IsAdmin,
+            ReachCount = post.ReachCount
         };
     }
     public static Post AsNormal(this PostDto postDto)
@@ -73,7 +74,8 @@ public static class ExtensionMethods
             Username = postDto.Username!,
             Image = postDto.Image?.ToBytes(),
             AdminUsername = postDto.AdminUsername,
-            IsAdmin = postDto.IsAdmin
+            IsAdmin = postDto.IsAdmin,
+            ReachCount = postDto.ReachCount
         };
     }
     public static List<PostDto> AsDto(this ICollection<Post> posts)

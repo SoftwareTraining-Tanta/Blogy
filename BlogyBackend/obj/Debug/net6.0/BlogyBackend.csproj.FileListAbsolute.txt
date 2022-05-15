@@ -123,6 +123,7 @@
 /home/mab/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.genruntimeconfig.cache
 /home/mab/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/ref/BlogyBackend.dll
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.csproj.AssemblyReference.cache
 C:\Users\younis\Desktop\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.GeneratedMSBuildEditorConfig.editorconfig
@@ -249,6 +250,80 @@ E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\scopedcss\bundle\Blogy
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.csproj.CopyComplete
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.genruntimeconfig.cache
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\ref\BlogyBackend.dll
+=======
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/appsettings.Development.json
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/appsettings.json
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/BlogyBackend.exe
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/BlogyBackend.deps.json
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/BlogyBackend.runtimeconfig.json
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/BlogyBackend.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/BlogyBackend.pdb
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Humanizer.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Microsoft.CodeAnalysis.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Microsoft.CodeAnalysis.CSharp.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Design.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Microsoft.OpenApi.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/MySqlConnector.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Pomelo.EntityFrameworkCore.MySql.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/cs/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/de/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/es/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/fr/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/it/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/ja/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/ko/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/pl/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/pt-BR/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/ru/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/tr/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/bin/Debug/net6.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.AssemblyReference.cache
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.GeneratedMSBuildEditorConfig.editorconfig
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.AssemblyInfoInputs.cache
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.AssemblyInfo.cs
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.CoreCompileInputs.cache
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.MvcApplicationPartsAssemblyInfo.cs
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.MvcApplicationPartsAssemblyInfo.cache
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/staticwebassets.build.json
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/staticwebassets.development.json
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/scopedcss/bundle/BlogyBackend.styles.css
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.CopyComplete
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.dll
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/refint/BlogyBackend.dll
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.pdb
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.genruntimeconfig.cache
+E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/ref/BlogyBackend.dll
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.AssemblyReference.cache
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.AssemblyInfoInputs.cache
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.AssemblyInfo.cs
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.CoreCompileInputs.cache
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.MvcApplicationPartsAssemblyInfo.cs
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.dll
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/refint/BlogyBackend.dll
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.pdb
+>>>>>>> 5134204b02aab17cd9b969bea11eae1ab7b32cb4
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/appsettings.Development.json
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/appsettings.json
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/BlogyBackend.exe
@@ -295,6 +370,7 @@ C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/ru/Microsoft.CodeAna
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll
 C:/Users/younis/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
+<<<<<<< HEAD
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.AssemblyReference.cache
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.GeneratedMSBuildEditorConfig.editorconfig
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.AssemblyInfoInputs.cache
@@ -302,13 +378,20 @@ C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.Assembl
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.CoreCompileInputs.cache
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.MvcApplicationPartsAssemblyInfo.cs
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.MvcApplicationPartsAssemblyInfo.cache
+=======
+>>>>>>> 5134204b02aab17cd9b969bea11eae1ab7b32cb4
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/staticwebassets.build.json
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/staticwebassets.development.json
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/scopedcss/bundle/BlogyBackend.styles.css
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.CopyComplete
+<<<<<<< HEAD
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.dll
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/refint/BlogyBackend.dll
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.pdb
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.genruntimeconfig.cache
 C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/ref/BlogyBackend.dll
 >>>>>>> ac0b5e919114a1b356f8f065207a5e377ec463c7
+=======
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.genruntimeconfig.cache
+C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/ref/BlogyBackend.dll
+>>>>>>> 5134204b02aab17cd9b969bea11eae1ab7b32cb4

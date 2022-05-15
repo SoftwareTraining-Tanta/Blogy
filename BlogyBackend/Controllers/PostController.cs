@@ -68,4 +68,24 @@ public class PostController : ControllerBase
         _post.Delete(id);
         return Ok();
     }
+    [HttpPost("pinPost/{username}/{postId}")]
+    public ActionResult PinPost(string username, int postId)
+    {
+        Post _post = new();
+        _post.PinPost(username, postId);
+        return Ok("Done");
+    }
+    [HttpPut("updateReachCount/{id}")]
+    public ActionResult UpdateReachCount(int id)
+    {
+        Post _post = new();
+        _post.UpdateReachCount(id);
+        return Ok();
+    }
+    // [HttpGet("GetPinnedPosts/{username}")]
+    // public ActionResult GetPinnedPosts(string username)
+    // {
+    //     Post _post = new();
+    //     return Ok(_post.GetPinnedPosts(username));
+    // }
 }

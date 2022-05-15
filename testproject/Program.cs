@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+
+
+Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
+{
+    webBuilder.UseStartup<Startup>();
+}).Build().Run();
+

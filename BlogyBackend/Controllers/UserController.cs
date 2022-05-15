@@ -3,7 +3,6 @@ using BlogyBackend.Dtos;
 using BlogyBackend.Models;
 using BlogyBackend.Shared;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
