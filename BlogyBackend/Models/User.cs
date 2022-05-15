@@ -130,15 +130,17 @@ namespace BlogyBackend.Models
             {
                 User? user = db.Users?.FirstOrDefault(u => u.Username == username);
                 Plan? plan = db.Plans?.FirstOrDefault(p => p.Username == username);
+                List<Comment> comments = db.Comments?.Where(c => c.Username == username).ToList()!;
                 db.Plans?.Remove(plan!);
                 db.Users?.Remove(user!);
+                db.Comments?.RemoveRange(comments);
                 db.SaveChanges();
             }
         }
 
         public string Register(User user)
         {
-            string verficationCode = new Random().Next(0, 999999).ToString();
+            string verficationCode = new Random().Next(100000, 999999).ToString();
             if (User.Exists(user.Username))
                 throw new Exception(MyExceptions.UsernameAlreadyExists);
             if (TempUser.Exists(user.Username))
