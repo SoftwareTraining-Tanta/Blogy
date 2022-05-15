@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Dashboard from '../DashBoard/Dashboard'
 
 
 function AdminPage() {
+
+
     return (
         <>
             <div class="container-box">
@@ -13,7 +15,7 @@ function AdminPage() {
 
                         <div class="card my-card">
                             <div class="card-body">
-                                <span class="number"> 102 </span>
+                                <span class="number"> 123 </span>
                                 <span class="title"> Registerd users </span>
                             </div>
                         </div>
