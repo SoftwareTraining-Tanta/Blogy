@@ -96,21 +96,21 @@ namespace BlogyBackend.Models
         {
             using (blogyContext db = new())
             {
-
+                User? user = db.Users.FirstOrDefault(u => u.Username == username);
+                Post? post = db.Posts.FirstOrDefault(p => p.Id == id);
+                user!.Posts.Add(post!);
+                post!.Usernames.Add(user!);
+                db.SaveChanges();
             }
         }
-        // public List<Post> GetPinnedPosts(string username)
-        // {
-        //     using (blogyContext db = new())
-        //     {
-        //         List<PostUser> postUsers = db.PostUsers.Where(p => p.Username == username).ToList();
-        //         List<Post> pinnedPosts = new();
-        //         foreach (PostUser postUser in postUsers)
-        //         {
-        //             pinnedPosts.Add(db.Posts.Where(p => p.Id == postUser.PostId).FirstOrDefault()!);
-        //         }
-        //         return pinnedPosts;
-        //     }
-        // }
+        public List<Post> GetPinnedPosts(string username)
+        {
+            using (blogyContext db = new())
+            {
+                List<Post> pinnedPosts = db.Users.Include(u => u.Posts).FirstOrDefault(u => u.Username == username)?.Posts.ToList()!;
+
+                return pinnedPosts;
+            }
+        }
     }
 }
