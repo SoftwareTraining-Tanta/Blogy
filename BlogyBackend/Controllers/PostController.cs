@@ -13,9 +13,9 @@ public class PostController : ControllerBase
     [HttpPost]
     public ActionResult Add(PostDto postDto)
     {
-        var roles = ((ClaimsIdentity)User.Identity!).Claims
-                .Where(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value);
+        //     var roles = ((ClaimsIdentity)User.Identity!).Claims
+        //             .Where(c => c.Type == ClaimTypes.Role)
+        //             .Select(c => c.Value);
         User _user = new();
         User user = _user.Get(postDto.Username!);
         Post _post = new();
