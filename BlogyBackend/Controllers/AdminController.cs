@@ -94,12 +94,12 @@ public class AdminController : ControllerBase
             return BadRequest(ex);
         }
     }
-    [HttpGet("OnlineUsers/{limit}")]
+    [HttpGet("OnlineUsers/")]
     public ActionResult<int> OnlineUsers( ){
 
         return Admin.getOnlineUsers();
     }
-    [HttpGet("SignedUpUsers/{limit}")]
+    [HttpGet("SignedUpUsers/")]
     public ActionResult<int> SignedUpUsers(){
 
         return Admin.SignedUpUsers();
