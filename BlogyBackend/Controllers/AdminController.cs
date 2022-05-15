@@ -12,7 +12,7 @@ namespace BlogyBackend.Controllers;
 
 [ApiController]
 [Route("api/admins")]
-[Authorize(Roles.adminstrator)]
+[Authorize(Roles.Admin)]
 public class AdminController : ControllerBase
 {
     [HttpPost]
@@ -52,7 +52,7 @@ public class AdminController : ControllerBase
             {
                 var claims = new List<Claim>{
                         new Claim(ClaimTypes.Name,username),
-                        new Claim(ClaimTypes.Role,Roles.adminstrator),
+                        new Claim(ClaimTypes.Role,Roles.Admin),
                         new Claim(ClaimTypes.Email,admin.Email!)
                     };
                 var identity = new ClaimsIdentity(claims, Authentications.AdminAuthentication);

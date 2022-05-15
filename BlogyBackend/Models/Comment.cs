@@ -30,16 +30,24 @@ namespace BlogyBackend.Models
         public virtual Post Post { get; set; } = null!;
         [ForeignKey(nameof(Username))]
         [InverseProperty(nameof(User.Comments))]
-        public virtual User? UsernameNavigation { get; set; } 
+        public virtual User? UsernameNavigation { get; set; }
         public string? AdminUsername { get; set; }
         public Admin? admin { get; set; }
 
-        public void Add(Comment comment)
+        public static void Add(Comment comment)
         {
             using (blogyContext db = new())
             {
                 db.Comments.Add(comment);
                 db.SaveChanges();
+            }
+        }
+
+        public static List<Comment> GetLimit(int limit)
+        {
+            using (blogyContext db = new())
+            {
+                return db.Comments.Take(limit).ToList();
             }
         }
     }
