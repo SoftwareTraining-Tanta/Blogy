@@ -41,8 +41,6 @@ public partial class Admin
         {
             db.Admins.Add(admin);
             db.SaveChanges();
-
-
         }
 
     }

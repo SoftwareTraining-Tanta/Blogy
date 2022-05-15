@@ -82,10 +82,10 @@ public class PostController : ControllerBase
         _post.UpdateReachCount(id);
         return Ok();
     }
-    // [HttpGet("GetPinnedPosts/{username}")]
-    // public ActionResult GetPinnedPosts(string username)
-    // {
-    //     Post _post = new();
-    //     return Ok(_post.GetPinnedPosts(username));
-    // }
+    [HttpGet("GetPinnedPosts/{username}")]
+    public ActionResult GetPinnedPosts(string username)
+    {
+        Post _post = new();
+        return Ok(_post.GetPinnedPosts(username).AsDto());
+    }
 }

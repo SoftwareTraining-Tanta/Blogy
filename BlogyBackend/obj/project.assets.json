@@ -1429,11 +1429,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\EL HARAMAIN\\.nuget\\packages\\": {}
+=======
+    "/home/mab/.nuget/packages/": {}
+>>>>>>> 1b06c6bbd89401a1b400a082c4b8f0b9cb8c2003
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
       "projectName": "BlogyBackend",
       "projectPath": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
@@ -1442,6 +1447,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\EL HARAMAIN\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "/home/mab/Desktop/Blogy/BlogyBackend/BlogyBackend.csproj",
+      "projectName": "BlogyBackend",
+      "projectPath": "/home/mab/Desktop/Blogy/BlogyBackend/BlogyBackend.csproj",
+      "packagesPath": "/home/mab/.nuget/packages/",
+      "outputPath": "/home/mab/Desktop/Blogy/BlogyBackend/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/mab/.nuget/NuGet/NuGet.Config"
+>>>>>>> 1b06c6bbd89401a1b400a082c4b8f0b9cb8c2003
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1519,7 +1534,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
+>>>>>>> 1b06c6bbd89401a1b400a082c4b8f0b9cb8c2003
       }
     }
   },

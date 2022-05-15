@@ -8,9 +8,17 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BlogyBackend
 build_property.RootNamespace = BlogyBackend
+<<<<<<< HEAD
 build_property.ProjectDir = E:\my_future\Projects\Blogy\BlogyBackend\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = E:\my_future\Projects\Blogy\BlogyBackend
+=======
+build_property.ProjectDir = /home/mab/Desktop/Blogy/BlogyBackend/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/mab/Desktop/Blogy/BlogyBackend
+>>>>>>> 1b06c6bbd89401a1b400a082c4b8f0b9cb8c2003
 build_property._RazorSourceGeneratorDebug = 
