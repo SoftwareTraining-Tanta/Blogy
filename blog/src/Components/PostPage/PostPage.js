@@ -7,6 +7,7 @@ function PostPage() {
     // Statues
     const [data, setData] = useState({})
     const [commentPost, setCommentPost] = useState()
+    const username = sessionStorage.getItem('username')
 
     // Params to catch id of post in url 
     let post = useParams()
@@ -21,13 +22,13 @@ function PostPage() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        // fetch("https://localhost:5000/api/comments/putcomment", {
-        //     method: "POST",
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String }),
-        // }).
-        //     then(response => response.json()).
-        //     then(json => console.log(json));
+        fetch("https://localhost:5000/api/comments/putcomment", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: commentPost, username: username, postId: post.id, adminUsername: null, isAdmin: false }),
+        }).
+            then(response => response.json()).
+            then(json => console.log(json));
         window.location.href = `/postpage/${post.id}`
     }
 
