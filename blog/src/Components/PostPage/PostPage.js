@@ -21,7 +21,7 @@ function PostPage() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        // fetch("https://localhost:5000/api/posts", {
+        // fetch("https://localhost:5000/api/comments/putcomment", {
         //     method: "POST",
         //     headers: { 'Content-Type': 'application/json' },
         //     body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: 'admin', image: base64String }),

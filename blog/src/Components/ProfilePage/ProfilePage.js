@@ -13,7 +13,7 @@ function ProfilePage() {
     useEffect(() => {
         fetch(`https://localhost:5000/api/users/${user.username}`)
             .then(response => response.json())
-            .then(json => console.log(json))
+            .then(json => setData(json))
     }, [])
 
     return (
