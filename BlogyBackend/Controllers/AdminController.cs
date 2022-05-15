@@ -26,11 +26,12 @@ public class AdminController : ControllerBase
     [HttpGet]
     public async Task<AdminDto?> Get([FromQuery] string username)
     {
-        AdminDto? admin=new();
+        AdminDto? admin = new();
         Console.Write(User.Identity.Name);
 
-        if(User.Identity.IsAuthenticated){
-         admin = await Task.Run(() => (Admin.Get(username)));
+        if (User.Identity.IsAuthenticated)
+        {
+            admin = await Task.Run(() => (Admin.Get(username)));
         }
         return admin;
 
@@ -91,31 +92,36 @@ public class AdminController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(ex);
+            return BadRequest(ex.Message);
         }
     }
     [HttpGet("OnlineUsers/")]
-    public ActionResult<int> OnlineUsers( ){
+    public ActionResult<int> OnlineUsers()
+    {
 
         return Admin.getOnlineUsers();
     }
     [HttpGet("SignedUpUsers/")]
-    public ActionResult<int> SignedUpUsers(){
+    public ActionResult<int> SignedUpUsers()
+    {
 
         return Admin.SignedUpUsers();
     }
-        [HttpGet("MostInteractedPost/")]
-    public ActionResult<Post> BestPost(){
+    [HttpGet("MostInteractedPost/")]
+    public ActionResult<Post> BestPost()
+    {
 
         return Admin.PostWithMostInteraction();
     }
-            [HttpGet("MostReach/")]
-    public ActionResult<int> NUmberOfMostReach(){
+    [HttpGet("MostReach/")]
+    public ActionResult<int> NUmberOfMostReach()
+    {
 
         return Admin.NumberOfMostReach();
     }
-            [HttpGet("MostReachPosts/{limit}/")]
-    public ActionResult<List<Post>> NumberOfMostReach(int limit){
+    [HttpGet("MostReachPosts/{limit}/")]
+    public ActionResult<List<Post>> NumberOfMostReach(int limit)
+    {
 
         return Admin.MostReachPosts(limit);
     }
