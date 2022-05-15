@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using BlogyBackend.Shared;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using CustomPolicyProvider;
 
 public class Startup
 {
@@ -11,6 +13,9 @@ public class Startup
         var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // services.AddSingleton<ShopyCtx>();
+        services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
+        services.AddMvc();
+
         services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         services.AddSwaggerGen();
@@ -34,7 +39,13 @@ public class Startup
             });
         });
 
-        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        services.AddAuthentication(options=>
+        {options.DefaultScheme=CookieAuthenticationDefaults.AuthenticationScheme;
+        
+        
+        }
+        
+        )
         .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, Authentications.user, options =>
         {
             options.Cookie.Name = Authentications.user;
