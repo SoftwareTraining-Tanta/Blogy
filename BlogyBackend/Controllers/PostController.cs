@@ -19,23 +19,23 @@ public class PostController : ControllerBase
         User _user = new();
         User user = _user.Get(postDto.Username!);
         Post _post = new();
-        foreach (string role in roles)
-        {
-            if (role == Roles.Premium && user.PostCount >= 2)
-                throw new Exception("User has reached the limit of posts");
-            if (role == Roles.Premium && user.PostCount < 2)
-            {
-                _user.IncrementPostCount(postDto.Username!);
-                _post.Add(postDto.AsNormal());
-                return Ok("Done");
-            }
-            if (role == Roles.Admin)
-            {
-                _post.Add(postDto.AsNormal());
-                return Ok("Done");
-            }
-        }
-        return NotFound("User not authorized");
+        // foreach (string role in roles)
+        // {
+        //     if (role == Roles.Premium && user.PostCount >= 2)
+        //         throw new Exception("User has reached the limit of posts");
+        //     if (role == Roles.Premium && user.PostCount < 2)
+        //     {
+        //         _user.IncrementPostCount(postDto.Username!);
+        //         return Ok("Done");
+        //     }
+        //     if (role == Roles.Admin)
+        //     {
+        //         _post.Add(postDto.AsNormal());
+        //     }
+        // }
+        _post.Add(postDto.AsNormal());
+        return Ok("Done");
+        // return NotFound("User not authorized");
     }
     [HttpGet("limit/{limit}")]
     // [AllowAnonymous]

@@ -17,17 +17,20 @@ public class CommentController : ControllerBase
         var roles = ((ClaimsIdentity)User.Identity!).Claims
                 .Where(c => c.Type == ClaimTypes.Role)
                 .Select(c => c.Value);
-        foreach (var role in roles)
-        {
-            if (role == Roles.Admin || role == Roles.Premium || _post.IsAdmin)
-            {
-                Comment.Add(commentDto.AsNormal());
-                return Ok("Done");
-            }
-            if (!_post.IsAdmin)
-                continue;
-        }
-        return BadRequest("Error adding comment , User not authorized");
+        // foreach (var role in roles)
+        // {
+        //     if (role == Roles.Admin || role == Roles.Premium || _post.IsAdmin)
+        //     {
+        //         Comment.Add(commentDto.AsNormal());
+        //         return Ok("Done");
+
+        //     }
+        //     if (!_post.IsAdmin)
+        //         continue;
+        // }
+        Comment.Add(commentDto.AsNormal());
+        return Ok("Done");
+        // return BadRequest("Error adding comment , User not authorized");
     }
     [HttpGet("limit/{limit}")]
     public ActionResult GetLimit(int limit)
