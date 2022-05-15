@@ -11,6 +11,15 @@ function ListOfUsers() {
             .then(json => setData(json))
     }, [])
 
+    const deleteUser = (username) =>{
+        fetch(`https://localhost:5000/api/users/Delete/${username}`, {
+            method: "DELETE",
+            headers: { 'Content-Type': 'application/json' },
+        }).
+            then(response => response.text()).
+            then(json => console.log(json));
+    }
+
     return (
         <>
 
@@ -27,7 +36,7 @@ function ListOfUsers() {
                                         <div class="card-body">
                                             <h5 class="card-title">{i.username}</h5>
                                             <a href="#" class="btn btn-primary">Send e-mail</a>
-                                            <a href="#" class="btn btn-danger">Remove user</a>
+                                            <button onClick={deleteUser(i.username)} class="btn btn-danger">Remove user</button>
                                         </div>
                                     </div>
                                 </div>
