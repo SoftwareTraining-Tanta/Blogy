@@ -132,16 +132,16 @@ public class UserController : ControllerBase
     // [Authorize(Roles = Roles.Admin)]
     public ActionResult Delete(string username)
     {
-        try
-        {
-            User _user = new();
-            _user.Delete(username);
-            return Ok("User deleted successfully");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        // try
+        // {
+        User _user = new();
+        _user.Delete(username);
+        return Ok("User deleted successfully");
+        // }
+        // catch (Exception ex)
+        // {
+        //return BadRequest(ex.Message);
+        // }
     }
 
     [HttpPost("logout")]

@@ -31,10 +31,10 @@ public class CommentController : ControllerBase
         return Ok("Done");
         // return BadRequest("Error adding comment , User not authorized");
     }
-    [HttpGet("limit/{limit}")]
-    public ActionResult GetLimit(int limit)
+    [HttpGet("limit/{limit}/{postId}")]
+    public ActionResult GetLimit(int limit, int postId)
     {
-        return Ok(Comment.GetLimit(limit));
+        return Ok(Comment.GetLimit(limit, postId));
     }
 
 }
