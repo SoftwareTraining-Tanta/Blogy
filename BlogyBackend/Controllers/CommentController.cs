@@ -2,7 +2,6 @@ using System.Security.Claims;
 using BlogyBackend.Dtos;
 using BlogyBackend.Models;
 using BlogyBackend.Shared;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 [Route("api/comments")]
 // [Authorize]
