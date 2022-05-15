@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogyBackend.Models
 {
@@ -73,6 +74,15 @@ namespace BlogyBackend.Models
                 return db.Posts?.Take(limit).ToList()!;
             }
         }
+        public void UpdateReachCount(int id)
+        {
+            using (blogyContext db = new())
+            {
+                Post? post = db.Posts.FirstOrDefault(p => p.Id == id);
+                post!.ReachCount++;
+                db.SaveChanges();
+            }
+        }
 
         public void Delete(int id)
         {
@@ -82,5 +92,25 @@ namespace BlogyBackend.Models
                 db.SaveChanges();
             }
         }
+        public void PinPost(string username, int id)
+        {
+            using (blogyContext db = new())
+            {
+
+            }
+        }
+        // public List<Post> GetPinnedPosts(string username)
+        // {
+        //     using (blogyContext db = new())
+        //     {
+        //         List<PostUser> postUsers = db.PostUsers.Where(p => p.Username == username).ToList();
+        //         List<Post> pinnedPosts = new();
+        //         foreach (PostUser postUser in postUsers)
+        //         {
+        //             pinnedPosts.Add(db.Posts.Where(p => p.Id == postUser.PostId).FirstOrDefault()!);
+        //         }
+        //         return pinnedPosts;
+        //     }
+        // }
     }
 }
