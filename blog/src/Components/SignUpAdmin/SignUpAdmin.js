@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
-function SignUp() {
+function SignUpAdmin() {
+
     // Statues 
     const [name, setName] = useState()
     const [userName, setUserName] = useState()
@@ -9,8 +10,7 @@ function SignUp() {
     const [phone, setPhone] = useState()
     const [password, setPassword] = useState()
     const [base64String, setBase64String] = useState()
-    const [plan, setPlan] = useState()
-    const planChoose = sessionStorage.setItem('plan', plan)
+    const plan = sessionStorage.getItem('Plan')
     const [msgResponse, setMsgResponse] = useState('')
 
     // Convert Image to Base64
@@ -27,32 +27,27 @@ function SignUp() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        sessionStorage.setItem('username', userName)
-        sessionStorage.setItem('isuser',true)
-        sessionStorage.setItem('admin',null)
-        sessionStorage.setItem('isadmin',null)
-        if (plan == 'Basic' || plan == 'Premium') {
-            fetch("https://localhost:5000/api/users/register", {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: userName, name: name, email: email, phone: phone, password: password, profilePicture: base64String, planType: plan })
-            })
-                .then(response => response.text())
-                .then(msg => setMsgResponse(msg))
-
-        } else {
-            alert('Select Plan')
-        }
+        sessionStorage.setItem('admin', userName)
+        sessionStorage.setItem('isadmin', 'true')
+        fetch("https://localhost:5000/api/admins/register", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: userName, name: name, email: email, phone: phone, password: password, profilePicture: base64String })
+        })
+            .then(response => response.text())
+            .then(msg => console.log(msg))
+        window.location.href = '/adminhome'
     }
 
     // Show Messages Error IF There IS
-    useEffect(() => {
-        if (msgResponse.length == 6) {
-            window.location.href = '/verify'
-        } else if (msgResponse != '') {
-            alert(msgResponse)
-        }
-    }, [msgResponse])
+    // useEffect(() => {
+    //     if (msgResponse.length == 6) {
+    //         window.location.href = '/verify'
+    //     } else if (msgResponse != '') {
+    //         alert(msgResponse)
+    //     }
+    // }, [msgResponse])
+
 
     return (
         <>
@@ -90,20 +85,15 @@ function SignUp() {
                     <input type="file" class="form-control" id="picture" required onChange={convertImageToBase64} />
                 </div>
 
-                <select onClick={(x)=>{setPlan(x.target.value)}} class="form-select mb-3" aria-label="Default select example">
-                    <option selected value=''>Open this select menu</option>
-                    <option value='Basic'>Basic</option>
-                    <option value='Preimum'>Preimum</option>
-                </select>
-
                 <div className='d-flex justify-content-between'>
-                    <NavLink className="text-decoration-none fw-bold" to='/signin'>Sign in</NavLink>
+                    <NavLink className="text-decoration-none fw-bold" to='/signinadmin'>Sign in</NavLink>
                     <input type="submit" value='Submit' class="btn btn-primary" />
                 </div>
 
             </form>
+
         </>
     )
 }
 
-export default SignUp
+export default SignUpAdmin

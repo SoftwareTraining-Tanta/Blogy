@@ -4,7 +4,7 @@ function Verification() {
     // Statues
     const username = sessionStorage.getItem('username')
     const [verifyCode, setVerifyCode] = useState()
-    const plan  = sessionStorage.getItem('Plan')
+    const plan  = sessionStorage.getItem('plan')
     const[msgResponse, setMsgResponse] = useState()
 
     // Handle Sumbit Button
@@ -16,6 +16,7 @@ function Verification() {
         }).then(response => response.text())
           .then(json => setMsgResponse(json));
     }
+    console.log(msgResponse)
 
     // Show Messages Error IF There IS
     useEffect(()=>{

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { AiOutlinePushpin } from 'react-icons/ai'
 
-function HomePage() {
+function PinPosts() {
     // Statues
     const [data, setData] = useState([])
     const [titlePost, setTitlePost] = useState()
@@ -10,39 +9,14 @@ function HomePage() {
     const [textSearch, setTextSearch] = useState('')
     const [base64String, setBase64String] = useState()
     const username = sessionStorage.getItem('username')
-    const isuser = sessionStorage.getItem('isuser')
-    const isadmin = sessionStorage.getItem('isadmin')
+    const admin = sessionStorage.getItem('admin')
 
     // Fetch Data All Posts
     useEffect(() => {
-        fetch("https://localhost:5000/api/posts/limit/2000")
+        fetch(`https://localhost:5000/api/posts/GetPinnedPosts/${username}`)
             .then(response => response.json())
             .then(json => setData(json))
     }, [])
-
-    // Convert Image to Base64
-    function convertImageToBase64(x) {
-        var file = x.target.files[0]
-        var reader = new FileReader();
-        console.log("next");
-        reader.onload = function () {
-            setBase64String(reader.result.replace("data:", "").replace(/^.+,/, ""));
-        }
-        reader.readAsDataURL(file);
-    }
-
-    // Handle Sumbit Button
-    const handleSubmit = (x) => {
-        x.preventDefault()
-        fetch("https://localhost:5000/api/posts", {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: username, image: base64String, adminUsername: null, isAdmin: false })
-        }).
-            then(response => response.text()).
-            then(json => console.log(json));
-        window.location.href = '/'
-    }
 
     // Loading Animation
     const loadingAnimation =
@@ -58,38 +32,9 @@ function HomePage() {
         }).then(response => response.text())
             .then(json => console.log(json));
     }
-
-    const pinPost = (id) => {
-        fetch(`https://localhost:5000/api/posts/pinPost/${username}/${id}`, {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' }
-        }).then(response => response.text())
-            .then(json => console.log(json));
-    }
-
     return (
         <>
             <div className="container">
-
-                <div className="row">
-                    {/* Post Form */}
-                    <form className="col-lg-8 d-flex flex-column mb-5 mx-auto border border-3 border-primary rounded py-2 h-100" onSubmit={handleSubmit}>
-                        <h3 className='mx-auto mb-3'>What's on your mind?</h3>
-
-                        <label className='mb-1'>Title:</label>
-                        <input className='mb-3' type='text' onChange={(x) => { setTitlePost(x.target.value) }} />
-
-                        <label className='mb-1'>Content:</label>
-                        <textarea className='mb-3' style={{ height: '100px' }} type='text' onChange={(x) => { setContentPost(x.target.value) }} />
-
-                        <label className='mb-1'>Choose a picture:</label>
-                        <input className='mb-3 form-control' type='file' onChange={convertImageToBase64} />
-
-                        <input className='w-25 mx-auto p-1 border-0 bg-primary text-light rounded-pill' type='submit' value='Post' />
-                    </ form>
-                </div>
-
-                {data.length ? <hr /> : null}
 
                 <div className="row d-flex">
 
@@ -107,14 +52,11 @@ function HomePage() {
                                     <div className="card mb-4">
                                         <img style={{ width: 'auto' }} src={'data:image/png;base64,' + i.image} alt="..." />
                                         <div className="card-body">
-                                            <div className='row d-flex justify-content-end'>
-                                                <AiOutlinePushpin className='fs-3' onClick={() => pinPost(i.id)} style={{cursor:'pointer', width:'fit-content'}}/>
-                                            </div>
                                             <div>{i.username}</div>
                                             <div className="small text-muted">{i.dateTime}</div>
-                                            <h2 className="card-title">{isadmin || isuser ? i.title : i.title.slice(0, 5) + `...`}</h2>
-                                            <p className="card-text">{isadmin || isuser ? i.content : i.content.slice(0, 10) + `...`}</p>
-                                            <NavLink className="btn btn-primary" onClick={() => updateReach(i.id)} to={isadmin || isuser ? `/postpage/${i.id}` : isuser ? `/signin` : `/signinadmin`}>Read more →</NavLink>
+                                            <h2 className="card-title">{username || admin ? i.title : i.title.slice(0, 5) + `...`}</h2>
+                                            <p className="card-text">{username || admin ? i.content : i.content.slice(0, 10) + `...`}</p>
+                                            <NavLink className="btn btn-primary" onClick={() => updateReach(i.id)} to={username ? `/postpage/${i.id}` : `/signin`}>Read more →</NavLink>
                                         </div>
                                     </div>
                                     <div className="col-lg-4"></div>
@@ -143,4 +85,4 @@ function HomePage() {
     )
 }
 
-export default HomePage
+export default PinPosts
