@@ -14,35 +14,35 @@ public class Startup
         services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         services.AddSwaggerGen();
-        services.AddAuthorization(options =>
-        {
+        // services.AddAuthorization(options =>
+        // {
 
-            options.AddPolicy(Roles.Admin,
-                authBuilder =>
-                {
-                    authBuilder.RequireClaim(ClaimTypes.Role, Roles.Admin);
-                });
-            options.AddPolicy(Roles.Premium,
-            authBuilder =>
-            {
-                authBuilder.RequireClaim(ClaimTypes.Role, Roles.Premium);
-            });
-            options.AddPolicy(Roles.Basic,
-             authBuilder =>
-            {
-                authBuilder.RequireClaim(ClaimTypes.Role, Roles.Basic);
-            });
-        });
+        //     options.AddPolicy(Roles.Admin,
+        //         authBuilder =>
+        //         {
+        //             authBuilder.RequireClaim(ClaimTypes.Role, Roles.Admin);
+        //         });
+        //     options.AddPolicy(Roles.Premium,
+        //     authBuilder =>
+        //     {
+        //         authBuilder.RequireClaim(ClaimTypes.Role, Roles.Premium);
+        //     });
+        //     options.AddPolicy(Roles.Basic,
+        //      authBuilder =>
+        //     {
+        //         authBuilder.RequireClaim(ClaimTypes.Role, Roles.Basic);
+        //     });
+        // });
 
-        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, Authentications.user, options =>
-        {
-            options.Cookie.Name = Authentications.user;
-        })
-        .AddCookie(Authentications.AdminAuthentication, options =>
-        {
-            options.Cookie.Name = Authentications.AdminAuthentication;
-        });
+        // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        // .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, Authentications.user, options =>
+        // {
+        //     options.Cookie.Name = Authentications.user;
+        // })
+        // .AddCookie(Authentications.AdminAuthentication, options =>
+        // {
+        //     options.Cookie.Name = Authentications.AdminAuthentication;
+        // });
         services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins,
@@ -53,6 +53,7 @@ public class Startup
                                                   .AllowAnyMethod();
                           });
 });
+
     }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {

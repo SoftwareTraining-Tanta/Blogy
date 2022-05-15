@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogyBackend.Controllers;
 [ApiController]
 [Route("api/users")]
-[Authorize(Roles = $"{Roles.Admin},{Roles.Basic},{Roles.Premium}")]
+// [Authorize(Roles = $"{Roles.Admin},{Roles.Basic},{Roles.Premium}")]
 public class UserController : ControllerBase
 {
     [HttpPost]
-    [AllowAnonymous]
+    // [AllowAnonymous]
     public ActionResult Add(UserDto userDto)
     {
 
@@ -29,7 +29,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("limit/{limit}")]
-    [Authorize(Roles = $"{Roles.Admin},{Roles.Premium},{Roles.Basic}")]
+    // [Authorize(Roles = $"{Roles.Admin},{Roles.Premium},{Roles.Basic}")]
 
     public ActionResult<List<User>> Get(int limit)
     {
@@ -39,7 +39,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{username}")]
-    [Authorize(Roles = $"{Roles.Admin},{Roles.Premium},{Roles.Basic}")]
+    // [Authorize(Roles = $"{Roles.Admin},{Roles.Premium},{Roles.Basic}")]
     public ActionResult Get(string username)
     {
         User _user = new();
@@ -60,7 +60,7 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("register")]
-    [AllowAnonymous]
+    // [AllowAnonymous]
     public ActionResult Register(UserDto userDto)
     {
         try
@@ -77,7 +77,7 @@ public class UserController : ControllerBase
 
 
     [HttpPost("verify/{username}/{verificationCode}/{planType}")]
-    [AllowAnonymous]
+    // [AllowAnonymous]
     public ActionResult Verify(string username, string verificationCode, string planType)
     {
         try
@@ -92,7 +92,7 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("login/{username}/{password}")]
-    [AllowAnonymous]
+    // [AllowAnonymous]
     public async Task<ActionResult> Login(string username, string password)
     {
         try
@@ -129,7 +129,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("Delete/{username}")]
-    [Authorize(Roles = Roles.Admin)]
+    // [Authorize(Roles = Roles.Admin)]
     public ActionResult Delete(string username)
     {
         try
