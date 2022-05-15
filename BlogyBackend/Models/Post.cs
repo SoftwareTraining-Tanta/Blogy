@@ -27,6 +27,8 @@ namespace BlogyBackend.Models
         [Column("username")]
         [StringLength(30)]
         public string? Username { get; set; }
+        [Column("reachCount")]
+        public int ReachCount { get; set; }
         [Column("isAdmin")]
         public bool IsAdmin { get; set; }
         [Column("image", TypeName = "longblob")]
