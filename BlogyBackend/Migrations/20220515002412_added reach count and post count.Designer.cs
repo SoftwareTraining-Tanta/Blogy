@@ -3,6 +3,7 @@ using System;
 using BlogyBackend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogyBackend.Migrations
 {
     [DbContext(typeof(blogyContext))]
-    partial class blogyContextModelSnapshot : ModelSnapshot
+    [Migration("20220515002412_added reach count and post count")]
+    partial class addedreachcountandpostcount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,10 +154,6 @@ namespace BlogyBackend.Migrations
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("isAdmin");
 
-                    b.Property<int>("ReachCount")
-                        .HasColumnType("int")
-                        .HasColumnName("reachCount");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -258,10 +256,6 @@ namespace BlogyBackend.Migrations
                         .HasColumnType("varchar(13)")
                         .HasColumnName("phone");
 
-                    b.Property<int>("PostCount")
-                        .HasColumnType("int")
-                        .HasColumnName("postCount");
-
                     b.Property<byte[]>("ProfilePicture")
                         .HasColumnType("longblob")
                         .HasColumnName("profilePicture");
@@ -323,14 +317,12 @@ namespace BlogyBackend.Migrations
                     b.HasOne("BlogyBackend.Models.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("comments_ibfk_2");
 
                     b.HasOne("BlogyBackend.Models.User", "UsernameNavigation")
                         .WithMany("Comments")
                         .HasForeignKey("Username")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("comments_ibfk_1");
 
                     b.Navigation("Post");
@@ -349,7 +341,6 @@ namespace BlogyBackend.Migrations
                     b.HasOne("BlogyBackend.Models.User", "UsernameNavigation")
                         .WithMany("Plans")
                         .HasForeignKey("Username")
-                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired()
                         .HasConstraintName("plans_ibfk_1");
 
@@ -378,7 +369,6 @@ namespace BlogyBackend.Migrations
                     b.HasOne("BlogyBackend.Models.User", null)
                         .WithMany()
                         .HasForeignKey("Username")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("pinPosts_ibfk_1");
                 });

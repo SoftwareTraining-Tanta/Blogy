@@ -31,7 +31,7 @@ namespace BlogyBackend.Models
             .Build();
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql(configuration.GetConnectionString("myDb3"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
+                optionsBuilder.UseMySql(configuration.GetConnectionString("myDb1"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
             }
         }
 
@@ -45,13 +45,13 @@ namespace BlogyBackend.Models
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.PostId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("comments_ibfk_2");
 
                 entity.HasOne(d => d.UsernameNavigation)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.Username)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("comments_ibfk_1");
             });
 
@@ -60,7 +60,7 @@ namespace BlogyBackend.Models
                 entity.HasOne(d => d.UsernameNavigation)
                     .WithMany(p => p.Plans)
                     .HasForeignKey(d => d.Username)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("plans_ibfk_1");
             });
 
@@ -74,7 +74,7 @@ namespace BlogyBackend.Models
                     .UsingEntity<Dictionary<string, object>>(
                         "PinPost",
                         l => l.HasOne<Post>().WithMany().HasForeignKey("PostId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("pinPosts_ibfk_2"),
-                        r => r.HasOne<User>().WithMany().HasForeignKey("Username").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("pinPosts_ibfk_1"),
+                        r => r.HasOne<User>().WithMany().HasForeignKey("Username").OnDelete(DeleteBehavior.Cascade).HasConstraintName("pinPosts_ibfk_1"),
                         j =>
                         {
                             j.HasKey("Username", "PostId").HasName("PRIMARY").HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });

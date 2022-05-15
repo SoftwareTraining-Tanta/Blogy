@@ -43,11 +43,11 @@ namespace BlogyBackend.Models
             }
         }
 
-        public static List<Comment> GetLimit(int limit)
+        public static List<Comment> GetLimit(int limit, int postId)
         {
             using (blogyContext db = new())
             {
-                return db.Comments.Take(limit).ToList();
+                return db.Comments.Where(c => c.PostId == postId).Take(limit).ToList();
             }
         }
     }

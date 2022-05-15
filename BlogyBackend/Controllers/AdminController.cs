@@ -12,11 +12,19 @@ namespace BlogyBackend.Controllers;
 
 [ApiController]
 [Route("api/admins")]
+<<<<<<< HEAD
 //[Authorize(Roles.Admin)]
 public class AdminController : ControllerBase
 {
     [HttpPost]
     //[AllowAnonymous]
+=======
+// [Authorize(Roles.Admin)]
+public class AdminController : ControllerBase
+{
+    [HttpPost]
+    // [AllowAnonymous]
+>>>>>>> 97d39c198d9659170dc2200d1bfaf16cbcc0b5b6
     public async Task<ActionResult> Add(AdminDto adminDto)
     {
 
@@ -43,7 +51,11 @@ public class AdminController : ControllerBase
         return Admin.Get(username);
     }
 
+<<<<<<< HEAD
     //[AllowAnonymous]
+=======
+    // [AllowAnonymous]
+>>>>>>> 97d39c198d9659170dc2200d1bfaf16cbcc0b5b6
     [HttpGet("login")]
     public async Task<ActionResult<AdminDto>> Login([FromQuery] string username, [FromQuery] string password)
     {
@@ -82,7 +94,11 @@ public class AdminController : ControllerBase
         return "SignedOut";
     }
     [HttpPost("register")]
+<<<<<<< HEAD
     //[AllowAnonymous]
+=======
+    // [AllowAnonymous]
+>>>>>>> 97d39c198d9659170dc2200d1bfaf16cbcc0b5b6
     public ActionResult<AdminDto> Register([FromBody] AdminDto adminDto)
     {
         try

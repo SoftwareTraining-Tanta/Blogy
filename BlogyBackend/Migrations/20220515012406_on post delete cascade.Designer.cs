@@ -3,6 +3,7 @@ using System;
 using BlogyBackend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogyBackend.Migrations
 {
     [DbContext(typeof(blogyContext))]
-    partial class blogyContextModelSnapshot : ModelSnapshot
+    [Migration("20220515012406_on post delete cascade")]
+    partial class onpostdeletecascade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -323,14 +325,13 @@ namespace BlogyBackend.Migrations
                     b.HasOne("BlogyBackend.Models.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired()
                         .HasConstraintName("comments_ibfk_2");
 
                     b.HasOne("BlogyBackend.Models.User", "UsernameNavigation")
                         .WithMany("Comments")
                         .HasForeignKey("Username")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("comments_ibfk_1");
 
                     b.Navigation("Post");
@@ -349,7 +350,6 @@ namespace BlogyBackend.Migrations
                     b.HasOne("BlogyBackend.Models.User", "UsernameNavigation")
                         .WithMany("Plans")
                         .HasForeignKey("Username")
-                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired()
                         .HasConstraintName("plans_ibfk_1");
 
@@ -378,7 +378,6 @@ namespace BlogyBackend.Migrations
                     b.HasOne("BlogyBackend.Models.User", null)
                         .WithMany()
                         .HasForeignKey("Username")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("pinPosts_ibfk_1");
                 });

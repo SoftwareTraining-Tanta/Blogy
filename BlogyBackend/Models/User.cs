@@ -38,6 +38,8 @@ namespace BlogyBackend.Models
         [Column("password")]
         [StringLength(256)]
         public string Password { get; set; } = null!;
+        [Column("postCount")]
+        public int PostCount { get; set; }
         [Column("profilePicture", TypeName = "longblob")]
         public byte[]? ProfilePicture { get; set; }
         [Column("isSigned")]
@@ -110,6 +112,26 @@ namespace BlogyBackend.Models
             {
                 User? user = db.Users?.FirstOrDefault(u => u.Username == username);
                 user!.IsSigned = !user.IsSigned;
+                db.SaveChanges();
+            }
+        }
+        public void IncrementPostCount(string username)
+        {
+            using (blogyContext db = new())
+            {
+                User? user = db.Users?.FirstOrDefault(u => u.Username == username);
+                user!.PostCount++;
+                db.SaveChanges();
+            }
+        }
+        public void Delete(string username)
+        {
+            using (blogyContext db = new())
+            {
+                User? user = db.Users?.FirstOrDefault(u => u.Username == username);
+                Plan? plan = db.Plans?.FirstOrDefault(p => p.Username == username);
+                db.Plans?.Remove(plan!);
+                db.Users?.Remove(user!);
                 db.SaveChanges();
             }
         }
