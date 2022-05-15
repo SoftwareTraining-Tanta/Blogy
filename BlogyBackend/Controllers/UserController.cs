@@ -38,6 +38,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{username}")]
+    [Authorize(Roles = $"{Roles.Admin},{Roles.Premium},{Roles.Basic}")]
     public ActionResult Get(string username)
     {
         User _user = new();
@@ -125,6 +126,23 @@ public class UserController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpPost("Delete/{username}")]
+    [Authorize(Roles = Roles.Admin)]
+    public ActionResult Delete(string username)
+    {
+        try
+        {
+            User _user = new();
+            _user.Delete(username);
+            return Ok("User deleted successfully");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
     [HttpPost("logout")]
     public async Task<ActionResult> Logout()
     {

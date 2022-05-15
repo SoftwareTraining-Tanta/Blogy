@@ -45,7 +45,7 @@ namespace BlogyBackend.Models
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.PostId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("comments_ibfk_2");
 
                 entity.HasOne(d => d.UsernameNavigation)
