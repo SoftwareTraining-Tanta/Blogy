@@ -27,12 +27,12 @@ public class AdminController : ControllerBase
     public async Task<AdminDto?> Get([FromQuery] string username)
     {
         AdminDto? admin = new();
-        Console.Write(User.Identity.Name);
+        // Console.Write(User.Identity.Name);
 
-        if (User.Identity.IsAuthenticated)
-        {
-            admin = await Task.Run(() => (Admin.Get(username)));
-        }
+        // if (User.Identity.IsAuthenticated)
+        // {
+        admin = await Task.Run(() => (Admin.Get(username)));
+        // }
         return admin;
 
     }
