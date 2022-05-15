@@ -111,21 +111,48 @@ public partial class Admin
     }
 
 
-    public static List<User>  getOnlineUsers(int limit){
+    public static int  getOnlineUsers(){
 
-            using(blogyContext db= new())
-{
-    List<User> users= db.Users.Take(limit).Where(x=>x.IsSigned).ToList();
-    return users;
-}
+        using(blogyContext db= new())
+        {
+        List<User> users= db.Users.Where(x=>x.IsSigned).ToList();
+        return users.Count();
+        }
 
     }
-        public static List<User>  SignedUpUsers(int limit){
+    public static Post PostWithMostInteraction(){
+
+            using(blogyContext db=new()){
+
+                var post=db.Posts.OrderByDescending(x=>x.Comments.Count).First();
+                return post ;
+            }
+
+    }
+     public static int NumberOfMostReach(){
+
+            using(blogyContext db=new()){
+
+                var post=db.Posts.OrderByDescending(x=>x.ReachCount).First();
+                return post!.ReachCount ;
+            }
+
+    }
+         public static List<Post> MostReachPosts(int limit){
+
+            using(blogyContext db=new()){
+
+                var posts=db.Posts.OrderByDescending(x=>x.ReachCount).Take(limit);
+                return posts.ToList() ;
+            }
+
+    }
+    public static int  SignedUpUsers(){
 
             using(blogyContext db= new())
 {
-    List<User> users= db.Users.Take(limit).ToList();
-    return users;
+    List<User> users= db.Users.ToList();
+    return users.Count();
 }
 
     }

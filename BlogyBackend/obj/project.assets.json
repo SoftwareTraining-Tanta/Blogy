@@ -1429,24 +1429,47 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\EL HARAMAIN\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\younis\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> 6c1c9c966b5b7585d175ea2f7e44c30835cd835f
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
       "projectName": "BlogyBackend",
       "projectPath": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
       "packagesPath": "C:\\Users\\EL HARAMAIN\\.nuget\\packages\\",
       "outputPath": "E:\\my_future\\Projects\\Blogy\\BlogyBackend\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
+      "projectName": "BlogyBackend",
+      "projectPath": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\BlogyBackend.csproj",
+      "packagesPath": "C:\\Users\\younis\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\younis\\Desktop\\Blogy\\BlogyBackend\\obj\\",
+>>>>>>> 6c1c9c966b5b7585d175ea2f7e44c30835cd835f
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\EL HARAMAIN\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+        "C:\\Users\\younis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 6c1c9c966b5b7585d175ea2f7e44c30835cd835f
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1519,7 +1542,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+>>>>>>> 6c1c9c966b5b7585d175ea2f7e44c30835cd835f
       }
     }
   },
