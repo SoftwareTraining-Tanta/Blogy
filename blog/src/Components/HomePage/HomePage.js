@@ -34,7 +34,7 @@ function HomePage() {
         fetch("https://localhost:5000/api/posts", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: username, image: base64String, adminUsername: null ,isAdmin: false }),
+            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: username, image: base64String, adminUsername: null ,isAdmin: false })
         }).
             then(response => response.text()).
             then(json => console.log(json));
@@ -43,11 +43,10 @@ function HomePage() {
 
     // Loading Animation
     const loadingAnimation =
-        <div style={{ position: 'absolute', left: '50%', top: '90%', transform: 'translate(-50%, -50%)' }}>
+        <div style={{ position: 'absolute', left: '50%', top: '100%', transform: 'translate(-50%, -50%)' }}>
             <span style={{ fontSize: '25px', marginRight: '10px' }}>Loading</span>
             <div className="spinner-border" role="status"></div>
         </div>
-
 
     return (
         <>
@@ -65,7 +64,7 @@ function HomePage() {
                         <textarea className='mb-3' style={{ height: '100px' }} type='text' onChange={(x) => { setContentPost(x.target.value) }} />
 
                         <label className='mb-1'>Choose a picture:</label>
-                        <input className='mb-3' type='file' onChange={convertImageToBase64} />
+                        <input className='mb-3 form-control' type='file' onChange={convertImageToBase64} />
 
                         <input className='w-25 mx-auto p-1 border-0 bg-primary text-light rounded-pill' type='submit' value='Post' />
                     </ form>
@@ -91,9 +90,9 @@ function HomePage() {
                                         <div className="card-body">
                                             <div>{i.username}</div>
                                             <div className="small text-muted">{i.dateTime}</div>
-                                            <h2 className="card-title">{i.title}</h2>
-                                            <p className="card-text">{i.content}</p>
-                                            <NavLink className="btn btn-primary" to={`/postpage/${i.id}`}>Read more →</NavLink>
+                                            <h2 className="card-title">{username ? i.title : i.title.slice(0, 5) + `...`}</h2>
+                                            <p className="card-text">{username ? i.content : i.content.slice(0, 10) + `...`}</p>
+                                            <NavLink className="btn btn-primary" to={username ? `/postpage/${i.id}` : `/signin`}>Read more →</NavLink>
                                         </div>
                                     </div>
                                     <div className="col-lg-4"></div>

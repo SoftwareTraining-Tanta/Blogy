@@ -13,9 +13,9 @@ public class CommentController : ControllerBase
         User _user = new();
         Post _post = new();
         Post commentPost = _post.Get(commentDto.PostId);
-        var roles = ((ClaimsIdentity)User.Identity!).Claims
-                .Where(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value);
+        // var roles = ((ClaimsIdentity)User.Identity!).Claims
+        //         .Where(c => c.Type == ClaimTypes.Role)
+        //         .Select(c => c.Value);
         // foreach (var role in roles)
         // {
         //     if (role == Roles.Admin || role == Roles.Premium || _post.IsAdmin)

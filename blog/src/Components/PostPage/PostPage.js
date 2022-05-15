@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar'
 
 function PostPage() {
-
+    
     // Statues
     const [data, setData] = useState({})
+    const [dataComments, setDataComments] = useState([])
     const [commentPost, setCommentPost] = useState()
     const username = sessionStorage.getItem('username')
 
@@ -19,13 +20,20 @@ function PostPage() {
             .then(json => setData(json))
     }, [])
 
+    // Fetch Data Of Comments
+    useEffect(() => {
+        fetch(`https://localhost:5000/api/comments/limit/20`)
+            .then(response => response.json())
+            .then(json => setDataComments(json))
+    }, [])
+
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
         fetch("https://localhost:5000/api/comments/putcomment", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: commentPost, username: username, postId: post.id, adminUsername: null, isAdmin: false }),
+            body: JSON.stringify({ content: commentPost, username: username, postId: post.id, adminUsername: null, isAdmin: false })
         }).
             then(response => response.json()).
             then(json => console.log(json));
@@ -60,21 +68,20 @@ function PostPage() {
                                         <input type="submit" class="btn btn-primary w-25" value='Submit' />
                                     </form>
 
+                                    <hr />
+
                                     {/* Comments */}
-                                    <div class="d-flex mb-4">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Commenter Name</div>
-                                            If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                        </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Commenter Name</div>
-                                            When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
-                                        </div>
-                                    </div>
+                                    {dataComments.map((i) => {
+                                        return (
+                                            <div class="d-flex mb-4">
+                                                {/* <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> */}
+                                                <div class="ms-3">
+                                                    <div class="fw-bold">{i.username}</div>
+                                                    {i.content}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
 
                                 </div>
                             </div>

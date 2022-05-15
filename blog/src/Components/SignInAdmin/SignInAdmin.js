@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 
-function SignIn() {
+function SignInAdmin() {
     // Statues
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
@@ -10,8 +10,9 @@ function SignIn() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        sessionStorage.setItem('username',userName)
-        window.location.href = '/'
+        sessionStorage.setItem('admin', userName)
+        sessionStorage.setItem('isadmin', 'true')
+        window.location.href = '/adminhome'
         // console.log(userName, password)
         // fetch(`https://localhost:5000/api/users/login/${userName}/${password}`, {
         //     method: "POST",
@@ -34,15 +35,15 @@ function SignIn() {
             <h2 className='text-center mb-3'>Sign in</h2>
             <form onSubmit={handleSubmit} className='w-50 mx-auto border border-2 border-primary rounded p-3 mb-5'>
                 <div class="mb-3">
-                    <label for="userName" class="form-label">User name</label>
-                    <input type="text" class="form-control" id="userName"  onChange={(x)=>{setUserName(x.target.value)}}/>
+                    <label for="userName" class="form-label">User Name</label>
+                    <input type="text" class="form-control" id="userName" onChange={(x) => { setUserName(x.target.value) }} />
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" onChange={(x)=>{setPassword(x.target.value)}}/>
+                    <input type="password" class="form-control" id="password" onChange={(x) => { setPassword(x.target.value) }} />
                 </div>
                 <div className='d-flex justify-content-between fw-bold'>
-                    <NavLink className="text-decoration-none" to='/signup'>Create account</NavLink>
+                    <NavLink className="text-decoration-none" to='/signupadmin'>Create account</NavLink>
                     <input type="submit" value='Submit' class="btn btn-primary" />
                 </div>
             </form>
@@ -50,4 +51,4 @@ function SignIn() {
     )
 }
 
-export default SignIn
+export default SignInAdmin

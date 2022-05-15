@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
-function SignUp() {
+function SignUpAdmin() {
+
     // Statues 
     const [name, setName] = useState()
     const [userName, setUserName] = useState()
@@ -26,29 +27,27 @@ function SignUp() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        sessionStorage.setItem('username',userName)
-        if (plan == 'Basic' || plan == 'Premium') {
-            fetch("https://localhost:5000/api/users/register", {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: userName, name: name, email: email, phone: phone, password: password, profilePicture: base64String, planType: plan })
-            })
+        sessionStorage.setItem('admin', userName)
+        sessionStorage.setItem('isadmin', 'true')
+        fetch("https://localhost:5000/api/admins/register", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: userName, name: name, email: email, phone: phone, password: password, profilePicture: base64String })
+        })
             .then(response => response.text())
-            .then(msg => setMsgResponse(msg))
-
-        } else {
-            alert('Select Plan')
-        }
+            .then(msg => console.log(msg))
+        window.location.href = '/adminhome'
     }
 
     // Show Messages Error IF There IS
-    useEffect(()=>{
-        if (msgResponse.length == 6) {
-            window.location.href = '/verify'
-        } else if(msgResponse != '') {
-            alert(msgResponse)
-        }
-    },[msgResponse])
+    // useEffect(() => {
+    //     if (msgResponse.length == 6) {
+    //         window.location.href = '/verify'
+    //     } else if (msgResponse != '') {
+    //         alert(msgResponse)
+    //     }
+    // }, [msgResponse])
+
 
     return (
         <>
@@ -86,24 +85,15 @@ function SignUp() {
                     <input type="file" class="form-control" id="picture" required onChange={convertImageToBase64} />
                 </div>
 
-                <div class="mb-3 form-check">
-                    <label style={{ marginLeft: '-20px' }}>Choose a plan:</label>
-                    <br />
-                    <input class="form-check-input ms-2" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={() => { sessionStorage.setItem('Plan','Basic') }} />
-                    <label class="form-check-label " for="flexRadioDefault1">Basic</label>
-                    <br />
-                    <input class="form-check-input ms-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={() => { sessionStorage.setItem('Plan','Premium') }} />
-                    <label class="form-check-label" for="flexRadioDefault2">Premium</label>
-                </div>
-
                 <div className='d-flex justify-content-between'>
-                    <NavLink className="text-decoration-none fw-bold" to='/signin'>Sign in</NavLink>
+                    <NavLink className="text-decoration-none fw-bold" to='/signinadmin'>Sign in</NavLink>
                     <input type="submit" value='Submit' class="btn btn-primary" />
                 </div>
 
             </form>
+
         </>
     )
 }
 
-export default SignUp
+export default SignUpAdmin
