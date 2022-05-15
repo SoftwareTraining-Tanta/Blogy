@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using BlogyBackend.Shared;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using CustomPolicyProvider;
 
 public class Startup
 {
@@ -12,41 +11,32 @@ public class Startup
     {
         var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-        // services.AddSingleton<ShopyCtx>();
-        services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
-        services.AddMvc();
-
+ 
         services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         services.AddSwaggerGen();
-        // services.AddAuthorization(options =>
-        // {
+        services.AddAuthorization(options =>
+        {
 
-        //     options.AddPolicy(Roles.Admin,
-        //         authBuilder =>
-        //         {
-        //             authBuilder.RequireClaim(ClaimTypes.Role, Roles.Admin);
-        //         });
-        //     options.AddPolicy(Roles.Premium,
-        //     authBuilder =>
-        //     {
-        //         authBuilder.RequireClaim(ClaimTypes.Role, Roles.Premium);
-        //     });
-        //     options.AddPolicy(Roles.Basic,
-        //      authBuilder =>
-        //     {
-        //         authBuilder.RequireClaim(ClaimTypes.Role, Roles.Basic);
-        //     });
-        // });
+            options.AddPolicy(Roles.Admin,
+                authBuilder =>
+                {
+                    authBuilder.RequireClaim(ClaimTypes.Role, Roles.Admin);
+                });
+            options.AddPolicy(Roles.Premium,
+            authBuilder =>
+            {
+                authBuilder.RequireClaim(ClaimTypes.Role, Roles.Premium);
+            });
+            options.AddPolicy(Roles.Basic,
+             authBuilder =>
+            {
+                authBuilder.RequireClaim(ClaimTypes.Role, Roles.Basic);
+            });
+        });
 
-<<<<<<< HEAD
-        services.AddAuthentication(options=>
-        {options.DefaultScheme=CookieAuthenticationDefaults.AuthenticationScheme;
-        
-        
-        }
-        
-        )
+
+        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
         .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, Authentications.user, options =>
         {
             options.Cookie.Name = Authentications.user;
@@ -55,17 +45,6 @@ public class Startup
         {
             options.Cookie.Name = Authentications.AdminAuthentication;
         });
-=======
-        // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        // .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, Authentications.user, options =>
-        // {
-        //     options.Cookie.Name = Authentications.user;
-        // })
-        // .AddCookie(Authentications.AdminAuthentication, options =>
-        // {
-        //     options.Cookie.Name = Authentications.AdminAuthentication;
-        // });
->>>>>>> 97d39c198d9659170dc2200d1bfaf16cbcc0b5b6
         services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins,
