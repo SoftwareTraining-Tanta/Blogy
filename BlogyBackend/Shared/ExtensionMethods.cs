@@ -133,7 +133,7 @@ public static class ExtensionMethods
             Email = admin.Email,
             Phone = admin.Phone,
             Password = admin.Password,
-            ProfilePicture = admin.ProfilePicture?.ToBase64()
+            ProfilePicture = admin.ProfilePicture?.ToBase64(),
         };
     }
 
