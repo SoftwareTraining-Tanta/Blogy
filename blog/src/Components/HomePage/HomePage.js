@@ -41,7 +41,13 @@ function HomePage() {
             body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: username, image: base64String, adminUsername: null, isAdmin: false })
         }).
             then(response => response.text()).
+<<<<<<< HEAD
+            then(json => console.log(json));
+        window.location.href = '/'
+//
+=======
             then(json => setMsgResponse(json));
+>>>>>>> bd3e02f610bf962f6ab11ce37d522dbd0e45bd0c
     }
     useEffect(()=>{
         if (msgResponse == 'Done') {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using BlogyBackend.Shared;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using BlogyBackend.Models;
 
 public class Startup
 {
@@ -11,7 +12,7 @@ public class Startup
     {
         var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
- 
+        services.AddSingleton<blogyContext>();
         services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         services.AddSwaggerGen();
