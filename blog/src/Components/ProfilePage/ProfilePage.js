@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom'
 function ProfilePage() {
     // Statues
     const [data, setData] = useState({})
-    const [statusCode , setStatusCode] = useState()
     const isAdmin = sessionStorage.getItem('isadmin')
-    console.log(isAdmin)
+    const isUser = sessionStorage.getItem('isuser')
+    const [msgResponse, setMsgResponse] = useState()
+
     // Params to catch id of post in url 
     let user = useParams()
 
@@ -14,19 +15,37 @@ function ProfilePage() {
     useEffect(() => {
         if (isAdmin == 'true') {
             fetch(`https://localhost:5000/api/admins?username=${user.username}`)
-            .then(response => response.json())
-            .then(json => setData(json))
-        }else{
+                .then(response => response.json())
+                .then(json => setData(json))
+        } else {
             fetch(`https://localhost:5000/api/users/${user.username}`)
-            .then(response => response.json())
-            .then(json => setData(json))
+                .then(response => response.json())
+                .then(json => setData(json))
         }
     }, [])
 
+    const logOut = () =>{
+        fetch(`https://localhost:5000/api/users/logout`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' }
+        }).then(response => response.text())
+          .then(json => setMsgResponse(json));
+    }
+
+    useEffect(()=>{
+        if (msgResponse == 'Logged out successfully') {
+            alert('Logged out successfully')
+            sessionStorage.setItem('username', '')
+            sessionStorage.setItem('isuser', 'false')
+            window.location.href = '/'
+        }
+    },[msgResponse])
+
+
     return (
         <>
-            <div className="d-flex" style={{height: "90%", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                <div className="card " style={{width: "90%", height: "90%", borderRadius: "25px", boxShadow: "0 4px 8px 0 #1b1b1b4d"}}>
+            <div className="d-flex" style={{ height: "90%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div className="card " style={{ width: "90%", height: "90%", borderRadius: "25px", boxShadow: "0 4px 8px 0 #1b1b1b4d" }}>
                     <div className="row">
                         <div className="col-sm-4">
                             <div className="card-body text-center">
@@ -36,11 +55,21 @@ function ProfilePage() {
 
                         <div className="col-sm-8">
                             <div className="card-body">
+
                                 <div className="mt-5 row">
+
                                     <div className="col-sm-5">
                                         <h3>{data.username}</h3>
                                         <h5>{isAdmin == 'true' ? 'Admin' : 'User'}</h5>
                                     </div>
+
+                                    {isUser == 'true' ?                                     
+                                    <div class="col-sm-3">
+                                        <div class="text-center">
+                                            <button onClick={logOut} class="btn btn-primary rounded-pill" role="button">Logout</button>
+                                        </div>
+                                    </div>: null}
+
                                 </div>
 
                                 <div className="mt-5 row justify-content-center">

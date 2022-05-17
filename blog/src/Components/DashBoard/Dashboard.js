@@ -51,9 +51,9 @@ function Dashboard() {
                     </li>
 
                     <li>
-                        <button onClick={logOut}>
+                        <button onClick={logOut} className='btn text-dark'>
                             <BiLogOut className='fs-4' />
-                            <span class="title">Log out</span>
+                            <span class="title ">Log out</span>
                         </button>
                     </li>
                 </ul>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Dashboard from '../DashBoard/Dashboard'
 import {NavLink} from 'react-router-dom'
+import './admin.css'
 
 function ListOfUsers() {
 
