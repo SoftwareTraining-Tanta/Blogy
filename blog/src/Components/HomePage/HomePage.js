@@ -65,19 +65,24 @@ function HomePage() {
     const handleSubmit = (x) => {
         x.preventDefault()
         setPending(true)
-        fetch("https://localhost:5000/api/posts", {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: usernamesend, image: base64String, adminUsername: adminnamesend, isAdmin: isadminbool })
-        }).
-            then(response => response.text()).
-            then(json => setMsgResponse(json));
+        if (isuser == 'true' || isadmin == 'true') {
+            fetch("https://localhost:5000/api/posts", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: usernamesend, image: base64String, adminUsername: adminnamesend, isAdmin: isadminbool })
+            }).
+                then(response => response.text()).
+                then(json => setMsgResponse(json));
+        } else {
+                alert('Sign In Firstly')
+                window.location.href = '/'
+        }
     }
 
     useEffect(() => {
         if (msgResponse == 'Done') {
             window.location.href = '/'
-        }else{
+        } else {
             setPending(false)
         }
     }, [msgResponse])
