@@ -60,22 +60,6 @@ function AdminPage() {
                         
                     </div>
 
-                    {/* <div class="block">
-                        <h2 name="users">All users</h2>
-                        <div class="row" style={{ paddingLeft: '30px' }}>
-                            <div class="col-4">
-                                <div class="card" style={{ width: '18rem', marginBottom: '30px' }}>
-                                    <img class="card-img-top" src="img.png" alt="Card image cap" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">MoHarby12</h5>
-                                        <a href="#" class="btn btn-primary">Send e-mail</a>
-                                        <a href="#" class="btn btn-danger">Remove user</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
-
                 </div>
             </div>
         </>

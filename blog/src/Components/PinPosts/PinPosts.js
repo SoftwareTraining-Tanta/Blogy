@@ -29,6 +29,7 @@ function PinPosts() {
         }).then(response => response.text())
             .then(json => console.log(json));
     }
+    
     return (
         <>
             <div className="container">

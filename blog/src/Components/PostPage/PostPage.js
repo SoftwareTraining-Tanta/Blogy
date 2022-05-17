@@ -3,14 +3,34 @@ import { useParams } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar'
 
 function PostPage() {
-    
+
     // Statues
     const [data, setData] = useState({})
     const [dataComments, setDataComments] = useState([])
     const [commentPost, setCommentPost] = useState()
     const [msgResponse, setMsgResponse] = useState()
-
     const username = sessionStorage.getItem('username')
+    const admin = sessionStorage.getItem('admin')
+    const isuser = sessionStorage.getItem('isuser')
+    const isadmin = sessionStorage.getItem('isadmin')
+    const [usernamesend, setUsernamesend] = useState()
+    const [adminnamesend, setAdminnamesend] = useState()
+
+    useEffect(() => {
+        if (isuser == 'true') {
+            setUsernamesend(admin)
+        } else {
+            setUsernamesend(null)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isadmin == 'true') {
+            setAdminnamesend(admin)
+        } else {
+            setAdminnamesend(null)
+        }
+    }, [])
 
     // Params to catch id of post in url 
     let post = useParams()
@@ -35,17 +55,17 @@ function PostPage() {
         fetch("https://localhost:5000/api/comments/putcomment", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: commentPost, username: username, postId: post.id, adminUsername: null, isAdmin: false })
+            body: JSON.stringify({ content: commentPost, username: usernamesend, postId: post.id, adminUsername: adminnamesend, isAdmin: Boolean(isadmin) })
         }).
             then(response => response.text()).
             then(json => setMsgResponse(json));
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if (msgResponse == 'Done') {
             window.location.href = `/postpage/${post.id}`
         }
-    },[msgResponse])
+    }, [msgResponse])
 
     return (
         <>
@@ -84,7 +104,7 @@ function PostPage() {
                                             <div class="d-flex mb-4">
                                                 {/* <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> */}
                                                 <div class="ms-3">
-                                                    <div class="fw-bold">{i.username}</div>
+                                                    <div class="fw-bold">{i.isAdmin == true ? i.adminUsername : i.username}</div>
                                                     {i.content}
                                                 </div>
                                             </div>
