@@ -251,6 +251,3 @@ E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.genruntim
 E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/ref/BlogyBackend.dll
 >>>>>>> 5134204b02aab17cd9b969bea11eae1ab7b32cb4
 >>>>>>> ac0b5e919114a1b356f8f065207a5e377ec463c7
-E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.dll
-E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\refint\BlogyBackend.dll
-E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.pdb
