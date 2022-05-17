@@ -152,7 +152,7 @@ public class UserController : ControllerBase
         await HttpContext.SignOutAsync();
         return Ok("Logged out successfully");
     }
-    [HttpPost("sendemailtoadmin/{username}")]
+    [HttpPost("sendemailtoadmin/{username}/{message}")]
     public ActionResult SendEmailToAdmin(string username, string message)
     {
         try
