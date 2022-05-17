@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import {AiOutlineHome, AiFillPushpin} from 'react-icons/ai'
+import {AiOutlineHome, AiFillPushpin, AiOutlineContacts} from 'react-icons/ai'
 import {CgProfile} from 'react-icons/cg'
 
 function NavBar() {
@@ -12,7 +12,7 @@ function NavBar() {
             <nav className="navbar navbar-expand-lg navbar-light bg-primary bg-gradient mb-5">
                 <div className="container">
                     {/* Logo */}
-                    <NavLink className="navbar-brand text-light fs-4" to="/">Blogy</NavLink>
+                    <NavLink className="navbar-brand text-light fs-5" to="/">Blogy</NavLink>
 
                     {/* Button For Responsive */}
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,19 +24,24 @@ function NavBar() {
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                            <li className="nav-item d-flex align-items-center">
+                            <li className="nav-item d-flex align-items-center me-2">
                                 <AiOutlineHome className='text-light fs-5'/>
-                                <NavLink className="nav-link active text-light fs-4" aria-current="page" to="/">Home</NavLink>
+                                <NavLink className="nav-link active text-light fs-5" aria-current="page" to="/">Home</NavLink>
                             </li>
 
-                            <li className="nav-item d-flex align-items-center">
+                            <li className="nav-item d-flex align-items-center me-2">
                                 <CgProfile className='text-light fs-5'/>
-                                <NavLink className="nav-link text-light fs-4" to={`/profilepage/${ isadmin == 'true' ? admin : username}`}>Profile</NavLink>
+                                <NavLink className="nav-link text-light fs-5" to={`/profilepage/${ isadmin == 'true' ? admin : username}`}>Profile</NavLink>
+                            </li>
+
+                            <li className="nav-item d-flex align-items-center me-2">
+                                <AiFillPushpin className='text-light fs-5'/>
+                                <NavLink className="nav-link text-light fs-5" to='/pinposts'>Pin Posts</NavLink>
                             </li>
 
                             <li className="nav-item d-flex align-items-center">
-                                <AiFillPushpin className='text-light fs-5'/>
-                                <NavLink className="nav-link text-light fs-4" to='/pinposts'>Pin Posts</NavLink>
+                                <AiOutlineContacts className='text-light fs-5'/>
+                                <NavLink className="nav-link text-light fs-5" to='/contact'>Contact</NavLink>
                             </li>
 
                             <li class="nav-item dropdown d-flex align-self-center">

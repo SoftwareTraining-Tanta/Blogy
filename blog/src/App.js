@@ -14,6 +14,7 @@ import SignUpAdmin from './Components/SignUpAdmin/SignUpAdmin';
 import ListOfUsers from './Components/AdminControlUser/ListOfUsers';
 import PinPosts from './Components/PinPosts/PinPosts';
 import Error from './Components/Error';
+import Contact from './Components/Contact/Contact';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
           <Route exact  path='/verify' element={< Verification />} />
           <Route exact  path='/postpage' element={< PostPage />} />
           <Route exact  path='/postpage/:id' element={< PostPage />} />
+          <Route exact  path='/contact' element={< Contact />} />
           <Route exact  path='*' element={< Error />} />
         </Routes>
       </Router>
