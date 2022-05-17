@@ -52,21 +52,23 @@ public class AdminController : ControllerBase
 
 
             if (admin == null)
-                throw new Exception("Username or password is incorrect");
+                return NotFound("user not found");
             if (Admin.Credentials(username, password))
             {
-                var claims = new List<Claim>{
-                        new Claim(ClaimTypes.Name,username),
-                        new Claim(ClaimTypes.Role,Roles.Admin),
-                        new Claim(ClaimTypes.Email,admin.Email!)
-                    };
-                var identity = new ClaimsIdentity(claims, Authentications.AdminAuthentication);
-                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync(principal);
+                return Ok("admin");
+                // var claims = new List<Claim>{
+                //         new Claim(ClaimTypes.Name,username),
+                //         new Claim(ClaimTypes.Role,Roles.Admin),
+                //         new Claim(ClaimTypes.Email,admin.Email!)
+                //     };
+                // var identity = new ClaimsIdentity(claims, Authentications.AdminAuthentication);
+                // ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                // await HttpContext.SignInAsync(principal);
             }
-            if (admin.Password != password)
-                throw new Exception("Username or password is incorrect");
-            return Ok(admin);
+            // if (admin.Password != password)
+            await Task.CompletedTask;
+            return BadRequest("Username or password is incorrect");
+            // return Ok(admin);
         }
         catch (Exception ex)
         {
