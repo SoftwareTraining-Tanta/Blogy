@@ -147,8 +147,8 @@ public class UserController : ControllerBase
     [HttpPost("logout")]
     public async Task<ActionResult> Logout()
     {
-        User _user = new();
-        _user.UpdateIsSigned(User.Identity!.Name!);
+        // User _user = new();
+        // _user.UpdateIsSigned(User.Identity!.Name!);
         await HttpContext.SignOutAsync();
         return Ok("Logged out successfully");
     }
