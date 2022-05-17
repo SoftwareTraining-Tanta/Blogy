@@ -16,11 +16,8 @@ public class PostController : ControllerBase
         //     var roles = ((ClaimsIdentity)User.Identity!).Claims
         //             .Where(c => c.Type == ClaimTypes.Role)
         //             .Select(c => c.Value);
-        User _user = new();
-        User user = _user.Get(postDto.Username!);
-        if (!BlogyBackend.Models.User.Exists(postDto.Username!))
-            return NotFound("user not found");
         Post _post = new();
+        User _user = new();
         // foreach (string role in roles)
         // {
         //     if (role == Roles.Premium && user.PostCount >= 2&&datetime.now()-user.LastPostDate<=30days)
