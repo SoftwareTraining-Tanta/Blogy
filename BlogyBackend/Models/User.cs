@@ -77,6 +77,13 @@ namespace BlogyBackend.Models
                 return db.Users?.FirstOrDefault(u => u.Username == username)!;
             }
         }
+        public User GetWithPlan(string username)
+        {
+            using (blogyContext db = new())
+            {
+                return db.Users?.Include(u => u.Plans).FirstOrDefault(u => u.Username == username)!;
+            }
+        }
         public List<User> GetLimit(int limit)
         {
             using (blogyContext db = new())
@@ -128,12 +135,13 @@ namespace BlogyBackend.Models
         {
             using (blogyContext db = new())
             {
-                User? user = db.Users?.FirstOrDefault(u => u.Username == username);
+                User? user = db.Users.Include(u => u.Posts)?.FirstOrDefault(u => u.Username == username);
                 Plan? plan = db.Plans?.FirstOrDefault(p => p.Username == username);
                 List<Comment> comments = db.Comments?.Where(c => c.Username == username).ToList()!;
                 db.Plans?.Remove(plan!);
-                db.Users?.Remove(user!);
                 db.Comments?.RemoveRange(comments);
+                user?.Plans.Clear();
+                db.Users?.Remove(user!);
                 db.SaveChanges();
             }
         }

@@ -34,6 +34,6 @@ public class CommentController : ControllerBase
     [HttpGet("limit/{limit}/{postId}")]
     public ActionResult GetLimit(int limit, int postId)
     {
-        return Ok(Comment.GetLimit(limit, postId));
+        return Ok(Comment.GetLimit(limit, postId).AsDto());
     }
 }

@@ -33,7 +33,7 @@ public class UserController : ControllerBase
     public ActionResult<List<User>> Get(int limit)
     {
         User _user = new();
-        List<User> users = _user.GetLimit(limit);
+        List<UserDto> users = _user.GetLimit(limit).AsDto();
         return Ok(users);
     }
 
@@ -99,26 +99,27 @@ public class UserController : ControllerBase
             User _user = new();
             User? user = _user.Get(username);
             if (user == null)
-                throw new Exception("Username or password is incorrect");
+                return NotFound("User not found");
             if (user.Password != password)
-                throw new Exception("Username or password is incorrect");
-            string planType = Plan.Get(user.Username).Type;
-            var claimsUser = new List<Claim>{
-                        new Claim(ClaimTypes.Name,username),
-                        new Claim(ClaimTypes.Role,planType),
-                        new Claim(ClaimTypes.Email,user.Email!)
-                        };
-            var identity = new ClaimsIdentity(claimsUser, Authentications.user);
-            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-            _user.UpdateIsSigned(user.Username);
-            await HttpContext.SignInAsync(principal);
-            var roles = ((ClaimsIdentity)User.Identity!).Claims
-                .Where(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value);
-            foreach (var role in roles)
-            {
-                Console.WriteLine(role.ToString());
-            }
+                return BadRequest("Username or password is incorrect");
+            // string planType = Plan.Get(user.Username).Type;
+            // var claimsUser = new List<Claim>{
+            //             new Claim(ClaimTypes.Name,username),
+            //             new Claim(ClaimTypes.Role,planType),
+            //             new Claim(ClaimTypes.Email,user.Email!)
+            //             };
+            // var identity = new ClaimsIdentity(claimsUser, Authentications.user);
+            // ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+            // _user.UpdateIsSigned(user.Username);
+            // await HttpContext.SignInAsync(principal);
+            // var roles = ((ClaimsIdentity)User.Identity!).Claims
+            //     .Where(c => c.Type == ClaimTypes.Role)
+            //     .Select(c => c.Value);
+            // foreach (var role in roles)
+            // {
+            //     Console.WriteLine(role.ToString());
+            // }
+            await Task.CompletedTask;
             return Ok("user");
         }
         catch (Exception ex)
@@ -150,5 +151,23 @@ public class UserController : ControllerBase
         _user.UpdateIsSigned(User.Identity!.Name!);
         await HttpContext.SignOutAsync();
         return Ok("Logged out successfully");
+    }
+    [HttpPost("sendemailtoadmin/{username}")]
+    public ActionResult SendEmailToAdmin(string username, string message)
+    {
+        try
+        {
+            User _user = new();
+            User user = _user.GetWithPlan(username);
+            if (user == null) return NotFound("User not found");
+            if (user.Plans.First().Type == "Basic")
+                return BadRequest("You can't send email to admin , User not authorized");
+            Smtp.SendMessage(Smtp.From, user.Username, message);
+            return Ok("Email sent successfully");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

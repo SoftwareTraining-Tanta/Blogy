@@ -9,6 +9,7 @@ function HomePage() {
     const [contentPost, setContentPost] = useState()
     const [textSearch, setTextSearch] = useState('')
     const [base64String, setBase64String] = useState()
+    const [msgResponse, setMsgResponse] = useState()
     const username = sessionStorage.getItem('username')
     const isuser = sessionStorage.getItem('isuser')
     const isadmin = sessionStorage.getItem('isadmin')

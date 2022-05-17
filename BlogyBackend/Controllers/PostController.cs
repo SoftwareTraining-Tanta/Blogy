@@ -18,6 +18,8 @@ public class PostController : ControllerBase
         //             .Select(c => c.Value);
         User _user = new();
         User user = _user.Get(postDto.Username!);
+        if (!BlogyBackend.Models.User.Exists(postDto.Username!))
+            return NotFound("user not found");
         Post _post = new();
         // foreach (string role in roles)
         // {
@@ -80,7 +82,7 @@ public class PostController : ControllerBase
     {
         Post _post = new();
         _post.UpdateReachCount(id);
-        return Ok();
+        return Ok("Done");
     }
     [HttpGet("GetPinnedPosts/{username}")]
     public ActionResult GetPinnedPosts(string username)

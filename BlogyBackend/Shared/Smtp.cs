@@ -4,7 +4,7 @@ using System.Text;
 namespace BlogyBackend.Shared;
 public class Smtp
 {
-    public const string From = "shopy.technical@gmail.com";
+    public const string From = "blogy.technical@gmail.com";
 
     public static void SendMessage(string toEmail, string subject, string body)
     {
@@ -16,7 +16,7 @@ public class Smtp
         message.IsBodyHtml = true;
         SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
         System.Net.NetworkCredential basicCredential1 = new
-        System.Net.NetworkCredential("shopy.technical@gmail.com", "5Mu6;2NCsF#pj9Lk");
+        System.Net.NetworkCredential(Smtp.From, "2510203121");
         client.EnableSsl = true;
         client.UseDefaultCredentials = false;
         client.Credentials = basicCredential1;

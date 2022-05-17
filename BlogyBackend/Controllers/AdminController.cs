@@ -125,6 +125,15 @@ public class AdminController : ControllerBase
 
         return Admin.MostReachPosts(limit);
     }
+    [HttpPost("sendtouser")]
+    public ActionResult SendToUser(string username, string subject, string message)
+    {
+        User _user = new();
+        User user = _user.Get(username);
+        if (user == null) return NotFound("User not found");
+        Smtp.SendMessage(user.Email!, subject, message);
+        return Ok("Email sent successfully");
+    }
 
 
 

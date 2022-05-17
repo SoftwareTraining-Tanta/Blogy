@@ -175,6 +175,16 @@ public static class ExtensionMethods
             IsAdmin = commentDto.IsAdmin
         };
     }
+    public static List<CommentDto> AsDto(this ICollection<Comment> comments)
+    {
+        List<CommentDto> commentDtos = new();
+        foreach (Comment comment in comments)
+        {
+            commentDtos.Add(comment.AsDto());
+        }
+        return commentDtos;
+    }
+
     public static Plan AsNormal(this PlanDto planDto)
     {
         return new Plan
