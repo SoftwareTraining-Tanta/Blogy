@@ -29,7 +29,7 @@ function HomePage() {
 
     useEffect(() => {
         if (isuser == 'true') {
-            setUsernamesend(admin)
+            setUsernamesend(username)
         } else {
             setUsernamesend(null)
         }
