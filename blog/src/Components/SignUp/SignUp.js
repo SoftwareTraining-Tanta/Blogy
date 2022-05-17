@@ -39,6 +39,7 @@ function SignUp() {
             })
                 .then(response => response.text())
                 .then(msg => setMsgResponse(msg))
+                console.log(msgResponse);
 
         } else {
             alert('Select Plan')

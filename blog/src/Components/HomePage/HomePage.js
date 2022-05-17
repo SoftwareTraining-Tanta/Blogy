@@ -9,7 +9,6 @@ function HomePage() {
     const [contentPost, setContentPost] = useState()
     const [textSearch, setTextSearch] = useState('')
     const [base64String, setBase64String] = useState()
-    const [msgResponse, setMsgResponse] = useState()
     const username = sessionStorage.getItem('username')
     const isuser = sessionStorage.getItem('isuser')
     const isadmin = sessionStorage.getItem('isadmin')
@@ -41,19 +40,9 @@ function HomePage() {
             body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: username, image: base64String, adminUsername: null, isAdmin: false })
         }).
             then(response => response.text()).
-<<<<<<< HEAD
             then(json => console.log(json));
-        window.location.href = '/'
-//
-=======
-            then(json => setMsgResponse(json));
->>>>>>> bd3e02f610bf962f6ab11ce37d522dbd0e45bd0c
+        window.location.href = '/';
     }
-    useEffect(()=>{
-        if (msgResponse == 'Done') {
-            window.location.href = '/'
-        }
-    },[msgResponse])
 
     // Loading Animation
     const loadingAnimation =
