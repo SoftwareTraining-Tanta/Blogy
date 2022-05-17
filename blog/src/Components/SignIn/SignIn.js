@@ -10,27 +10,25 @@ function SignIn() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        sessionStorage.setItem('username',userName)
-        sessionStorage.setItem('isuser',true)
-        sessionStorage.setItem('admin',null)
-        sessionStorage.setItem('isadmin',null)
-        window.location.href = '/'
-        // console.log(userName, password)
-        // fetch(`https://localhost:5000/api/users/login/${userName}/${password}`, {
-        //     method: "POST",
-        //     headers: { 'Content-Type': 'application/json' }
-        // }).then(response => response.text())
-        //   .then(json => setMsgResponse(json));
+        fetch(`https://localhost:5000/api/users/login/${userName}/${password}`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' }
+        }).then(response => response.text())
+          .then(json => setMsgResponse(json));
     }
 
     // Show Messages Error IF There IS
-    // useEffect(()=>{
-    //     if (msgResponse == 'admin' || msgResponse == 'user') {
-    //         window.location.href = '/'
-    //     } else if(msgResponse != '') {
-    //         alert(msgResponse)
-    //     }
-    // },[msgResponse])
+    useEffect(()=>{
+        if (msgResponse == 'user') {
+            sessionStorage.setItem('username',userName)
+            sessionStorage.setItem('isuser',true)
+            sessionStorage.setItem('admin',null)
+            sessionStorage.setItem('isadmin',null)
+            window.location.href = '/'
+        } else if(msgResponse != '') {
+            alert(msgResponse)
+        }
+    },[msgResponse])
 
     return (
         <>

@@ -190,7 +190,6 @@ C:/Users/younis/Desktop/Blogy/BlogyBackend/obj/Debug/net6.0/ref/BlogyBackend.dll
 >>>>>>> 5134204b02aab17cd9b969bea11eae1ab7b32cb4
 >>>>>>> ac0b5e919114a1b356f8f065207a5e377ec463c7
 >>>>>>> 9dd37068a44a75510d67c6c68e72e45ed3fd25f1
-<<<<<<< HEAD
 E:\my_future\Projects\Blogy\BlogyBackend\bin\Debug\net6.0\appsettings.Development.json
 E:\my_future\Projects\Blogy\BlogyBackend\bin\Debug\net6.0\appsettings.json
 E:\my_future\Projects\Blogy\BlogyBackend\bin\Debug\net6.0\BlogyBackend.exe
@@ -253,7 +252,6 @@ E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\refint\BlogyBackend.dl
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.pdb
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\BlogyBackend.genruntimeconfig.cache
 E:\my_future\Projects\Blogy\BlogyBackend\obj\Debug\net6.0\ref\BlogyBackend.dll
-=======
 /home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Google.Apis.dll
 /home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Google.Apis.Auth.PlatformServices.dll
 /home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Google.Apis.Auth.dll

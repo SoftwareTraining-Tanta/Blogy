@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Dashboard from '../DashBoard/Dashboard'
+import {NavLink} from 'react-router-dom'
 
 function ListOfUsers() {
 
@@ -42,7 +43,7 @@ function ListOfUsers() {
                                         <img class="card-img-top" src={'data:image/png;base64,' + i.profilePicture} alt="Card image cap" />
                                         <div class="card-body">
                                             <h5 class="card-title">{i.username}</h5>
-                                            <a href="#" class="btn btn-primary">Send e-mail</a>
+                                            <NavLink to="/contact" class="btn btn-primary">Send E-mail</NavLink>
                                             <button onClick={()=>deleteUser(i.username)} class="btn btn-danger">Remove user</button>
                                         </div>
                                     </div>
