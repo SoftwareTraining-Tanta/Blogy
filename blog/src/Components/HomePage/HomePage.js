@@ -118,9 +118,9 @@ function HomePage() {
                                             </div>
                                             <div>{i.username}</div>
                                             <div className="small text-muted">{i.dateTime}</div>
-                                            <h2 className="card-title">{isadmin || isuser ? i.title : i.title.slice(0, 5) + `...`}</h2>
-                                            <p className="card-text">{isadmin || isuser ? i.content : i.content.slice(0, 10) + `...`}</p>
-                                            <NavLink className="btn btn-primary" onClick={() => updateReach(i.id)} to={isadmin || isuser ? `/postpage/${i.id}` : isuser ? `/signin` : `/signinadmin`}>Read more →</NavLink>
+                                            <h2 className="card-title">{isadmin == 'true' || isuser == 'true' ? i.title : i.title.slice(0, 5) + `...`}</h2>
+                                            <p className="card-text">{isadmin == 'true' || isuser == 'true' ? i.content : i.content.slice(0, 10) + `...`}</p>
+                                            <NavLink className="btn btn-primary" onClick={() => updateReach(i.id)} to={isadmin == 'true' || isuser == 'true' ? `/postpage/${i.id}` : isuser ? `/signin` : `/signinadmin`}>Read more →</NavLink>
                                         </div>
                                     </div>
                                     <div className="col-lg-4"></div>

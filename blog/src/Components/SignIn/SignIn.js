@@ -22,8 +22,8 @@ function SignIn() {
         if (msgResponse == 'user') {
             sessionStorage.setItem('username',userName)
             sessionStorage.setItem('isuser',true)
-            sessionStorage.setItem('admin',null)
-            sessionStorage.setItem('isadmin',null)
+            sessionStorage.setItem('admin','')
+            sessionStorage.setItem('isadmin',false)
             window.location.href = '/'
         } else if(msgResponse != '') {
             alert(msgResponse)
