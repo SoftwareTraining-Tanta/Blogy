@@ -252,3 +252,9 @@ E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.csproj.Co
 E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/BlogyBackend.genruntimeconfig.cache
 E:/my_future/Projects/Blogy/BlogyBackend/obj/Debug/net6.0/ref/BlogyBackend.dll
 >>>>>>> 9dd37068a44a75510d67c6c68e72e45ed3fd25f1
+/home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Google.Apis.dll
+/home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Google.Apis.Auth.PlatformServices.dll
+/home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Google.Apis.Auth.dll
+/home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Google.Apis.Core.dll
+/home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Google.Apis.Gmail.v1.dll
+/home/mab/Desktop/Blogy/BlogyBackend/bin/Debug/net6.0/Newtonsoft.Json.dll
