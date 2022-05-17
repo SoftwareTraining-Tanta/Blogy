@@ -41,8 +41,19 @@ function HomePage() {
         }).
             then(response => response.text()).
             then(json => console.log(json));
+<<<<<<< HEAD
         window.location.href = '/';
     }
+=======
+        window.location.href = '/'
+    }
+    
+    useEffect(()=>{
+        if (msgResponse == 'Done') {
+            window.location.href = '/'
+        }
+    },[msgResponse])
+>>>>>>> 4de94303f907d4d1b83b2a4fc253525e980e0a85
 
     // Loading Animation
     const loadingAnimation =

@@ -19,11 +19,8 @@ function PinPosts() {
     }, [])
 
     // Loading Animation
-    const loadingAnimation =
-        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-            <span style={{ fontSize: '25px', marginRight: '10px' }}>Loading</span>
-            <div className="spinner-border" role="status"></div>
-        </div>
+    const noPosts =
+        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', fontSize:'30px' }}>There Isn't Posts...</div>
 
     const updateReach = (id) => {
         fetch(`https://localhost:5000/api/posts/updateReachCount/${id}`, {
@@ -62,7 +59,7 @@ function PinPosts() {
                                     <div className="col-lg-4"></div>
                                 </div>
                             )
-                        }) : loadingAnimation}
+                        }) : noPosts}
                     </div>
 
                     {/* Search*/}
