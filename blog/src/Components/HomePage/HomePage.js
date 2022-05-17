@@ -17,6 +17,15 @@ function HomePage() {
     const [pending, setPending] = useState(false)
     const [usernamesend, setUsernamesend] = useState()
     const [adminnamesend, setAdminnamesend] = useState()
+    const [isadminbool, setIsadminbool] = useState()
+
+    useEffect(() => {
+        if (isadmin == 'true') {
+            setIsadminbool(true)
+        } else {
+            setIsadminbool(false)
+        }
+    }, [])
 
     useEffect(() => {
         if (isuser == 'true') {
@@ -59,7 +68,7 @@ function HomePage() {
         fetch("https://localhost:5000/api/posts", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: usernamesend, image: base64String, adminUsername: adminnamesend, isAdmin: Boolean(isadmin) })
+            body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: usernamesend, image: base64String, adminUsername: adminnamesend, isAdmin: isadminbool })
         }).
             then(response => response.text()).
             then(json => setMsgResponse(json));
@@ -148,7 +157,7 @@ function HomePage() {
                                                     <div className='row d-flex justify-content-end'>
                                                         <AiOutlinePushpin className='fs-3' onClick={() => pinPost(i.id)} style={{ cursor: 'pointer', width: 'fit-content' }} />
                                                     </div>
-                                                    <div>{i.username}</div>
+                                                    <div>{i.isAdmin == true ? i.adminUsername : i.username}</div>
                                                     <div className="small text-muted">{i.dateTime}</div>
                                                     <h2 className="card-title">{isadmin == 'true' || isuser == 'true' ? i.title : i.title.slice(0, 5) + `...`}</h2>
                                                     <p className="card-text">{isadmin == 'true' || isuser == 'true' ? i.content : i.content.slice(0, 10) + `...`}</p>
