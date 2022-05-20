@@ -15,33 +15,7 @@ function HomePage() {
     const isuser = sessionStorage.getItem('isuser')
     const isadmin = sessionStorage.getItem('isadmin')
     const [pending, setPending] = useState(false)
-    const [usernamesend, setUsernamesend] = useState()
-    const [adminnamesend, setAdminnamesend] = useState()
-    const [isadminbool, setIsadminbool] = useState()
 
-    useEffect(() => {
-        if (isadmin == 'true') {
-            setIsadminbool(true)
-        } else {
-            setIsadminbool(false)
-        }
-    }, [])
-
-    useEffect(() => {
-        if (isuser == 'true') {
-            setUsernamesend(username)
-        } else {
-            setUsernamesend(null)
-        }
-    }, [])
-
-    useEffect(() => {
-        if (isadmin == 'true') {
-            setAdminnamesend(admin)
-        } else {
-            setAdminnamesend(null)
-        }
-    }, [])
 
     // Fetch Data All Posts
     useEffect(() => {
@@ -64,18 +38,17 @@ function HomePage() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        setPending(true)
         if (isuser == 'true' || isadmin == 'true') {
+            setPending(true)
             fetch("https://localhost:5000/api/posts", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: usernamesend, image: base64String, adminUsername: adminnamesend, isAdmin: isadminbool })
+                body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: isuser == 'true' ? username : null, image: base64String, adminUsername: isadmin == 'true' ? admin : null, isAdmin: isadmin == 'true' ? true : false })
             }).
                 then(response => response.text()).
                 then(json => setMsgResponse(json));
         } else {
                 alert('Sign In Firstly')
-                window.location.href = '/'
         }
     }
 

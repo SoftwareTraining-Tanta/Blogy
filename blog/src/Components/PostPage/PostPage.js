@@ -13,35 +13,8 @@ function PostPage() {
     const admin = sessionStorage.getItem('admin')
     const isuser = sessionStorage.getItem('isuser')
     const isadmin = sessionStorage.getItem('isadmin')
-    const [usernamesend, setUsernamesend] = useState()
-    const [adminnamesend, setAdminnamesend] = useState()
-    const [isadminbool, setIsadminbool] = useState()
     const [pending, setPending] = useState(false)
 
-
-    useEffect(() => {
-        if (isadmin == 'true') {
-            setIsadminbool(true)
-        } else {
-            setIsadminbool(false)
-        }
-    }, [])
-
-    useEffect(() => {
-        if (isuser == 'true') {
-            setUsernamesend(username)
-        } else {
-            setUsernamesend(null)
-        }
-    }, [])
-
-    useEffect(() => {
-        if (isadmin == 'true') {
-            setAdminnamesend(admin)
-        } else {
-            setAdminnamesend(null)
-        }
-    }, [])
 
     // Params to catch id of post in url 
     let post = useParams()
@@ -67,7 +40,7 @@ function PostPage() {
         fetch("https://localhost:5000/api/comments/putcomment", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: commentPost, username: usernamesend, postId: post.id, adminUsername: adminnamesend, isAdmin: isadminbool })
+            body: JSON.stringify({ content: commentPost, username: isuser == 'true' ? username : null, postId: post.id, adminUsername: isadmin == 'true' ? admin : null, isAdmin: isadmin =='true' ? true : false })
         }).
             then(response => response.text()).
             then(json => setMsgResponse(json));
@@ -100,8 +73,9 @@ function PostPage() {
                                 <article>
                                     <header class="mb-4">
                                         <h1 class="fw-bolder mb-1">{data.title}</h1>
+                                        <hr />
                                         <div class="text-muted fst-italic mb-2">{data.dateTime}</div>
-                                        <div class="text-muted fst-bold mb-2">{data.reachCount}</div>
+                                        <div class="text-muted fst-bold mb-2">Reach: {data.reachCount} Users</div>
                                     </header>
                                     <figure class="mb-4"><img class="img-fluid rounded" src={'data:image/png;base64,' + data.image} alt="..." /></figure>
                                     <section class="mb-5">

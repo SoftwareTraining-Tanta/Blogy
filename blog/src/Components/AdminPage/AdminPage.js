@@ -7,6 +7,14 @@ function AdminPage() {
     const [numSignedUpUsers, setNumSignedUpUsers] = useState()
     const [numPosts, setNumPosts] = useState([])
     const [mostInteractedPost, setMostInteractedPost] = useState({})
+    const isadmin = sessionStorage.getItem('isadmin')
+
+
+    useEffect(()=>{
+        if (isadmin != 'true') {
+            window.location.href = '*'
+        }
+    },[])
 
     useEffect(() => {
         fetch("https://localhost:5000/api/admins/SignedUpUsers")

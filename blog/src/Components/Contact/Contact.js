@@ -12,26 +12,31 @@ function Contact() {
 
     const handleSubmit = (x) => {
         x.preventDefault()
-        setPending(true)
-        if (isadmin == 'true') {
-            fetch(`https://localhost:5000/api/admins/sendtouser?username=${userName}&subject=${subject}&message=${msgResponse}`, {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-            }).then(response => response.text())
-                .then(json => setMsgResponse(json))
+        if (isadmin == 'true' || isuser == 'true') {
+            setPending(true)
+            if (isadmin == 'true') {
+                fetch(`https://localhost:5000/api/admins/sendtouser?username=${userName}&subject=${subject}&message=${msgResponse}`, {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                }).then(response => response.text())
+                    .then(json => setMsgResponse(json))
+            } else {
+                fetch(`https://localhost:5000/api/users/sendemailtoadmin/${userName}/${msg}`, {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                }).then(response => response.text())
+                    .then(json => setMsgResponse(json))
+            }
         } else {
-            fetch(`https://localhost:5000/api/users/sendemailtoadmin/${userName}/${msg}`, {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-            }).then(response => response.text())
-                .then(json => setMsgResponse(json))
+            alert('Sign in firstly')
         }
+
     }
 
     useEffect(() => {
         if (msgResponse == 'Email sent successfully') {
             window.location.href = '/contact'
-        }else{
+        } else {
             setPending(false)
         }
     }, [msgResponse])
