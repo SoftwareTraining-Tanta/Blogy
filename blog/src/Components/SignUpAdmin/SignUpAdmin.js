@@ -36,13 +36,12 @@ function SignUpAdmin() {
             body: JSON.stringify({ username: userName, name: name, email: email, phone: phone, password: password, profilePicture: base64String })
         })
             .then(response => response.text())
-            .then(msg => console.log(msg))
-        window.location.href = '/adminhome'
+            .then(msg => setMsgResponse(msg))
     }
 
     // Show Messages Error IF There IS
     useEffect(() => {
-        if (msgResponse.length == 6) {
+        if (msgResponse == 'Done') {
             sessionStorage.setItem('admin', userName)
             sessionStorage.setItem('isadmin', true)
             sessionStorage.setItem('username', null)
