@@ -12,6 +12,7 @@ function SignUp() {
     const [plan, setPlan] = useState()
     const planChoose = sessionStorage.setItem('plan', plan)
     const [msgResponse, setMsgResponse] = useState('')
+    const [msgError, setMsgError] = useState('')
     const [pending, setPending] = useState(false)
 
     // Convert Image to Base64
@@ -28,8 +29,8 @@ function SignUp() {
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        setPending(true)
         if (plan == 'Basic' || plan == 'Premium') {
+            setPending(true)
             fetch("https://localhost:5000/api/users/register", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -38,7 +39,7 @@ function SignUp() {
                 .then(response => response.text())
                 .then(msg => setMsgResponse(msg))
         } else {
-            alert('Select Plan')
+            setMsgError('Select Plan')
         }
     }
 
@@ -51,8 +52,9 @@ function SignUp() {
             sessionStorage.setItem('isadmin', false)
             window.location.href = '/verify'
         } else if (msgResponse != '') {
-            alert(msgResponse)
+            setMsgError(msgResponse)
             setPending(false)
+            setMsgResponse('')
         }
     }, [msgResponse])
 
@@ -68,7 +70,7 @@ function SignUp() {
             {pending ? loadingAnimation :
                 <>
                     <h2 className='text-center mb-3'>Sign up</h2>
-
+                    <h2 className='text-center mb-3'>{msgError}</h2>
                     <form onSubmit={handleSubmit} className='w-50 mx-auto border border-2 border-primary rounded p-3 mb-5'>
 
                         <div class="mb-3">

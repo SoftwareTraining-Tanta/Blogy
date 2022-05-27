@@ -6,6 +6,7 @@ function Verification() {
     const [verifyCode, setVerifyCode] = useState()
     const plan = sessionStorage.getItem('plan')
     const [msgResponse, setMsgResponse] = useState()
+    const [msgError, setMsgError] = useState('')
     const [pending, setPending] = useState(false)
 
 
@@ -26,8 +27,9 @@ function Verification() {
         if (msgResponse == 'User verified successfully') {
             window.location.href = '/'
         } else if (msgResponse == 'Verification code is not correct') {
-            alert("Verification Code isn't correct")
+            setMsgError(msgResponse)
             setPending(false)
+            setMsgResponse('')
         }
     }, [msgResponse])
 
@@ -43,6 +45,8 @@ function Verification() {
             {pending ? loadingAnimation :
                 <>
                     <h2 className='text-center mb-3'>Verification Page</h2>
+                    <h2 className='text-center mb-3'>{msgError}</h2>
+
                     <form onSubmit={handleSubmit} className='w-50 mx-auto border border-2 border-primary rounded p-3 mb-5'>
                         <div class="mb-3">
                             <label for="verifyCode" class="form-label">Verification Code</label>

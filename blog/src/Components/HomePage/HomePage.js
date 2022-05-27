@@ -10,6 +10,7 @@ function HomePage() {
     const [textSearch, setTextSearch] = useState('')
     const [base64String, setBase64String] = useState()
     const [msgResponse, setMsgResponse] = useState()
+    const [errorImg, setErrorImg] = useState('')
     const username = sessionStorage.getItem('username')
     const admin = sessionStorage.getItem('admin')
     const isuser = sessionStorage.getItem('isuser')
@@ -27,28 +28,35 @@ function HomePage() {
     // Convert Image to Base64
     function convertImageToBase64(x) {
         var file = x.target.files[0]
-        var reader = new FileReader();
-        console.log("next");
-        reader.onload = function () {
-            setBase64String(reader.result.replace("data:", "").replace(/^.+,/, ""));
+        if (file.type.split('/')[0] == 'image') {
+            setErrorImg('')
+            var reader = new FileReader();
+            console.log("next");
+            reader.onload = function () {
+                setBase64String(reader.result.replace("data:", "").replace(/^.+,/, ""));
+            }
+            reader.readAsDataURL(file);
+        } else {
+            setErrorImg('You Must Choose Picture')
         }
-        reader.readAsDataURL(file);
     }
 
     // Handle Sumbit Button
     const handleSubmit = (x) => {
         x.preventDefault()
-        if (isuser == 'true' || isadmin == 'true') {
-            setPending(true)
-            fetch("https://localhost:5000/api/posts", {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: isuser == 'true' ? username : null, image: base64String, adminUsername: isadmin == 'true' ? admin : null, isAdmin: isadmin == 'true' ? true : false })
-            }).
-                then(response => response.text()).
-                then(json => setMsgResponse(json));
-        } else {
-                alert('Sign In Firstly')
+        if (errorImg == '') {
+            if (isuser == 'true' || isadmin == 'true') {
+                setPending(true)
+                fetch("https://localhost:5000/api/posts", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title: titlePost, content: contentPost, dateTime: String(new Date()).split('GMT')[0], username: isuser == 'true' ? username : null, image: base64String, adminUsername: isadmin == 'true' ? admin : null, isAdmin: isadmin == 'true' ? true : false })
+                }).
+                    then(response => response.text()).
+                    then(json => setMsgResponse(json));
+            } else {
+                    alert('Sign In Firstly')
+            }
         }
     }
 
@@ -109,6 +117,7 @@ function HomePage() {
 
                                 <label className='mb-1'>Choose a picture:</label>
                                 <input className='mb-3 form-control' type='file' onChange={convertImageToBase64} />
+                                <label className='mb-1'>{errorImg}</label>
 
                                 <input className='w-25 mx-auto p-1 border-0 bg-primary text-light rounded-pill' type='submit' value='Post' />
                             </ form>

@@ -6,6 +6,7 @@ function SignIn() {
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
     const [msgResponse, setMsgResponse] = useState('')
+    const [msgError, setMsgError] = useState('')
     const [pending, setPending] = useState(false)
 
 
@@ -29,8 +30,9 @@ function SignIn() {
             sessionStorage.setItem('isadmin', false)
             window.location.href = '/'
         } else if (msgResponse != '') {
-            alert(msgResponse)
+            setMsgError(msgResponse)
             setPending(false)
+            setMsgResponse('')
         }
     }, [msgResponse])
 
@@ -46,6 +48,7 @@ function SignIn() {
             {pending ? loadingAnimation :
                 <>
                     <h2 className='text-center mb-3'>Sign in</h2>
+                    <h2 className='text-center mb-3'>{msgError}</h2>
                     <form onSubmit={handleSubmit} className='w-50 mx-auto border border-2 border-primary rounded p-3 mb-5'>
                         <div class="mb-3">
                             <label for="userName" class="form-label">User name</label>

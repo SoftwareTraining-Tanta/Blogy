@@ -11,6 +11,7 @@ function SignUpAdmin() {
     const [password, setPassword] = useState()
     const [base64String, setBase64String] = useState()
     const plan = sessionStorage.getItem('Plan')
+    const [msgError, setMsgError] = useState('')
     const [msgResponse, setMsgResponse] = useState('')
     const [pending, setPending] = useState(false)
 
@@ -48,8 +49,9 @@ function SignUpAdmin() {
             sessionStorage.setItem('isuser', false)
             window.location.href = '/adminhome'
         } else if (msgResponse != '') {
-            alert(msgResponse)
+            setMsgError(msgResponse)
             setPending(false)
+            setMsgResponse('')
         }
     }, [msgResponse])
 
@@ -66,6 +68,7 @@ function SignUpAdmin() {
             {pending ? loadingAnimation :
                 <>
                     <h2 className='text-center mb-3'>Sign up</h2>
+                    <h2 className='text-center mb-3'>{msgError}</h2>
 
                     <form onSubmit={handleSubmit} className='w-50 mx-auto border border-2 border-primary rounded p-3 mb-5'>
 
