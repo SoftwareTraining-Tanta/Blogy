@@ -10,11 +10,9 @@ function AdminPage() {
     const isadmin = sessionStorage.getItem('isadmin')
 
 
-    useEffect(()=>{
-        if (isadmin != 'true') {
-            window.location.href = '*'
-        }
-    },[])
+    const Error = () =>{
+        window.location.href = '*'
+    }
 
     useEffect(() => {
         fetch("https://localhost:5000/api/admins/SignedUpUsers")
@@ -37,39 +35,41 @@ function AdminPage() {
 
     return (
         <>
-            <div class="container-box">
-                <Dashboard />
-                <div class="main">
-                    <div class="block">
-                        <h2 name="statistics">Blog statistics</h2>
+            {isadmin == 'true' ? (
+                <div class="container-box">
+                    <Dashboard />
+                    <div class="main">
+                        <div class="block">
+                            <h2 name="statistics">Blog statistics</h2>
 
-                        <div class="card my-card">
-                            <div class="card-body">
-                                <span class="number"> {numSignedUpUsers} </span>
-                                <span class="title"> Registerd users </span>
+                            <div class="card my-card">
+                                <div class="card-body">
+                                    <span class="number"> {numSignedUpUsers} </span>
+                                    <span class="title"> Registerd users </span>
+                                </div>
                             </div>
+
+                            <div class="card my-card">
+                                <div class="card-body">
+                                    <span class="number"> {numPosts.length} </span>
+                                    <span class="title"> Posts </span>
+                                </div>
+                            </div>
+
+                            <div class="card my-card">
+                                <div class="card-title">
+                                    Top post
+                                </div>
+                                <div class="card-body">
+                                    <a href="#"><span class="content"> {mostInteractedPost.title} </span></a>
+                                </div>
+                            </div>
+
                         </div>
 
-                        <div class="card my-card">
-                            <div class="card-body">
-                                <span class="number"> {numPosts.length} </span>
-                                <span class="title"> Posts </span>
-                            </div>
-                        </div>
-
-                        <div class="card my-card">
-                            <div class="card-title">
-                                Top post
-                            </div>
-                            <div class="card-body">
-                                <a href="#"><span class="content"> {mostInteractedPost.title} </span></a>
-                            </div>
-                        </div>
-                        
                     </div>
+                </div>) : <Error />}
 
-                </div>
-            </div>
         </>
     )
 }
