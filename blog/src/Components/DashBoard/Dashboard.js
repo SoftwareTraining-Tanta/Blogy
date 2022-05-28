@@ -51,6 +51,14 @@ function Dashboard() {
                     </li>
 
                     <li>
+                        <NavLink to="/adminposts">
+                            <FiUsers className='fs-4' />
+                            <span class="title">All posts</span>
+                        </NavLink>
+
+                    </li>
+
+                    <li>
                         <button onClick={logOut} className='btn text-dark'>
                             <BiLogOut className='fs-4' />
                             <span class="title ">Log out</span>

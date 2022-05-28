@@ -15,6 +15,7 @@ import ListOfUsers from './Components/AdminControlUser/ListOfUsers';
 import PinPosts from './Components/PinPosts/PinPosts';
 import Error from './Components/Error';
 import Contact from './Components/Contact/Contact';
+import AdminControlPosts from './Components/AdminContrilPosts/AdminControlPosts';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route exact  path='/signup' element={< SignUp />} />
           <Route exact  path='/signinadmin' element={< SignInAdmin />} />
           <Route exact  path='/signupadmin' element={< SignUpAdmin />} />
+          <Route exact  path='/adminposts' element={< AdminControlPosts />} />
           <Route exact  path='/adminhome' element={< AdminPage />} />
           <Route exact  path='/pinposts' element={< PinPosts />} />
           <Route exact  path='/adminusers' element={< ListOfUsers />} />
